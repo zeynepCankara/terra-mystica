@@ -23,7 +23,7 @@ Proximity to other groups is a double-edged sword in Terra Mystica. Being close 
 * Zeynep Cankara,  Id: 21703381
 * [Muhammet Kamil Gök](https://github.com/mkamilgok), 
 * [Muhammet Rafi Çoktalaş](https://github.com/RafiCoktalas), 
-* [Arda Kaan Gültekin](https://github.com/), 
+* [Arda Kaan Gültekin](https://github.com/hebzatron), 
 * [Mahir Efe Macit](https://github.com/),
 
 ## **Google Docs** :pencil:
