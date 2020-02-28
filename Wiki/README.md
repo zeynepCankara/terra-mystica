@@ -1,17 +1,17 @@
-# **Project Wiki** 
+# **Project Wiki** :ledger:
 
-We will track progress of the group project in our Wiki Page. 
+#### We will track progress of the group project in our Wiki Page. :pushpin: 
 
 - Contains a summary of our meetings.
 - We will be using the wiki page to manage our project. Keeping each other accountable. 
 
-Possible Questions to address before the start of the meeting:
+#### Possible Questions to address before the start of the meeting: :pushpin:
 
 1. What work has been completed?
 2. What work is behind schedule?
 3. What issues threaten project progress? 
 
-Things to bear in mind before dividing work into tasks: 
+#### Things to bear in mind before dividing work into tasks: :pushpin:
 
 1. Role
 2. Work product
