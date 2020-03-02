@@ -28,6 +28,9 @@ Being close to other groups is a trade-off in Terra Mystica. It gives the player
 * [Arda Kaan Gültekin](https://github.com/hebzatron) 
 * [Mahir Efe Macit](https://github.com/EfeMacit)
 
+## **Group Wiki** :ledger:
+* [Wiki](./Wiki/)
+
 ## **Google Docs** :pencil: 
 
 * [Analysis Report](https://docs.google.com/document/d/1o8bRryfNgd8XCsKfEZn_50xF8hk2AzLmbinIgq2WIxM/edit?usp=sharing)

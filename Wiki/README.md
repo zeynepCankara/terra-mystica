@@ -18,3 +18,8 @@
 3. Start date
 4. Planned duration
 5. Required resources
+
+#### Meetings: :pushpin:
+
+- Date: [21/02/2020](./21_02_2020.md) 
+- Date: [28/02/2020](./28_02_2020.md)
