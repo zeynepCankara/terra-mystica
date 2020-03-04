@@ -26,7 +26,7 @@ Being close to other groups is a trade-off in Terra Mystica. It gives the player
 * [Muhammet Kamil Gök](https://github.com/mkamilgok)
 * [Muhammet Rafi Çoktalaş](https://github.com/RafiCoktalas)
 * [Arda Kaan Gültekin](https://github.com/hebzatron) 
-* [Mahir Efe Macit](https://github.com/EfeMacit)
+* [Mahir Efe Macit](https://github.com/EfeMacit):  Id: 21601510
 
 ## **Group Wiki** :ledger:
 * [Wiki](./Wiki/)
