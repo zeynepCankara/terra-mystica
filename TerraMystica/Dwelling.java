@@ -5,7 +5,7 @@ public class Dwelling extends Structure {
     public void getRequiredResource() {
 
     }
-
+    //// trying intellij idea
     @Override
     public void giveIncomeOfStructue() {
 
