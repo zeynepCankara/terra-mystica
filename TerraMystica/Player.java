@@ -1,5 +1,6 @@
-import java.util.*;
 package TerraMystica;
+import java.util.*;
+
 public class Player {
 	//Variables
 	private String faction;
