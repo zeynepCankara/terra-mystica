@@ -36,6 +36,7 @@ Being close to other groups is a trade-off in Terra Mystica. It gives the player
 ### **Iteration 1** :lock:
 
 * [Analysis Report](https://docs.google.com/document/d/1o8bRryfNgd8XCsKfEZn_50xF8hk2AzLmbinIgq2WIxM/edit?usp=sharing)
+* [Design Report](https://docs.google.com/document/d/1S_CXfDWqdXF78Z1Y6ETk6ayPv_ypt7t3xbmz6vTLu00/edit?usp=sharing)
  
 ### **Iteration 2** :lock:
  
