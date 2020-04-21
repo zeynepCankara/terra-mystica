@@ -6,4 +6,4 @@
 6. Factions should be more detailed in the design.
 7. Introducing a GameFlowManager class would benefit.
 8. Player class needs to be simplified. It should only represent an entity object.
-9. Controller classes should be added and diversified.
+9. More controller classes should be added and diversified.
