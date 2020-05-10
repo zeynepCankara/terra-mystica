@@ -19,7 +19,7 @@ public class LocalGameController extends SceneController {
     public LocalGameController(Stage stage) throws IOException {
         Parent root = null;
         try {
-            root = loadFXML("gameSceneManager/localGame");
+            root = loadFXML("localGame");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,7 +32,7 @@ public class LocalGameController extends SceneController {
     @Override
     public void initController(Stage stage) throws IOException {
         scene.getStylesheets().clear();
-        scene.getStylesheets().add(getClass().getResource("gameSceneManager/localGame.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("localGame.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

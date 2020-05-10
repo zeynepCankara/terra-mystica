@@ -29,14 +29,14 @@ public class MainMenuController extends SceneController {
     Slider masterVolume;
 
     public MainMenuController(Stage stage) throws IOException {
-        Parent root = null;
+        super.root = null;
         try {
             root = loadFXML("mainMenu");
         } catch (IOException e) {
             e.printStackTrace();
         }
         // scene = stage.getScene(); // NOTE: This causes error in exec
-        scene = new Scene(root);
+        scene = new Scene(super.root);
         initController(stage);
     }
 
@@ -54,7 +54,20 @@ public class MainMenuController extends SceneController {
         exitButton = (Button) scene.lookup("#exitButton");
 
         // Exit button closes the application
-        Parent finalRoot = root;
+        Parent finalRoot = super.root;
+        helpButton.setOnMouseClicked(event -> {
+            FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);
+            fadeAnimation.setOnFinished(event1 ->
+            {
+                try {
+                    finalRoot.setVisible(false);
+                    App.setController(1, stage);
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+            });
+            fadeAnimation.play();
+        });
         exitButton.setOnMouseClicked(event -> {
             // // Initialize closing animation for main menu with 2x the normal speed.
             FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);
@@ -66,6 +79,19 @@ public class MainMenuController extends SceneController {
                 // Close the application.
                 Platform.exit();
                 System.exit(0);
+            });
+            fadeAnimation.play();
+        });
+        localButton.setOnMouseClicked(event -> {
+            FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);
+            fadeAnimation.setOnFinished(event1 ->
+            {
+                try {
+                    finalRoot.setVisible(false);
+                    App.setController(2, stage);
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
             });
             fadeAnimation.play();
         });

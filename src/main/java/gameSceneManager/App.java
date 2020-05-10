@@ -52,7 +52,7 @@ public class App extends Application {
 
         // controller = new MainMenuController(stage);
         //LocalGameController localGameController = new LocalGameController(stage);
-        controller = new HelpMenuController(stage);
+        controller = new MainMenuController(stage);
     }
 
 
@@ -79,7 +79,6 @@ public class App extends Application {
     }
 
     public static Parent loadFXML(String fxml) throws IOException {
-        System.out.println(App.class.getResource(fxml + ".fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }

@@ -48,14 +48,13 @@ public class HelpMenuController extends SceneController {
 
 
         Parent finalRoot = super.root;
-        System.out.println(finalRoot == null);
+
         goBackImg.setOnMouseClicked(event -> {
             FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);
             fadeAnimation.setOnFinished(event1 ->
             {
                 try {
                     finalRoot.setVisible(false);
-                    System.out.println("XO...");
                     App.setController(0, stage);
                 } catch (IOException e) {
                     System.out.println(e);

@@ -2,34 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b064138d-f9f7-409a-a416-ea5fd3287eff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/HelpMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/LocalGameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/MainMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/PrimaryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/SceneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/SecondaryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/helpMenu.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/helpMenu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/btn_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/exitBtn_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/goBackImg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/helpBtn_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/helpMenu_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/localBtn_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/localGame_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/mainMenu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/images/onlineBtn_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/localGame.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/localGame.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/mainMenu.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/mainMenu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/primary.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/gameSceneManager/secondary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gameSceneManager/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gameSceneManager/HelpMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/HelpMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gameSceneManager/LocalGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/LocalGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gameSceneManager/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gameSceneManager/MainMenuController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +104,7 @@
       <workItem from="1589106448839" duration="4000" />
       <workItem from="1589106472006" duration="167000" />
       <workItem from="1589107653612" duration="5886000" />
-      <workItem from="1589117226065" duration="6579000" />
+      <workItem from="1589117226065" duration="6932000" />
     </task>
     <servers />
   </component>
@@ -159,25 +136,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="970" y="250" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589106617885" />
-    <state width="1638" height="294" key="GridCell.Tab.0.bottom" timestamp="1589125834735">
+    <state width="1638" height="294" key="GridCell.Tab.0.bottom" timestamp="1589132655392">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="294" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1589125834735" />
+    <state width="1638" height="294" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1589132655392" />
     <state width="916" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589108592668" />
-    <state width="1638" height="294" key="GridCell.Tab.0.center" timestamp="1589125834733">
+    <state width="1638" height="294" key="GridCell.Tab.0.center" timestamp="1589132655391">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="294" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1589125834733" />
+    <state width="1638" height="294" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1589132655391" />
     <state width="916" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589108592668" />
-    <state width="1638" height="294" key="GridCell.Tab.0.left" timestamp="1589125834732">
+    <state width="1638" height="294" key="GridCell.Tab.0.left" timestamp="1589132655390">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="294" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1589125834732" />
+    <state width="1638" height="294" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1589132655390" />
     <state width="916" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589108592668" />
-    <state width="1638" height="294" key="GridCell.Tab.0.right" timestamp="1589125834734">
+    <state width="1638" height="294" key="GridCell.Tab.0.right" timestamp="1589132655391">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="294" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1589125834734" />
+    <state width="1638" height="294" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1589132655391" />
     <state width="916" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589108592668" />
     <state width="916" height="351" key="GridCell.Tab.1.bottom" timestamp="1589108572520">
       <screen x="0" y="0" width="1920" height="1040" />
