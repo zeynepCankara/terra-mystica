@@ -5,5 +5,5 @@ public class Player {
     private Faction faction;
     private int shipping;
     private int spadeRate;
-    private RemainedStructure remainedStructure;
+    //private RemainedStructure remainedStructure;
 }
