@@ -1,0 +1,23 @@
+.anchor {
+    -fx-background-image: url("./images/mainMenu.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}
+
+#helpButton{
+    -fx-background-image: url("./images/helpBtn_image.png");
+    -fx-background-size: cover, auto;
+}
+#onlineButton{
+    -fx-background-image: url("./images/onlineBtn_image.png");
+    -fx-background-size: cover, auto;
+}
+#localButton{
+    -fx-background-image: url("./images/localBtn_image.png");
+    -fx-background-size: cover, auto;
+}
+#exitButton{
+    -fx-background-image: url("./images/exitBtn_image.png");
+    -fx-background-size: cover, auto;
+}
+

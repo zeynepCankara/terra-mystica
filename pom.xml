@@ -36,7 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <mainClass>test.App</mainClass>
+                    <mainClass>gameSceneManager.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>
