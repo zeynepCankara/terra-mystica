@@ -11,5 +11,8 @@
         <module name="CS319-1I-TM" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="1I-TM" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

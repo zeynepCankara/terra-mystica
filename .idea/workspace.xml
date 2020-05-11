@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82b6b62a-bed0-4109-b7b0-b91ca295acfc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/1I-TM.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="82b6b62a-bed0-4109-b7b0-b91ca295acfc" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,6 +29,35 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="gameSceneManager.App" />
+      <module name="1I-TM" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="gameSceneManager.App" />
+      <module name="1I-TM" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -39,6 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589190250226</updated>
       <workItem from="1589190251333" duration="251000" />
+      <workItem from="1589192633203" duration="61000" />
     </task>
     <servers />
   </component>
@@ -46,10 +78,35 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="304" y="187" width="1071" height="765" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589190382124">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="783" y="166" key="#Project_Structure" timestamp="1589192676173">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="783" y="166" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1589192676173" />
+    <state x="347" y="185" width="1071" height="765" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589192693752">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="304" y="187" width="1071" height="765" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1589190382124" />
+    <state x="347" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589192693752" />
+    <state x="688" y="348" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1589192653352">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="688" y="348" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589192653352" />
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1589196114570">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589196114570" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1589196114569">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589196114569" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1589196114569">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589196114569" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1589196114570">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589196114570" />
     <state x="623" y="449" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589190358755">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

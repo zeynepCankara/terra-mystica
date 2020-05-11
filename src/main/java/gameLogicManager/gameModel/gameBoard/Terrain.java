@@ -2,8 +2,14 @@ package gameLogicManager.gameModel.gameBoard;
 
 import gameLogicManager.gameModel.player.Player;
 
+/**
+ * Terrain entity.
+ * @author Rafi Coktalas
+ * @version 11.05.2020
+ */
 public class Terrain {
     private TerrainType type;
+    private int id; //id of a terrain is used to place it on the Map
     private boolean isAvailable;
     private Structure structure;
     private Player owner;
@@ -36,4 +42,11 @@ public class Terrain {
     }
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

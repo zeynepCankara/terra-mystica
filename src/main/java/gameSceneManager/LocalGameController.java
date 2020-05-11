@@ -36,4 +36,20 @@ public class LocalGameController extends SceneController {
         stage.setScene(scene);
         stage.show();
     }
+
+    /*
+    for( int i = 0; i < 13 ){
+        for( int j = 0; j < 5; j++ ){
+            //ADD A HEXAGON at (236 + 68*i, x + 120*j)
+            //ID = j*25 + i
+        }
+    }
+
+    for( int i = 0; i < 12 ){
+        for( int j = 0; j < 4; j++ ){
+            //ADD A HEXAGON at (236 + 34 + 68*i, x + 60 + 120*j)
+            //ID = 13 + j*25 + i
+        }
+    }
+     */
 }
