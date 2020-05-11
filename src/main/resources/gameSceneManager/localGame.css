@@ -3,3 +3,12 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover, auto;
 }
+
+#goBackImg {
+    -fx-background-image: url("./images/goBackImg.png");
+    -fx-opacity: 0.5;
+}
+
+#goBackImg:hover {
+    -fx-opacity: 1;
+}

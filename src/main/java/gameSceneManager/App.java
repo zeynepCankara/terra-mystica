@@ -25,9 +25,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * Application logic for starting the Desktop App
+ * UIController of the application and manages the controller logic
  * @author Zeynep Cankara
- * @version 06.05.2020
+ * @version 11.05.2020
  */
 public class App extends Application {
 
@@ -74,6 +74,9 @@ public class App extends Application {
             // 2 is the code for Player Selection Controller.
             case 2:
                 controller = new LocalGameController(stage);
+                break;
+            case 3:
+                controller = new GameSetupController(stage);
                 break;
         }
     }
