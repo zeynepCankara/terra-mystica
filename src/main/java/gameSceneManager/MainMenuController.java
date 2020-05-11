@@ -88,7 +88,7 @@ public class MainMenuController extends SceneController {
             {
                 try {
                     finalRoot.setVisible(false);
-                    App.setController(2, stage);
+                    App.setController(3, stage);
                 } catch (IOException e) {
                     System.out.println(e);
                 }
