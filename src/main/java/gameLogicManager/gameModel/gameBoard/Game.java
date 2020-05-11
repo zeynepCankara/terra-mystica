@@ -1,6 +1,9 @@
 package gameLogicManager.gameModel.gameBoard;
 
-import gameLogicManager.gameModel.gameResources.tiles.*;
+import gameLogicManager.gameModel.gameResources.BonusCardList;
+import gameLogicManager.gameModel.gameResources.FavorTileList;
+import gameLogicManager.gameModel.gameResources.ScoringTileList;
+import gameLogicManager.gameModel.gameResources.TownTileList;
 import gameLogicManager.gameModel.player.Player;
 
 import java.util.List;
@@ -31,9 +34,11 @@ public class Game {
     }
 
     public static Game getInstance(){
+
         if( uniqueInstance == null ){
             uniqueInstance = new Game();
         }
         return uniqueInstance;
     }
+
 }

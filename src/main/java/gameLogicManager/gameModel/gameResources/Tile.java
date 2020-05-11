@@ -1,4 +1,4 @@
-package gameLogicManager.gameModel.gameResources.tiles;
+package gameLogicManager.gameModel.gameResources;
 
 public abstract class Tile {
     int id;

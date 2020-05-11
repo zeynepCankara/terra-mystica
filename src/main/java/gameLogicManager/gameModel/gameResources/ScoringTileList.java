@@ -1,4 +1,4 @@
-package gameLogicManager.gameModel.gameResources.tiles;
+package gameLogicManager.gameModel.gameResources;
 
 import java.util.List;
 
