@@ -1,0 +1,53 @@
+:root{
+    --background-color: crimson;
+}
+.hexagon {
+    position: relative;
+    width: 68px;
+    height: 40px;
+    background-color: #fff94f;
+    margin: 20px 0;
+}
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 34px solid transparent;
+    border-right: 34px solid transparent;
+}
+
+.hexagon:before {
+    bottom: 100%;
+    border-bottom: 20px solid var(--background-color);
+}
+
+.hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 20px solid var(--background-color);
+}
+#plains{
+    --background-color: #c85e11;
+}
+#swamp{
+    --background-color: #10350e;
+}
+#lakes{
+    --background-color: #3e625a;
+}
+#forest{
+    --background-color: #1bbc0e;
+}
+#mountains{
+    --background-color: #959799;
+}
+#wasteland{
+    --background-color: #883b36;
+}
+#desert{
+    --background-color: #fff94f;
+}
+#river{
+    --background-color: #101662;
+}
