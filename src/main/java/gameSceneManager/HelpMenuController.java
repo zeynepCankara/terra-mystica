@@ -26,7 +26,7 @@ public class HelpMenuController extends SceneController {
 
         super.root = null;
         try {
-            super.root = loadFXML("helpMenu");
+            root = loadFXML("helpMenu");
         } catch (IOException e) {
             e.printStackTrace();
         }

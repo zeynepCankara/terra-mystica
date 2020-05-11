@@ -13,11 +13,6 @@
 <children>
     <ImageView fx:id="localGame_background" fitHeight="892.774972456681" fitWidth="1598.9998779296875" layoutX="-2.0" layoutY="0.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
     </ImageView>
-    <ImageView fx:id="goBackImg" fitHeight="49.49665832519531" fitWidth="66.96606805656647" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="20.0">
-        <image>
-            <Image url= "@./images/goBackImg.png" />
-        </image>
-    </ImageView>
 </children>
 </AnchorPane>
 
