@@ -29,16 +29,30 @@ public class Game {
     private BonusCardList bonusCards;
     private String statusBar;
 
-    private Game(){
-
+    private Game(boolean isMapRandom){
+        gameBoard = new GameBoard(isMapRandom);
     }
 
-    public static Game getInstance(){
+    /**
+     * This method is to initialize the Game Singleton
+     * @param isMapRandom
+     * @return Singleton instance
+     */
+    public static Game getInstance(boolean isMapRandom){
 
         if( uniqueInstance == null ){
-            uniqueInstance = new Game();
+            uniqueInstance = new Game(isMapRandom);
         }
         return uniqueInstance;
+    }
+
+    /**
+     * This method is to get instance of the Game Singleton
+     * It cannot be used for initialization.
+     * @return Singleton instance
+     */
+    public static Game getInstance() throws NullPointerException{
+            return uniqueInstance;
     }
 
 }
