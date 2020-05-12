@@ -17,7 +17,6 @@ import static gameSceneManager.App.loadFXML;
  * @author Zeynep Cankara
  * @version 11.05.2020
  */
-
 public class GameSetupController extends SceneController {
     // Properties
     ImageView goBackImg;

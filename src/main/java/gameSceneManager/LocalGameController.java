@@ -1,26 +1,45 @@
 package gameSceneManager;
 
 import javafx.animation.FadeTransition;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static gameSceneManager.App.loadFXML;
 
 /**
  * Controls the local game play UI of the application
  * @author Zeynep Cankara
- * @version 09.05.2020
+ * @version 12.05.2020
  */
 
 public class LocalGameController extends SceneController {
-    // Properties
+    // Properties: UI Related
     ImageView goBackImg;
 
+    // Properties: Logic Related
+    HashMap<Integer, Color> terrainColorMap = new HashMap<Integer, Color>();
+    // Define the terrain colors (7 Terrain type) + River
+    Color riverColor = Color.DARKBLUE;
+    Color desertColor = Color.LIGHTGOLDENRODYELLOW;
+    Color swampColor = Color.DARKGREEN;
+    Color forestColor = Color.FORESTGREEN;
+    Color mountainColor = Color.BROWN;
+    Color lakeColor = Color.BLUE;
+    Color wastelandColor = Color.SADDLEBROWN;
+    Color plainColor = Color.DARKORANGE;
+
+    // Constructor
     public LocalGameController(Stage stage) throws IOException {
         super.root = null;
         try {
@@ -31,6 +50,16 @@ public class LocalGameController extends SceneController {
         // scene = stage.getScene(); // NOTE: This causes error in exec
         scene = new Scene(super.root);
         initController(stage);
+
+        // TerrainType enum code
+        terrainColorMap.put(0, plainColor);
+        terrainColorMap.put(1,swampColor);
+        terrainColorMap.put(2,lakeColor);
+        terrainColorMap.put(3, forestColor);
+        terrainColorMap.put(4, mountainColor);
+        terrainColorMap.put(5, wastelandColor);
+        terrainColorMap.put(6, desertColor);
+        terrainColorMap.put(7, riverColor);
     }
 
 
@@ -43,6 +72,7 @@ public class LocalGameController extends SceneController {
 
         // Return to the main window
         goBackImg = (ImageView) scene.lookup("#goBackImg");
+
 
 
         Parent finalRoot = super.root;
@@ -59,6 +89,25 @@ public class LocalGameController extends SceneController {
                 }
             });
             fadeAnimation.play();
+        });
+
+        // TEST: changeTerrain
+        for( int i = 0; i < 113; i++ ){
+            int terrainCode = i%8;
+            changeTerrain(i, terrainCode);
+        }
+
+    }
+
+    /**
+     * Transforms terrain space with specified terrain type.
+     * @param polygonId reference to the UI hexagon
+     * @param terrainId, terrain type
+     */
+    public void changeTerrain(int polygonId, int terrainId) {
+        Polygon hexagon = (Polygon) scene.lookup("#" + polygonId);
+        hexagon.setOnMouseClicked(event -> {
+            hexagon.setFill(terrainColorMap.get(terrainId));
         });
     }
 
