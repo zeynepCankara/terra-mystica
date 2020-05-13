@@ -13,9 +13,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static gameSceneManager.App.loadFXML;
+import static gameSceneManager.BoardGenerator.terrainColorMap;
+
 
 /**
  * Controls the local game play UI of the application
@@ -27,17 +31,6 @@ public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
 
-    // Properties: Logic Related
-    HashMap<Integer, Color> terrainColorMap = new HashMap<Integer, Color>();
-    // Define the terrain colors (7 Terrain type) + River
-    Color riverColor = Color.DARKBLUE;
-    Color desertColor = Color.LIGHTGOLDENRODYELLOW;
-    Color swampColor = Color.DARKGREEN;
-    Color forestColor = Color.FORESTGREEN;
-    Color mountainColor = Color.BROWN;
-    Color lakeColor = Color.BLUE;
-    Color wastelandColor = Color.SADDLEBROWN;
-    Color plainColor = Color.DARKORANGE;
 
     // Constructor
     public LocalGameController(Stage stage) throws IOException {
@@ -51,15 +44,8 @@ public class LocalGameController extends SceneController {
         scene = new Scene(super.root);
         initController(stage);
 
-        // TerrainType enum code
-        terrainColorMap.put(0, plainColor);
-        terrainColorMap.put(1,swampColor);
-        terrainColorMap.put(2,lakeColor);
-        terrainColorMap.put(3, forestColor);
-        terrainColorMap.put(4, mountainColor);
-        terrainColorMap.put(5, wastelandColor);
-        terrainColorMap.put(6, desertColor);
-        terrainColorMap.put(7, riverColor);
+
+        scene = BoardGenerator.generateDefaultTerrainMap(scene);
     }
 
 
@@ -91,25 +77,21 @@ public class LocalGameController extends SceneController {
             fadeAnimation.play();
         });
 
-        // TEST: changeTerrain
-        for( int i = 0; i < 113; i++ ){
-            int terrainCode = i%8;
-            changeTerrain(i, terrainCode);
-        }
-
     }
 
+
     /**
-     * Transforms terrain space with specified terrain type.
+     * Transforms terrain space with specified terrain type when pressed.
      * @param polygonId reference to the UI hexagon
      * @param terrainId, terrain type
      */
-    public void changeTerrain(int polygonId, int terrainId) {
+    public void changeTerrainOnMouseClick(int polygonId, int terrainId) {
         Polygon hexagon = (Polygon) scene.lookup("#" + polygonId);
         hexagon.setOnMouseClicked(event -> {
             hexagon.setFill(terrainColorMap.get(terrainId));
         });
     }
+
 
     /*
     for( int i = 0; i < 13 ){
