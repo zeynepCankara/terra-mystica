@@ -92,6 +92,18 @@ public class GameSetupController extends SceneController {
             });
             fadeAnimation.play();
         });
+
+        /**
+        * Setter for game initialization parameters
+        *
+        */
+        // public void setInitParameters(){}
+
+        /**
+         * Getter for game initialization parameters
+         *
+         */
+        // public void getInitParameters(){}
     }
 
 }

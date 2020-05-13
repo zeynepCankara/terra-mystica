@@ -26,6 +26,7 @@ public class BoardGenerator {
     static Color wastelandColor = Color.SADDLEBROWN;
     static Color plainColor = Color.DARKORANGE;
 
+
     // Contains terrainIdList which will be used to initialize the terrain map to defaultMap
     public static final int[] DEFAULT_MAP = {
             0, 4, 3, 2, 6, 5, 0, 1, 5, 3, 2, 5, 1,
@@ -39,11 +40,10 @@ public class BoardGenerator {
             5, 1, 4, 2, 5, 3, 6, 0, 4, 7, 2, 3, 5
     };
 
-
     /**
-     * Generates the default game map
+     * Maps the terrainTypes to colorId
      */
-    public static Scene generateDefaultTerrainMap(Scene scene) {
+    private static void initTerrainColorMap(){
         terrainColorMap.put(0, plainColor);
         terrainColorMap.put(1,swampColor);
         terrainColorMap.put(2,lakeColor);
@@ -52,6 +52,26 @@ public class BoardGenerator {
         terrainColorMap.put(5, wastelandColor);
         terrainColorMap.put(6, desertColor);
         terrainColorMap.put(7, riverColor);
+    }
+
+    /**
+     * Generates the default terrain map
+     */
+    public static Scene generateDefaultTerrainMap(Scene scene) {
+        initTerrainColorMap();
+
+        for (int i = 0; i < 113; i++){
+            Polygon hexagon = (Polygon) scene.lookup("#" +i);
+            hexagon.setFill(terrainColorMap.get(DEFAULT_MAP[i]));
+        }
+        return scene;
+    }
+
+    /**
+     * Generates the random terrain map
+     */
+    public static Scene generateRandomTerrainMap(Scene scene) {
+        initTerrainColorMap();
 
 
         for (int i = 0; i < 113; i++){
