@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static gameSceneManager.App.loadFXML;
 
@@ -22,6 +23,9 @@ public class GameSetupController extends SceneController {
     ImageView goBackImg;
     Button defaultMapButton;
     Button randomMapButton;
+    // Button pressed
+    static HashMap<String, Boolean> gameState = new HashMap<String, Boolean>();
+    Boolean isDefaultMap = true;
 
     public GameSetupController(Stage stage) throws IOException {
         super.root = null;
@@ -86,6 +90,7 @@ public class GameSetupController extends SceneController {
                 try {
                     finalRoot.setVisible(false);
                     App.setController(2, stage);
+                    isDefaultMap = false;
                 } catch (IOException e) {
                     System.out.println(e);
                 }
@@ -93,17 +98,25 @@ public class GameSetupController extends SceneController {
             fadeAnimation.play();
         });
 
-        /**
-        * Setter for game initialization parameters
-        *
-        */
-        // public void setInitParameters(){}
+        // initialize the game parameters
+        setInitParameters();
 
-        /**
-         * Getter for game initialization parameters
-         *
-         */
-        // public void getInitParameters(){}
+    }
+
+    /**
+     * Setter for game initialization parameters
+     *
+     */
+    public void setInitParameters(){
+        gameState.put("isDefaultMap", isDefaultMap);
+    }
+
+    /**
+     * Getter for game initialization parameters
+     *
+     */
+    public static HashMap<String, Boolean> getInitParameters(){
+        return gameState;
     }
 
 }

@@ -1,11 +1,14 @@
 package gameSceneManager;
 
+import gameLogicManager.gameModel.gameBoard.Terrain;
+import gameLogicManager.gameModel.gameBoard.TerrainType;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 import java.util.HashMap;
+
 
 /**
  * Class for generating a terrain maps
@@ -67,17 +70,21 @@ public class BoardGenerator {
         return scene;
     }
 
+
     /**
-     * Generates the random terrain map
+     * Generates the random terrain map 
      */
-    public static Scene generateRandomTerrainMap(Scene scene) {
+    public static Scene generateRandomTerrainMap(Scene scene, int n) {
         initTerrainColorMap();
 
-
-        for (int i = 0; i < 113; i++){
-            Polygon hexagon = (Polygon) scene.lookup("#" +i);
-            hexagon.setFill(terrainColorMap.get(DEFAULT_MAP[i]));
+        for( int terrainId : DEFAULT_MAP ){
+            if(terrainId != 7) {
+                int newTerrainTypeID = ( terrainId + n ) % 7;
+                Polygon hexagon = (Polygon) scene.lookup("#" + newTerrainTypeID);
+                hexagon.setFill(terrainColorMap.get(DEFAULT_MAP[newTerrainTypeID]));
+            }
         }
+        //randomize(n =  (int) (Math.random() * 6 + 1));
         return scene;
     }
 
