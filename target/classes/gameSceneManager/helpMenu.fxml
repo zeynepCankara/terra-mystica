@@ -11,7 +11,7 @@
 <?import javafx.scene.image.Image?>
 <AnchorPane id="AnchorPaneHelpMenu" styleClass="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="1536.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
     <children>
-        <ImageView fx:id="helpMenu_background" fitHeight="600" fitWidth="1000" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="20.0">
+        <ImageView fx:id="helpMenu_background" fitHeight="892" fitWidth="1598" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="20.0">
             <image>
                 <Image url= "@./images/helpMenu_background.png " />
             </image>

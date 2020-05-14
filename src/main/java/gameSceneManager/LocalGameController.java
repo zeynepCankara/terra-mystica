@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -31,9 +32,15 @@ public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
 
+    static HashMap<Integer, Polygon> dwellingMap = new HashMap<Integer, Polygon>();
+    // Define the dwelling polygons
+    //Polygon polygon = new Polygon();
+
+
 
     // Constructor
     public LocalGameController(Stage stage) throws IOException {
+
         super.root = null;
         try {
             super.root = loadFXML("localGame");
@@ -84,8 +91,11 @@ public class LocalGameController extends SceneController {
             fadeAnimation.play();
         });
 
+        buildDwellingOnMouseClick(0);
+
     }
 
+    // METHODS for Terrain Manipulation
 
     /**
      * Transforms terrain space with specified terrain type when pressed.
@@ -99,7 +109,24 @@ public class LocalGameController extends SceneController {
         });
     }
 
+    /**
+     * Place dwelling on board
+     * @param polygonId reference to the UI hexagon
+     */
+    public void buildDwellingOnMouseClick(int polygonId) {
+        Rectangle rectangle = new Rectangle(200, 200);
+        rectangle.setFill(Color.AZURE);
 
+        Polygon hexagon = (Polygon) scene.lookup("#" + polygonId);
+        System.out.println("Hexagon selected...");
+        hexagon.setOnMouseClicked(event -> {
+            System.out.println("Hexagon clicked...");
+            rectangle.setLayoutX(hexagon.getLayoutX());
+            rectangle.setLayoutY(hexagon.getLayoutY());
+
+            rectangle.setVisible(true);
+        });
+    }
     /*
     for( int i = 0; i < 13 ){
         for( int j = 0; j < 5; j++ ){
