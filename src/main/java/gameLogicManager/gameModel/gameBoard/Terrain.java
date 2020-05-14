@@ -24,6 +24,9 @@ public class Terrain {
     public void setType(TerrainType terrainType) {
         type = terrainType;
     }
+    public void setType(int terrainTypeID) {
+        type.setTerrainTypeID(terrainTypeID);
+    }
 
     public Structure getStructure() {
         return structure;

@@ -36,7 +36,7 @@ public class GameBoard {
         for( Terrain t : terrainList ){
             if(t.getType() != TerrainType.RIVER) {
                 int newTerrainTypeID = ( t.getType().getTerrainTypeID() + n ) % 7;
-                t.setType( newTerrainTypeID );
+                t.setType(newTerrainTypeID);
             }
         }
     }

@@ -21,8 +21,8 @@ public class GameEngine {
 
     private GameEngine(){}
 
-    public void transformTerrain( int terrainID, int terrainTypeID ){
-        flowManager.transformTerrain(terrainID, terrainTypeID);
+    public void transformTerrain( int terrainID, TerrainType terrainType ){
+        flowManager.transformTerrain(terrainID, terrainType);
     }
 
     public void buildDwelling( int terrainID ) {
