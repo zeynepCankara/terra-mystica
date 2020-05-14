@@ -15,4 +15,5 @@ public class Player {
     public int getNumOfWorkers(){return numOfWorkers;}
     public void setNumOfWorkers(int numOfWorkers){this.numOfWorkers = numOfWorkers;}
     public int getSpadeRate(){return spadeRate;}
+    public int getShipping() { return shipping; }
 }

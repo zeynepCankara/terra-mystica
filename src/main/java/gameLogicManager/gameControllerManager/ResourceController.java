@@ -57,4 +57,16 @@ public class ResourceController implements NotificationHandler{
 
         return false;
     }
+
+    public boolean obtainResourceForImprovement(Player currentPlayer) {
+        //TODO
+
+        return false;
+    }
+
+    public boolean obtainIncomeForImprovement(Player currentPlayer) {
+        //TODO
+
+        return false;
+    }
 }

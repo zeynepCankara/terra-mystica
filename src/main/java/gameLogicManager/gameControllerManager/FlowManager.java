@@ -103,6 +103,11 @@ public class FlowManager{
 
     public boolean improveShipping()
     {
+        /*shipping cannot be more than 3, cannot be upgraded anymore */
+        if(currentPlayer.getShipping() == 3){
+            return false;
+        }
+
         if(resourceController.obtainResourceForShipping(currentPlayer)){
             return false;
         }
@@ -114,6 +119,21 @@ public class FlowManager{
         return true;
     }
 
+    public boolean improveTerraforming()
+    {
+        /*worker per spade cannot be less than 1, cannot be upgraded anymore */
+        if(currentPlayer.getSpadeRate() == 1){
+            return false;
+        }
+
+        if(!resourceController.obtainResourceForImprovement(currentPlayer)){
+            return false;
+        }
+        actionController.improveTerraforming(currentPlayer);
+        resourceController.obtainIncomeForImprovement(currentPlayer);
+
+        return true;
+    }
 
     private Terrain getTerrain(int terrainID) {
 
