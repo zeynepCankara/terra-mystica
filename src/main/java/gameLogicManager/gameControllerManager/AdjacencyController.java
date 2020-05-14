@@ -28,4 +28,10 @@ public class AdjacencyController implements NotificationHandler{
 
         return false;
     }
+
+    public boolean isAdjacent(Player player, Terrain terrain) {
+        //TODO
+
+        return false;
+    }
 }
