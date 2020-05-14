@@ -14,6 +14,7 @@ public class Player {
     private int remainedDwelling;
     private HashSet<Structure> structuresBuilt;
     private int numOfPriests;
+    private int score;
 
     public Faction getFaction() {
         return faction;
@@ -62,5 +63,13 @@ public class Player {
 
     public void addStructure(Structure structure){
         structuresBuilt.add(structure);
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

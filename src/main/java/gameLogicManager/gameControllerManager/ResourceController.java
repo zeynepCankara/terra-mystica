@@ -74,9 +74,11 @@ public class ResourceController implements NotificationHandler{
     }
 
     public boolean obtainIncomeForShipping(Player currentPlayer) {
-        //TODO
+        if(currentPlayer.getShipping() == 1){ currentPlayer.setScore(currentPlayer.getScore() + 2); }
+        else if(currentPlayer.getShipping() == 2){ currentPlayer.setScore(currentPlayer.getScore() + 3); }
+        else if(currentPlayer.getShipping() == 3){ currentPlayer.setScore(currentPlayer.getScore() + 4); }
 
-        return false;
+        return true;
     }
 
     public boolean obtainResourceForImprovement(Player currentPlayer) {
