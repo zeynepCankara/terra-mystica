@@ -27,10 +27,11 @@ public class ActionController implements NotificationHandler{
         return true;
     }
 
-    public boolean build(Player currentPlayer, Terrain terrain) {
-        //TODO
-
-        return false;
+    public boolean build(Player currentPlayer, Terrain terrain) { //ADD SERVER METHOD
+        Dwelling  dwelling = new Dwelling();
+        currentPlayer.addStructure(dwelling);
+        terrain.setStructure(dwelling); //needs server update for map
+        return true;
     }
 
     public boolean improveShipping(Player currentPlayer) {

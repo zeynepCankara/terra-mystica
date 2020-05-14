@@ -1,19 +1,20 @@
 package gameLogicManager.gameModel.gameBoard;
 
 public abstract class Structure {
-    private int requiredWorkers;
-    private int requiredCoins;
-    private int powerValue;
+    protected int requiredWorkers;
+    protected int requiredCoins;
+    protected int powerValue;
 
-    public int getRequiredWorkers() {
+    public  int getRequiredWorkers() {
         return requiredWorkers;
     }
 
-    public int getRequiredCoins() {
+    public  int getRequiredCoins() {
         return requiredCoins;
     }
 
-    public int getPowerValue() {
+    public  int getPowerValue() {
         return powerValue;
     }
+
 }

@@ -1,5 +1,6 @@
 package gameLogicManager.gameControllerManager;
 
+import gameLogicManager.gameModel.gameBoard.Dwelling;
 import gameLogicManager.gameModel.gameBoard.TerrainType;
 import gameLogicManager.gameModel.player.Player;
 
@@ -36,8 +37,13 @@ public class ResourceController implements NotificationHandler{
     }
 
     public boolean obtainResourceOfDwelling(Player currentPlayer) {
-        int workersNeeded = 1;
-        int coinsNeeded = 2;
+        /* out of dwelling */
+        if(currentPlayer.getRemainedDwelling() == 0){
+            return false;
+        }
+        int workersNeeded = (new Dwelling()).getRequiredWorkers();
+        int coinsNeeded = (new Dwelling()).getRequiredWorkers();
+        /* check worker and coins */
         if(currentPlayer.getNumOfWorkers() >= workersNeeded && currentPlayer.getCoins() >= coinsNeeded){
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - workersNeeded);
             currentPlayer.setCoins(currentPlayer.getCoins()-coinsNeeded);
@@ -45,10 +51,10 @@ public class ResourceController implements NotificationHandler{
         }
         return false;
     }
+    /* Income is 1 worker */
     public boolean obtainIncomeOfDwelling(Player currentPlayer) {
-        //TODO
-
-        return false;
+        currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
+        return true;
     }
 
     public boolean obtainResourceForShipping(Player currentPlayer) {

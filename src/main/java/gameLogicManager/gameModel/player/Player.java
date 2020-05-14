@@ -1,4 +1,8 @@
 package gameLogicManager.gameModel.player;
+import java.util.HashSet;
+import gameLogicManager.gameModel.gameBoard.Structure;
+
+import java.util.HashSet;
 
 public class Player {
     private String name;
@@ -7,9 +11,9 @@ public class Player {
     private int spadeRate;
     private int numOfWorkers;
     private int coins;
+    private int remainedDwelling;
+    private HashSet<Structure> structuresBuilt;
     private int numOfPriests;
-    //private RemainedStructure remainedStructure;
-
 
     public Faction getFaction() {
         return faction;
@@ -36,6 +40,7 @@ public class Player {
     public void setCoins(int coins) {
         this.coins = coins;
     }
+
     public void setShipping(int shipping){
         this.shipping = shipping;
     }
@@ -47,4 +52,15 @@ public class Player {
         this.numOfPriests = numOfPriests;
     }
 
+    public int getRemainedDwelling() {
+        return remainedDwelling;
+    }
+
+    public void setRemainedDwelling(int remainedDwelling) {
+        this.remainedDwelling = remainedDwelling;
+    }
+
+    public void addStructure(Structure structure){
+        structuresBuilt.add(structure);
+    }
 }
