@@ -75,9 +75,7 @@ public class FlowManager{
         }
 
         actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attirubutes of player
-
         resourceController.obtainIncomeOfDwelling(currentPlayer);
-
         adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
         return true;
