@@ -22,9 +22,9 @@ public class ResourceController implements NotificationHandler{
 
     private ResourceController(){}
 
-    public boolean obtainSpade(Player currentPlayer, TerrainType type) {
+    public boolean obtainSpade(Player currentPlayer,TerrainType type) {
         int spadesNeedToConvert = Math.abs(currentPlayer.getFaction().getTerrainType().getTerrainTypeID() - type.getTerrainTypeID());
-        if(spadesNeedToConvert > 4)
+        if(spadesNeedToConvert > 3)
             spadesNeedToConvert = 7 - spadesNeedToConvert;
         if(spadesNeedToConvert*currentPlayer.getSpadeRate() <= currentPlayer.getNumOfWorkers())
         {
