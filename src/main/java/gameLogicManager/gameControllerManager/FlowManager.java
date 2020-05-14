@@ -1,5 +1,8 @@
 package gameLogicManager.gameControllerManager;
 
+import gameLogicManager.gameModel.gameBoard.*;
+import gameLogicManager.gameModel.player.Player;
+
 /**
  * This class is to control the game flow.
  * It is a facade class for controllers to communicate with entities and UI.
@@ -19,11 +22,11 @@ public class FlowManager{
 
     private FlowManager(){}
 
-    public boolean transformTerrain(int terrainID, int newTerrainTypeID) {
-        //TODO
+    // Controller Instances
+    ResourceController resourceController = ResourceController.getInstance();
+    ActionController actionController = ActionController.getInstance();
+    AdjacencyController adjacencyController = AdjacencyController.getInstance();
 
-        //check
+    Player currentPlayer;
 
-        return true;
-    }
 }
