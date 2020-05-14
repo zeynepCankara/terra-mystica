@@ -49,21 +49,20 @@ public class FlowManager{
         game = Game.getInstance(isRandom); // + Players and their factions //TODO
     }
 
-    public boolean transformTerrain(int terrainID) {
+    public boolean transformTerrain(int terrainID, TerrainType newTerrainType) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.(DECIDE THE CLASS OF THE FUNCTION)
 
-        /* Player cannot transform if the terrain is not available */
-        if(!terrain.isAvailable()){
+        /* Player cannot transform if the terrain is not available or it's the same terrain */
+        if(!terrain.isAvailable() || terrain.getType().getTerrainTypeID() == newTerrainType.getTerrainTypeID()){
             return false;
         }
 
         /* Check if the player has enough workers to have enough spades, obtain spades if possible */
-        if(!resourceController.obtainSpade(currentPlayer, terrain.getType())){
+        if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){
             return false;
         }
 
-        TerrainType newTerrainType = currentPlayer.getFaction().getTerrainType();
-        actionController.transformTerrain(terrain, newTerrainType);//this method will connect server for the update on terrain
+        actionController.transformTerrain(terrain, newTerrainType);
 
         adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 

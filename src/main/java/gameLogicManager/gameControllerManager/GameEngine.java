@@ -22,7 +22,7 @@ public class GameEngine {
     private GameEngine(){}
 
     public void transformTerrain( int terrainID, int terrainTypeID ){
-        //flowManager.transformTerrain( terrainID, terrainTypeID ); DISCUSS AND DECIDE!!!!!!!!
+        flowManager.transformTerrain(terrainID, terrainTypeID);
     }
 
     public void buildDwelling( int terrainID ) {

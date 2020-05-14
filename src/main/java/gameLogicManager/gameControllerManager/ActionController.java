@@ -23,10 +23,8 @@ public class ActionController implements NotificationHandler{
     private ActionController(){}
 
     public boolean transformTerrain(Terrain terrain, TerrainType newTerrainType){
-
-        //TODO
-
-        return false;
+        terrain.setType(newTerrainType);
+        return true;
     }
 
     public boolean build(Player currentPlayer, Terrain terrain) {
