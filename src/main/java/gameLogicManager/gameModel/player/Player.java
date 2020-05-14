@@ -7,6 +7,7 @@ public class Player {
     private int spadeRate;
     private int numOfWorkers;
     private int coins;
+    private int numOfPriests;
     //private RemainedStructure remainedStructure;
 
 
@@ -35,4 +36,15 @@ public class Player {
     public void setCoins(int coins) {
         this.coins = coins;
     }
+    public void setShipping(int shipping){
+        this.shipping = shipping;
+    }
+    public int getNumOfPriests(){
+        return numOfPriests;
+    }
+    public void setNumOfPriests(int numOfPriests)
+    {
+        this.numOfPriests = numOfPriests;
+    }
+
 }

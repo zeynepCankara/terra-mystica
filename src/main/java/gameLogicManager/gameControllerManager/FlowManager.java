@@ -106,8 +106,8 @@ public class FlowManager{
         if(currentPlayer.getShipping() == 3){
             return false;
         }
-
-        if(resourceController.obtainResourceForShipping(currentPlayer)){
+        //Added a '!' since the obtainResourceForShipping returns true when player can afford coins & priests.
+        if(!resourceController.obtainResourceForShipping(currentPlayer)){
             return false;
         }
 

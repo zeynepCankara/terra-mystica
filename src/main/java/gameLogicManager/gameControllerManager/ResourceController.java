@@ -52,8 +52,18 @@ public class ResourceController implements NotificationHandler{
     }
 
     public boolean obtainResourceForShipping(Player currentPlayer) {
-        //TODO
-
+        //In order to get the resources first the player has to have the greater or equal than the desired amount
+        //of both priests and coins.
+        int requiredCoins = 4;
+        int requiredPriests = 1;
+        //This function only helps to get the resources from the player it does not increment the shipping value
+        //It is done in action Controller.
+        if(currentPlayer.getCoins() >= requiredCoins && currentPlayer.getNumOfPriests() > requiredPriests)
+        {
+            currentPlayer.setCoins(currentPlayer.getCoins() - requiredCoins);
+            currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() - requiredPriests);
+            return true;
+        }
         return false;
     }
 

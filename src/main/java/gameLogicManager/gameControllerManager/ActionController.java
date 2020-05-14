@@ -34,9 +34,9 @@ public class ActionController implements NotificationHandler{
     }
 
     public boolean improveShipping(Player currentPlayer) {
-        //TODO
-
-        return false;
+        //Assuming there are no exceptional cases since all were checked in the flowManager
+        currentPlayer.setShipping(currentPlayer.getShipping() + 1);
+        return true;
     }
 
     public boolean improveTerraforming(Player currentPlayer) {
