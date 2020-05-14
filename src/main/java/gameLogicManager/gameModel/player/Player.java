@@ -6,4 +6,9 @@ public class Player {
     private int shipping;
     private int spadeRate;
     //private RemainedStructure remainedStructure;
+
+
+    public Faction getFaction() {
+        return faction;
+    }
 }

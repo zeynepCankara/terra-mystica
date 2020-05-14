@@ -1,6 +1,7 @@
 package gameLogicManager.gameModel.player;
 
 import gameLogicManager.gameModel.gameBoard.Terrain;
+import gameLogicManager.gameModel.gameBoard.TerrainType;
 
 /**
  * Entity Object for Factions
@@ -11,5 +12,9 @@ public class Faction {
     private FactionType type;
     private int workerAtSetup;
     private int coinAtSetup;
-    private Terrain homeTerrain;
+    private TerrainType homeTerrain;
+
+    public TerrainType getTerrainType() {
+        return homeTerrain;
+    }
 }

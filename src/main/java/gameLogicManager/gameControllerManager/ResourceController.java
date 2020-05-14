@@ -1,5 +1,8 @@
 package gameLogicManager.gameControllerManager;
 
+import gameLogicManager.gameModel.gameBoard.TerrainType;
+import gameLogicManager.gameModel.player.Player;
+
 /**
  * This class is to control all the resources in the game.
  * It is a Singleton.
@@ -19,4 +22,9 @@ public class ResourceController implements NotificationHandler{
 
     private ResourceController(){}
 
+    public boolean obtainSpade(Player currentPlayer, TerrainType type) {
+        //TODO
+
+        return false;
+    }
 }

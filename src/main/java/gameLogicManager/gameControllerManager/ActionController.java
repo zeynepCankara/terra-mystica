@@ -1,5 +1,7 @@
 package gameLogicManager.gameControllerManager;
 
+import gameLogicManager.gameModel.gameBoard.*;
+
 /**
  * This class is to control the outcome of an action.
  * It is a Singleton.
@@ -18,4 +20,12 @@ public class ActionController implements NotificationHandler{
     }
 
     private ActionController(){}
+
+    public boolean transformTerrain(Terrain terrain, TerrainType newTerrainType){
+
+        //TODO
+
+        return false;
+    }
+
 }
