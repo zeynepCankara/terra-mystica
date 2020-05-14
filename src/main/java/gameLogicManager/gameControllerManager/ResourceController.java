@@ -35,11 +35,15 @@ public class ResourceController implements NotificationHandler{
     }
 
     public boolean obtainResourceOfDwelling(Player currentPlayer) {
-        //TODO
-
+        int workersNeeded = 1;
+        int coinsNeeded = 2;
+        if(currentPlayer.getNumOfWorkers() >= workersNeeded && currentPlayer.getCoins() >= coinsNeeded){
+            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - workersNeeded);
+            currentPlayer.setCoins(currentPlayer.getCoins()-coinsNeeded);
+            return true;
+        }
         return false;
     }
-
     public boolean obtainIncomeOfDwelling(Player currentPlayer) {
         //TODO
 

@@ -6,14 +6,33 @@ public class Player {
     private int shipping;
     private int spadeRate;
     private int numOfWorkers;
+    private int coins;
     //private RemainedStructure remainedStructure;
 
 
     public Faction getFaction() {
         return faction;
     }
-    public int getNumOfWorkers(){return numOfWorkers;}
-    public void setNumOfWorkers(int numOfWorkers){this.numOfWorkers = numOfWorkers;}
-    public int getSpadeRate(){return spadeRate;}
-    public int getShipping() { return shipping; }
+
+    public int getNumOfWorkers() {
+        return numOfWorkers;
+    }
+
+    public void setNumOfWorkers(int numOfWorkers) {
+        this.numOfWorkers = numOfWorkers;
+    }
+
+    public int getSpadeRate() {
+        return spadeRate;
+    }
+
+    public int getShipping() {
+        return shipping;
+    }
+    public int getCoins() {
+        return coins;
+    }
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
 }
