@@ -23,11 +23,11 @@ public class FlowManager{
     private FlowManager(){}
 
     // Controller Instances
-    ResourceController resourceController = ResourceController.getInstance();
-    ActionController actionController = ActionController.getInstance();
-    AdjacencyController adjacencyController = AdjacencyController.getInstance();
+    private ResourceController resourceController = ResourceController.getInstance();
+    private ActionController actionController = ActionController.getInstance();
+    private AdjacencyController adjacencyController = AdjacencyController.getInstance();
 
-    Player currentPlayer;
+    private Player currentPlayer;
 
     public boolean transformTerrain(int terrainID) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.(DECIDE THE CLASS OF THE FUNCTION)
@@ -49,6 +49,40 @@ public class FlowManager{
 
         return true;
     }
+
+    /*
+     * Build dwelling on the given terrain if you have enough resources
+     * @param terrain	where the dwelling will be built on
+     * @return			whether build is successful or not
+     */
+    public boolean build(int terrainID)
+    {
+        Terrain terrain = getTerrain(terrainID);
+
+        /* If the terrain is not empty(available), you cannot build a dwelling */
+        if(!terrain.isAvailable()){
+            return false;
+        }
+
+        /* Chosen terrain must be adjacent to other structure terrains */
+        if(!adjacencyController.isAdjacent(currentPlayer, terrain)){
+            return false;
+        }
+
+        /* Check required resources and obtain resources if possible */
+        if(!resourceController.obtainResourceOfDwelling(currentPlayer)){
+            return false;
+        }
+
+        actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attirubutes of player
+
+        resourceController.obtainIncomeOfDwelling(currentPlayer);
+
+        adjacencyController.updateAdjacencyList(currentPlayer, terrain);
+
+        return true;
+    }
+
 
     private Terrain getTerrain(int terrainID) {
 

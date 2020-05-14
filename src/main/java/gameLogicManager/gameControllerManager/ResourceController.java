@@ -27,4 +27,16 @@ public class ResourceController implements NotificationHandler{
 
         return false;
     }
+
+    public boolean obtainResourceOfDwelling(Player currentPlayer) {
+        //TODO
+
+        return false;
+    }
+
+    public boolean obtainIncomeOfDwelling(Player currentPlayer) {
+        //TODO
+
+        return false;
+    }
 }

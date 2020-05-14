@@ -1,6 +1,7 @@
 package gameLogicManager.gameControllerManager;
 
 import gameLogicManager.gameModel.gameBoard.*;
+import gameLogicManager.gameModel.player.Player;
 
 /**
  * This class is to control the outcome of an action.
@@ -28,4 +29,9 @@ public class ActionController implements NotificationHandler{
         return false;
     }
 
+    public boolean build(Player currentPlayer, Terrain terrain) {
+        //TODO
+
+        return false;
+    }
 }
