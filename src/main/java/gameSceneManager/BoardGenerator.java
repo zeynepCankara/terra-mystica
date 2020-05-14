@@ -63,7 +63,7 @@ public class BoardGenerator {
     public static Scene generateDefaultTerrainMap(Scene scene) {
         initTerrainColorMap();
 
-        for (int i = 0; i < 113; i++){
+        for (int i = 0; i < DEFAULT_MAP.length; i++){
             Polygon hexagon = (Polygon) scene.lookup("#" +i);
             hexagon.setFill(terrainColorMap.get(DEFAULT_MAP[i]));
         }
@@ -72,19 +72,22 @@ public class BoardGenerator {
 
 
     /**
-     * Generates the random terrain map 
+     * Generates the random terrain map
      */
     public static Scene generateRandomTerrainMap(Scene scene, int n) {
         initTerrainColorMap();
 
-        for( int terrainId : DEFAULT_MAP ){
-            if(terrainId != 7) {
-                int newTerrainTypeID = ( terrainId + n ) % 7;
-                Polygon hexagon = (Polygon) scene.lookup("#" + newTerrainTypeID);
-                hexagon.setFill(terrainColorMap.get(DEFAULT_MAP[newTerrainTypeID]));
+        for(int i = 0; i < DEFAULT_MAP.length; i++){
+            // check river terrain
+            Polygon hexagon = (Polygon) scene.lookup("#" + i);
+
+            if(DEFAULT_MAP[i] != 7){
+                int newTerrainTypeID = ( DEFAULT_MAP[i] + n ) % 7;
+                hexagon.setFill(terrainColorMap.get(newTerrainTypeID));
+            } else {
+                hexagon.setFill(terrainColorMap.get(DEFAULT_MAP[i]));
             }
         }
-        //randomize(n =  (int) (Math.random() * 6 + 1));
         return scene;
     }
 

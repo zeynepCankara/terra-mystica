@@ -74,6 +74,7 @@ public class GameSetupController extends SceneController {
             fadeAnimation.setOnFinished(event1 ->
             {
                 try {
+                    setInitParameters();
                     finalRoot.setVisible(false);
                     App.setController(2, stage);
                 } catch (IOException e) {
@@ -88,9 +89,10 @@ public class GameSetupController extends SceneController {
             fadeAnimation.setOnFinished(event1 ->
             {
                 try {
+                    isDefaultMap = false;
+                    setInitParameters();
                     finalRoot.setVisible(false);
                     App.setController(2, stage);
-                    isDefaultMap = false;
                 } catch (IOException e) {
                     System.out.println(e);
                 }
@@ -99,7 +101,7 @@ public class GameSetupController extends SceneController {
         });
 
         // initialize the game parameters
-        setInitParameters();
+
 
     }
 
