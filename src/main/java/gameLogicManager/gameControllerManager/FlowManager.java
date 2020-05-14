@@ -88,6 +88,19 @@ public class FlowManager{
         return true;
     }
 
+    public boolean improveShipping()
+    {
+        if(resourceController.obtainResourceForShipping(currentPlayer)){
+            return false;
+        }
+
+        actionController.improveShipping(currentPlayer);
+        resourceController.obtainIncomeForShipping(currentPlayer);
+        adjacencyController.updateAdjacencyList(currentPlayer);
+
+        return true;
+    }
+
 
     private Terrain getTerrain(int terrainID) {
 

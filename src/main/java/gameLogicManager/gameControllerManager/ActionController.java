@@ -34,4 +34,10 @@ public class ActionController implements NotificationHandler{
 
         return false;
     }
+
+    public boolean improveShipping(Player currentPlayer) {
+        //TODO
+
+        return false;
+    }
 }
