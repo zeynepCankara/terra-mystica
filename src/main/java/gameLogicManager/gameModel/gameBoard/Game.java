@@ -71,4 +71,9 @@ public class Game {
         return gameBoard.getTerrain(terrainID);
     }
 
+    public void buildDwelling( int terrainID ){
+        Terrain terrain = getTerrain(terrainID);
+        terrain.setStructure(new Dwelling());
+    }
+
 }

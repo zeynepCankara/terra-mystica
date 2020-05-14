@@ -31,4 +31,22 @@ public class GameEngine {
         return game.getTerrain( terrainID );
     }
 
+    public void transformTerrain( int terrainID, int terrainTypeID ){
+        if( flowManager.transformTerrain(terrainID, terrainTypeID ) == true ){
+            game.transformTerrain( terrainID, terrainTypeID );
+        }
+        else{
+            //TODO status
+        }
+    }
+
+    public void buildDwelling( int terrainID ){
+        if( flowManager.buildDwelling(terrainID) == true ){
+            game.buildDwelling(terrainID);
+        }
+        else{
+            //TODO status
+        }
+    }
+
 }

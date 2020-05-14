@@ -27,7 +27,7 @@ public class FlowManager{
         }
         return uniqueInstance;
     }
-    
+
     private FlowManager(){
         resourceController = ResourceController.getInstance(); //TODO
         actionController = ActionController.getInstance(); //TODO
@@ -35,7 +35,14 @@ public class FlowManager{
         gameEngine = GameEngine.getInstance(); //TODO
     }
 
-
+/*
+    0: Action is successful.
+    1: Not enough workers.
+    2: Not enough power.
+    3: Not enough coins.
+    4: Not enough priests.
+    5: Not enough victory points.
+ */
     public boolean transformTerrain(int terrainID) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.(DECIDE THE CLASS OF THE FUNCTION)
 
@@ -62,7 +69,7 @@ public class FlowManager{
      * @param terrain	where the dwelling will be built on
      * @return			whether build is successful or not
      */
-    public boolean build(int terrainID)
+    public boolean buildDwelling(int terrainID)
     {
         Terrain terrain = getTerrain(terrainID);
 
@@ -81,7 +88,7 @@ public class FlowManager{
             return false;
         }
 
-        actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attirubutes of player
+        actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attributes of player
         resourceController.obtainIncomeOfDwelling(currentPlayer);
         adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
@@ -93,5 +100,7 @@ public class FlowManager{
 
         return gameEngine.getTerrain( terrainID );
     }
+
+
 
 }
