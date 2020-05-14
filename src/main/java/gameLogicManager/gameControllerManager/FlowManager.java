@@ -14,12 +14,13 @@ public class FlowManager{
     private static FlowManager uniqueInstance; //Singleton
 
     // Controller Instances
-    ResourceController resourceController;
-    ActionController actionController;
-    AdjacencyController adjacencyController;
+    private ResourceController resourceController;
+    private ActionController actionController;
+    private AdjacencyController adjacencyController;
 
-    Player currentPlayer;
-    GameEngine gameEngine;
+    private Player currentPlayer;
+    private GameEngine gameEngine;
+    private static Game game;
 
     public static FlowManager getInstance(){
         if( uniqueInstance == null ){
@@ -43,6 +44,11 @@ public class FlowManager{
     4: Not enough priests.
     5: Not enough victory points.
  */
+
+    public void initializeGame(boolean isRandom) {
+        game = Game.getInstance(isRandom); // + Players and their factions //TODO
+    }
+
     public boolean transformTerrain(int terrainID) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.(DECIDE THE CLASS OF THE FUNCTION)
 
@@ -64,9 +70,9 @@ public class FlowManager{
         return true;
     }
 
-    /*
+    /**
      * Build dwelling on the given terrain if you have enough resources
-     * @param terrain	where the dwelling will be built on
+     * @param terrainID	where the dwelling will be built on
      * @return			whether build is successful or not
      */
     public boolean buildDwelling(int terrainID)
@@ -111,7 +117,7 @@ public class FlowManager{
 
     private Terrain getTerrain(int terrainID) {
 
-        return gameEngine.getTerrain( terrainID );
+        return game.getTerrain( terrainID );
     }
 
 
