@@ -4,7 +4,9 @@ import gameLogicManager.gameModel.gameResources.BonusCardList;
 import gameLogicManager.gameModel.gameResources.FavorTileList;
 import gameLogicManager.gameModel.gameResources.ScoringTileList;
 import gameLogicManager.gameModel.gameResources.TownTileList;
+import gameLogicManager.gameModel.player.Faction;
 import gameLogicManager.gameModel.player.Player;
+import javafx.util.Pair;
 
 import java.util.List;
 
@@ -21,16 +23,22 @@ public class Game {
 
     private GameBoard gameBoard;
     private CultBoard cultBoard;
-    private List<Player> players;
+    private Player[] players;
     private String[] transformationCycle; //Bu class olabilir aslında
     private ScoringTileList scoringTiles;
     private FavorTileList favorTiles;
     private TownTileList townTiles;
     private BonusCardList bonusCards;
-    private String statusBar;
+
+    private int currentPlayerIndex;
 
     private Game(boolean isMapRandom){
         gameBoard = new GameBoard(isMapRandom);
+        players = new Player[4];
+        bonusCards = new BonusCardList(); //TODO
+        townTiles = new TownTileList(); //TODO
+        scoringTiles = new ScoringTileList(); //TODO
+        currentPlayerIndex = 0;
     }
 
     /**
@@ -53,6 +61,14 @@ public class Game {
      */
     public static Game getInstance() throws NullPointerException{
             return uniqueInstance;
+    }
+
+    public Player getNextPlayer() {
+        return players[(currentPlayerIndex+1) % 4];
+    }
+
+    public Terrain getTerrain( int terrainID ){
+        return gameBoard.getTerrain(terrainID);
     }
 
 }

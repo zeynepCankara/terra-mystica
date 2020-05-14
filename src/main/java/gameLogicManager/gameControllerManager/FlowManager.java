@@ -13,6 +13,14 @@ public class FlowManager{
 
     private static FlowManager uniqueInstance; //Singleton
 
+    // Controller Instances
+    ResourceController resourceController;
+    ActionController actionController;
+    AdjacencyController adjacencyController;
+
+    Player currentPlayer;
+    GameEngine gameEngine;
+
     public static FlowManager getInstance(){
         if( uniqueInstance == null ){
             uniqueInstance = new FlowManager();
@@ -20,14 +28,12 @@ public class FlowManager{
         return uniqueInstance;
     }
 
-    private FlowManager(){}
-
-    // Controller Instances
-    ResourceController resourceController = ResourceController.getInstance();
-    ActionController actionController = ActionController.getInstance();
-    AdjacencyController adjacencyController = AdjacencyController.getInstance();
-
-    Player currentPlayer;
+    private FlowManager(){
+        resourceController = ResourceController.getInstance(); //TODO
+        actionController = ActionController.getInstance(); //TODO
+        adjacencyController = AdjacencyController.getInstance(); //TODO
+        gameEngine = GameEngine.getInstance(); //TODO
+    }
 
     public boolean transformTerrain(int terrainID) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.(DECIDE THE CLASS OF THE FUNCTION)
@@ -52,9 +58,7 @@ public class FlowManager{
 
     private Terrain getTerrain(int terrainID) {
 
-        //TODO
-
-        return null;
+        return gameEngine.getTerrain( terrainID );
     }
 
 }

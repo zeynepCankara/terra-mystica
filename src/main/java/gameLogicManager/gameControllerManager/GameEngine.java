@@ -1,6 +1,6 @@
 package gameLogicManager.gameControllerManager;
 
-import gameLogicManager.gameModel.gameBoard.Game;
+import gameLogicManager.gameModel.gameBoard.*;
 
 /**
  * This class initializes the game according to UIController input,
@@ -11,6 +11,7 @@ public class GameEngine {
     //properties
     private static GameEngine uniqueInstance; //Singleton
     private static Game game;
+    private static FlowManager flowManager;
 
     public static GameEngine getInstance(){
         if( uniqueInstance == null ){
@@ -22,7 +23,12 @@ public class GameEngine {
     private GameEngine(){}
 
     public void initializeGame(boolean isRandom) {
-        game.getInstance(isRandom);
+        game = Game.getInstance(isRandom); // + Players and their factions //TODOc
+        flowManager = FlowManager.getInstance(); //TODO
+    }
+
+    public Terrain getTerrain( int terrainID ) {
+        return game.getTerrain( terrainID );
     }
 
 }
