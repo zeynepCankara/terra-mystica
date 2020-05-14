@@ -41,8 +41,8 @@ public class ActionController implements NotificationHandler{
     }
 
     public boolean improveTerraforming(Player currentPlayer) {
-        //TODO
+        currentPlayer.setSpadeRate(currentPlayer.getSpadeRate() - 1);
 
-        return false;
+        return true;
     }
 }

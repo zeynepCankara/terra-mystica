@@ -82,14 +82,25 @@ public class ResourceController implements NotificationHandler{
     }
 
     public boolean obtainResourceForImprovement(Player currentPlayer) {
-        //TODO
+        /* required resources for the operation */
+        int requiredWorkers = 2;
+        int requiredCoins = 5;
+        int requiredPriests = 1;
+        /* check resources and decrease if the player has resources */
+        if(currentPlayer.getNumOfWorkers() >= requiredWorkers && currentPlayer.getCoins() >= requiredCoins
+                && currentPlayer.getNumOfPriests() >= requiredPriests){
 
+            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - requiredWorkers);
+            currentPlayer.setCoins(currentPlayer.getCoins() - requiredCoins);
+            currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() - requiredPriests);
+            return true;
+        }
+        /* inadequate resource */
         return false;
     }
 
     public boolean obtainIncomeForImprovement(Player currentPlayer) {
-        //TODO
-
+        currentPlayer.setScore(currentPlayer.getScore() + 6);
         return false;
     }
 }
