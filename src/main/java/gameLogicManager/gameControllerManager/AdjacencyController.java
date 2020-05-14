@@ -22,7 +22,14 @@ public class AdjacencyController implements NotificationHandler{
 
     private AdjacencyController(){}
 
-    public boolean updateAdjacencyList(Player player, Terrain terrain){
+    public boolean updateAdjacencyList(Player player, Terrain terrain){ //Should add terrain's adjacents
+
+        // TODO
+
+        return false;
+    }
+
+    public boolean updateAdjacencyList(Player player){ //Should update considering new Shipping
 
         // TODO
 

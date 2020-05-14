@@ -39,4 +39,16 @@ public class ResourceController implements NotificationHandler{
 
         return false;
     }
+
+    public boolean obtainResourceForShipping(Player currentPlayer) {
+        //TODO
+
+        return false;
+    }
+
+    public boolean obtainIncomeForShipping(Player currentPlayer) {
+        //TODO
+
+        return false;
+    }
 }
