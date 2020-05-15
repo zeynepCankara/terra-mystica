@@ -4,10 +4,13 @@
     -fx-background-size: cover, auto;
 }
 
-.Button {
+#defaultMapBtn {
     -fx-background-image: url("./images/btn_image.png");
     -fx-background-size: cover, auto;
 }
 
-
+#randomMapBtn {
+    -fx-background-image: url("./images/btn_image.png");
+    -fx-background-size: cover, auto;
+}
 

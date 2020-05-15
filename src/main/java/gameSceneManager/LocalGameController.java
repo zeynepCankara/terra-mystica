@@ -42,8 +42,10 @@ import static gameSceneManager.BoardGenerator.terrainColorMap;
 public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
+    // Contains Buttons of the Game UI
+    Polygon[] terrainMapHexagons;
     // Holds the information about game state
-    HashMap<String, Integer> gameState;
+    HashMap<String, Integer> gameStateLocal;
 
 
 
@@ -55,13 +57,16 @@ public class LocalGameController extends SceneController {
 
     // Constructor
     public LocalGameController(Stage stage) throws IOException {
+        // initialize the map buttons
+        terrainMapHexagons = new Polygon[113];
 
-        gameState = new HashMap<String, Integer>();
+        gameStateLocal = new HashMap<String, Integer>();
         //TODO: Initialize to the current action round
-        gameState.put("action",  -1);
+        gameStateLocal.put("action",  -1);
         //TODO: Initialize to the user's home terrain
-        gameState.put("terrain_id",  -1);
-
+        gameStateLocal.put("terrain_id",  -1);
+        // the terrain tile clicked by user
+        gameStateLocal.put("selected_terrain_id",  -1);
 
         super.root = null;
         try {
@@ -71,6 +76,8 @@ public class LocalGameController extends SceneController {
         }
         // scene = stage.getScene(); // NOTE: This causes error in exec
         scene = new Scene(super.root);
+
+        // initialize the controller
         initController(stage);
 
 
@@ -82,12 +89,23 @@ public class LocalGameController extends SceneController {
             scene = BoardGenerator.generateRandomTerrainMap(scene, (int) (Math.random() * 6 + 1));
         }
 
+        // fetch buttons from the FXML file
+
         //popup for action round
         //displayActionRoundPopup();
         // buttonmain.setOnAction(e -> displayActionPopup());
         displayTransformAndBuildPopup();
 
-
+        for (int i = 0; i  < 113; i++){
+            terrainMapHexagons[i] = (Polygon) scene.lookup("#" + i);
+            Integer terrainTileId = i;
+            terrainMapHexagons[i].setOnMouseClicked(event -> {
+                System.out.println("select: " + terrainTileId);
+                //gameStateLocal.put("selected_terrain_id", terrainTileId);
+            });
+        }
+        //System.out.println(gameStateLocal.get("selected_terrain_id"));
+        //changeTerrainOnMouseClick(gameStateLocal.get("selected_terrain_id"), gameStateLocal.get("terrain_id"));
     }
 
 
@@ -100,8 +118,6 @@ public class LocalGameController extends SceneController {
 
         // Return to the main window
         goBackImg = (ImageView) scene.lookup("#goBackImg");
-
-
 
         Parent finalRoot = super.root;
 
@@ -118,8 +134,6 @@ public class LocalGameController extends SceneController {
             });
             fadeAnimation.play();
         });
-
-
 
 
     }
@@ -200,42 +214,42 @@ public class LocalGameController extends SceneController {
         // TODO: Connect buttons to the action logic
         transformAndBuildActionBtn.setOnMouseClicked(event -> {
             System.out.println("transformAndBuildAction...");
-            gameState.put("action", 1);
+            gameStateLocal.put("action", 1);
             actionRoundStage.close();
         });
         advanceShippingActionBtn.setOnMouseClicked(event -> {
             System.out.println("advanceShippingAction...");
-            gameState.put("action", 2);
+            gameStateLocal.put("action", 2);
             actionRoundStage.close();
         });
         lowerExchangeRateSpadesActionBtn.setOnMouseClicked(event -> {
             System.out.println("lowerExchangeRateSpadesAction...");
-            gameState.put("action", 3);
+            gameStateLocal.put("action", 3);
             actionRoundStage.close();
         });
         upgradeStructureActionBtn.setOnMouseClicked(event -> {
             System.out.println("upgradeStructureAction...");
-            gameState.put("action", 4);
+            gameStateLocal.put("action", 4);
             actionRoundStage.close();
         });
         sendPriestToCultActionBtn.setOnMouseClicked(event -> {
             System.out.println("sendPriestToCultActionAction...");
-            gameState.put("action", 5);
+            gameStateLocal.put("action", 5);
             actionRoundStage.close();
         });
         takePowerActionBtn.setOnMouseClicked(event -> {
             System.out.println("takePowerAction...");
-            gameState.put("action", 6);
+            gameStateLocal.put("action", 6);
             actionRoundStage.close();
         });
         takeSpecialActionBtn.setOnMouseClicked(event -> {
             System.out.println("takeSpecialAction...");
-            gameState.put("action", 7);
+            gameStateLocal.put("action", 7);
             actionRoundStage.close();
         });
         passActionBtn.setOnMouseClicked(event -> {
             System.out.println("passAction...");
-            gameState.put("action", 8);
+            gameStateLocal.put("action", 8);
             actionRoundStage.close();
         });
     }
@@ -279,31 +293,31 @@ public class LocalGameController extends SceneController {
 
         // TODO: Use  buttons to change terrain type
         plainsBtn.setOnMouseClicked(event -> {
-            gameState.put("terrain_id", 0);
+            gameStateLocal.put("terrain_id", 0);
             terraformingStage.close();
         });
         swampBtn.setOnMouseClicked(event -> {
-            gameState.put("terrain_id", 1);
+            gameStateLocal.put("terrain_id", 1);
             terraformingStage.close();
         });
         lakesBtn.setOnMouseClicked(event -> {
-            gameState.put("terrain_id", 2);
+            gameStateLocal.put("terrain_id", 2);
             terraformingStage.close();
         });
         forestBtn.setOnMouseClicked(event -> {
-            gameState.put("terrain_id", 3);
+            gameStateLocal.put("terrain_id", 3);
             terraformingStage.close();
         });
         mountainsBtn.setOnMouseClicked(event -> {
-            gameState.put("terrain_id", 4);
+            gameStateLocal.put("terrain_id", 4);
             terraformingStage.close();
         });
         wastelandBtn.setOnMouseClicked(event -> {
-            gameState.put("terrain_id", 5);
+            gameStateLocal.put("terrain_id", 5);
             terraformingStage.close();
         });
         desertBtn.setOnMouseClicked(event -> {
-            gameState.put("terrain_id", 6);
+            gameStateLocal.put("terrain_id", 6);
             terraformingStage.close();
         });
     }
