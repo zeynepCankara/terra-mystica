@@ -1,7 +1,6 @@
 package gameLogicManager.gameControllerManager;
 
-import gameLogicManager.gameModel.gameBoard.Dwelling;
-import gameLogicManager.gameModel.gameBoard.TerrainType;
+import gameLogicManager.gameModel.gameBoard.*;
 import gameLogicManager.gameModel.player.Player;
 
 /**
@@ -40,29 +39,6 @@ public class ResourceController implements NotificationHandler{
             return true;
         }
         return false;
-    }
-
-    /**
-     @param currentPlayer action owner player
-     @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
-     */
-    public int obtainResourceOfDwelling(Player currentPlayer) {
-        /* out of dwelling */
-        if(currentPlayer.getRemainedDwelling() == 0){
-            return 7;
-        }
-        int workersNeeded = (new Dwelling()).getRequiredWorkers();
-        int coinsNeeded = (new Dwelling()).getRequiredWorkers();
-        /* check worker and coins */
-        if(currentPlayer.getNumOfWorkers() >= workersNeeded && currentPlayer.getCoins() >= coinsNeeded){
-            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - workersNeeded);
-            currentPlayer.setCoins(currentPlayer.getCoins()-coinsNeeded);
-            return 0;
-        }
-        if(currentPlayer.getNumOfWorkers() < workersNeeded){ //not enough workers
-            return 2;
-        }
-        return 1; //not enough coins
     }
 
     /**
@@ -136,5 +112,49 @@ public class ResourceController implements NotificationHandler{
     public boolean obtainIncomeForImprovement(Player currentPlayer) {
         currentPlayer.setScore(currentPlayer.getScore() + 6);
         return false;
+    }
+
+    public int obtainResourceOfStructure(Player currentPlayer, String newStructure) {
+        Structure tempStructure;
+        switch (newStructure){ // figures out which structure is needed
+            case "Dwelling":
+                tempStructure = new Dwelling();
+                if(currentPlayer.getRemainedTradingHouse() == 0){
+                    return 7; //out of trading house
+                }
+            case "Trading House":
+                tempStructure = new TradingHouse();
+                if(currentPlayer.getRemainedTradingHouse() == 0){
+                    return 7; //out of trading house
+                }
+            case "Temple":
+                tempStructure = new Temple();
+                if(currentPlayer.getRemainedTemple() == 0){
+                    return 7; //out of temple
+                }
+            case "Sanctuary":
+                tempStructure = new Sanctuary();
+                if(currentPlayer.getRemainedSanctuary() == 0){
+                    return 7;
+                }
+            default: //Otherwise it is Stronghold
+                tempStructure = new StrongHold();
+                if(currentPlayer.getRemainedStronghold() == 0){
+                    return 7;
+                }
+        }
+        int workersNeeded = tempStructure.getRequiredWorkers();
+        int coinsNeeded = tempStructure.getRequiredWorkers();
+        /* check worker and coins */
+        if(currentPlayer.getNumOfWorkers() >= workersNeeded && currentPlayer.getCoins() >= coinsNeeded){
+            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - workersNeeded);
+            currentPlayer.setCoins(currentPlayer.getCoins()-coinsNeeded);
+            return 0;
+        }
+        if(currentPlayer.getNumOfWorkers() < workersNeeded){ //not enough workers
+            return 2;
+        }
+        return 1; //not enough coins
+
     }
 }

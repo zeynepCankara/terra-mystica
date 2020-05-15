@@ -40,6 +40,7 @@ public class ActionController implements NotificationHandler{
     public boolean build(Player currentPlayer, Terrain terrain) { //ADD SERVER METHOD
         Dwelling  dwelling = new Dwelling();
         currentPlayer.addStructure(dwelling);
+        currentPlayer.setRemainedDwelling(currentPlayer.getRemainedDwelling() - 1);
         terrain.setStructure(dwelling); //needs server update for map
         return true;
     }

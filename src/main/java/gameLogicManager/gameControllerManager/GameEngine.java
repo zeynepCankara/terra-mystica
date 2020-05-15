@@ -61,6 +61,15 @@ public class GameEngine {
         return false;
     }
 
+    public boolean upgradeStructure(int terrainID, String newStructure){
+        int result = flowManager.upgradeStructure(terrainID, newStructure);
+        updateGameStatus(result);
+        if(result == 0){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * This method updates gameStatus according to the results from the actions.
      * Each case is self explanatory in the code.

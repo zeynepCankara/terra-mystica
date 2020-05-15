@@ -12,6 +12,10 @@ public class Player {
     private int numOfWorkers;
     private int coins;
     private int remainedDwelling;
+    private int remainedTradingHouse;
+    private int remainedSanctuary;
+    private int remainedTemple;
+    private int remainedStronghold;
     private HashSet<Structure> structuresBuilt;
     private int numOfPriests;
     private int score;
@@ -80,5 +84,37 @@ public class Player {
     public boolean hasStronghold() {
         //TODO
         return true;
+    }
+
+    public int getRemainedTradingHouse() {
+        return remainedTradingHouse;
+    }
+
+    public void setRemainedTradingHouse(int remainedTradingHouse) {
+        this.remainedTradingHouse = remainedTradingHouse;
+    }
+
+    public int getRemainedSanctuary() {
+        return remainedSanctuary;
+    }
+
+    public void setRemainedSanctuary(int remainedSanctuary) {
+        this.remainedSanctuary = remainedSanctuary;
+    }
+
+    public int getRemainedTemple() {
+        return remainedTemple;
+    }
+
+    public void setRemainedTemple(int remainedTemple) {
+        this.remainedTemple = remainedTemple;
+    }
+
+    public int getRemainedStronghold() {
+        return remainedStronghold;
+    }
+
+    public void setRemainedStronghold(int remainedStronghold) {
+        this.remainedStronghold = remainedStronghold;
     }
 }

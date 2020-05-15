@@ -50,6 +50,14 @@ public class FlowManager{
     }
 
     /**
+     @param terrainID ID of the chosen terrain
+     @return Terrain
+     */
+    private Terrain getTerrain(int terrainID) {
+        return game.getTerrain( terrainID );
+    }
+
+    /**
      * Terraform the given terrain if you have enough resources
      * @param terrainID	which terrain to tranform
      * @param newTerrainType chosen new type of the terrain
@@ -96,8 +104,8 @@ public class FlowManager{
         }
 
         /* Check required resources and obtain resources if possible */
-        if(resourceController.obtainResourceOfDwelling(currentPlayer) != 0){
-            return resourceController.obtainResourceOfDwelling(currentPlayer);
+        if(resourceController.obtainResourceOfStructure(currentPlayer, "Dwelling") != 0){
+            return resourceController.obtainResourceOfStructure(currentPlayer, "Dwelling");
         }
 
         actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attributes of player
@@ -142,14 +150,18 @@ public class FlowManager{
         return 0;
     }
 
-    /**
-     @param terrainID ID of the chosen terrain
-     @return Terrain
-     */
-    private Terrain getTerrain(int terrainID) {
-        return game.getTerrain( terrainID );
-    }
+    public int upgradeStructure(int terrainID, String newStructure) {
+        Terrain terrain = getTerrain(terrainID);
 
+        /* Check required resources and obtain resources if possible */
+        if(resourceController.obtainResourceOfStructure(currentPlayer, newStructure) != 0){
+            return resourceController.obtainResourceOfStructure(currentPlayer, newStructure);
+        }
+
+        //TODO
+
+        return 0;
+    }
 
 
 }
