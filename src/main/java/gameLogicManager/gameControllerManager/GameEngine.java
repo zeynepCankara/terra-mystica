@@ -38,7 +38,8 @@ public class GameEngine {
         flowManager.buildDwelling(terrainID);
     }
 
-    /* This method updates gameStatus according to the results from the actions.
+    /**
+     * This method updates gameStatus according to the results from the actions.
      * Each case is self explanatory in the code.
      * @param result the results of actions
      */
@@ -58,6 +59,8 @@ public class GameEngine {
                 gameStatus = "Failed: Terrain is not adjacent";
             case 6:
                 gameStatus = "Failed: Improvement limit has been reached";
+            case 7:
+                gameStatus = "Failed: Out of structure";
         }
     }
 

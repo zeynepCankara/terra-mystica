@@ -49,6 +49,12 @@ public class FlowManager{
         game = Game.getInstance(isRandom); // + Players and their factions //TODO
     }
 
+    /**
+     * Terraform the given terrain if you have enough resources
+     * @param terrainID	which terrain to tranform
+     * @param newTerrainType chosen new type of the terrain
+     * @return			whether terraform is successful or not
+     */
     public int transformTerrain(int terrainID, TerrainType newTerrainType) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.
 
@@ -75,30 +81,30 @@ public class FlowManager{
      * @param terrainID	where the dwelling will be built on
      * @return			whether build is successful or not
      */
-    public boolean buildDwelling(int terrainID)
+    public int buildDwelling(int terrainID)
     {
         Terrain terrain = getTerrain(terrainID);
 
         /* If the terrain is not empty(available), you cannot build a dwelling */
         if(!terrain.isAvailable()){
-            return false;
+            return 4;
         }
 
         /* Chosen terrain must be adjacent to other structure terrains */
         if(!adjacencyController.isAdjacent(currentPlayer, terrain, game.getTerrainList())){
-            return false;
+            return 5;
         }
 
         /* Check required resources and obtain resources if possible */
-        if(!resourceController.obtainResourceOfDwelling(currentPlayer)){
-            return false;
+        if(resourceController.obtainResourceOfDwelling(currentPlayer) != 0){
+            return resourceController.obtainResourceOfDwelling(currentPlayer);
         }
 
         actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attributes of player
         resourceController.obtainIncomeOfDwelling(currentPlayer);
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
-        return true;
+        return 0;
     }
 
     public boolean improveShipping()

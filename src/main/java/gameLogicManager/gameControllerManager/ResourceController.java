@@ -36,10 +36,10 @@ public class ResourceController implements NotificationHandler{
         return false;
     }
 
-    public boolean obtainResourceOfDwelling(Player currentPlayer) {
+    public int obtainResourceOfDwelling(Player currentPlayer) {
         /* out of dwelling */
         if(currentPlayer.getRemainedDwelling() == 0){
-            return false;
+            return 7;
         }
         int workersNeeded = (new Dwelling()).getRequiredWorkers();
         int coinsNeeded = (new Dwelling()).getRequiredWorkers();
@@ -47,9 +47,12 @@ public class ResourceController implements NotificationHandler{
         if(currentPlayer.getNumOfWorkers() >= workersNeeded && currentPlayer.getCoins() >= coinsNeeded){
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - workersNeeded);
             currentPlayer.setCoins(currentPlayer.getCoins()-coinsNeeded);
-            return true;
+            return 0;
         }
-        return false;
+        if(currentPlayer.getNumOfWorkers() < workersNeeded){ //not enough workers
+            return 2;
+        }
+        return 1; //not enough coins
     }
     /* Income is 1 worker */
     public boolean obtainIncomeOfDwelling(Player currentPlayer) {
