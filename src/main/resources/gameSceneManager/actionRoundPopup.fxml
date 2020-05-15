@@ -6,18 +6,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <AnchorPane fx:id="AnchorPaneActionPopup" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="500.0" prefWidth="400.0">
-
-    <Button fx:id="action1Btn" text="1" layoutX="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="400.0" />
-    <Button fx:id="action2Btn" text="2" layoutX="75.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="350" />
-    <Button fx:id="action3Btn" text="3" layoutX="50.0" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0"  AnchorPane.bottomAnchor="300" />
-    <Button fx:id="action4Btn" text="4" layoutX="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="250" />
-    <Button fx:id="action5Btn" text="5" layoutX="50.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="200" />
-    <Button fx:id="action6Btn" text="6" layoutX="50.0" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0"  AnchorPane.bottomAnchor="150" />
-    <Button fx:id="action7Btn" text="7" layoutX="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="100" />
-    <Button fx:id="action8Btn" text="8" layoutX="50.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="50" />
+    <ImageView fx:id="chooseAction_label" fitHeight="200" fitWidth="400" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="10.0">
+        <image>
+            <Image url= "@./images/label_choose_action.png" />
+        </image>
+    </ImageView>
+    <Button fx:id="action1Btn" text="1" layoutX="105.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="350.0" />
+    <Button fx:id="action2Btn" text="2" layoutX="105.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="310" />
+    <Button fx:id="action3Btn" text="3" layoutX="105.0" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0"  AnchorPane.bottomAnchor="270" />
+    <Button fx:id="action4Btn" text="4" layoutX="105.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="230" />
+    <Button fx:id="action5Btn" text="5" layoutX="105.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="190" />
+    <Button fx:id="action6Btn" text="6" layoutX="103.0" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0"  AnchorPane.bottomAnchor="140" />
+    <Button fx:id="action7Btn" text="7" layoutX="103.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="95" />
+    <Button fx:id="action8Btn" text="8" layoutX="103.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="50" />
 </AnchorPane>
 
 
