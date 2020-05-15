@@ -23,6 +23,12 @@ public class ResourceController implements NotificationHandler{
 
     private ResourceController(){}
 
+    /**
+     @param currentPlayer action owner player
+     @param type the type of the current terrain
+     @param newType new type of the terrain
+     @return boolean whether there are enough resources or not
+     */
     public boolean obtainSpade(Player currentPlayer,int type, int newType) {
         int spadesNeedToConvert = Math.abs(type - newType);
         if(spadesNeedToConvert > 3)
@@ -36,6 +42,10 @@ public class ResourceController implements NotificationHandler{
         return false;
     }
 
+    /**
+     @param currentPlayer action owner player
+     @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
+     */
     public int obtainResourceOfDwelling(Player currentPlayer) {
         /* out of dwelling */
         if(currentPlayer.getRemainedDwelling() == 0){
@@ -54,7 +64,11 @@ public class ResourceController implements NotificationHandler{
         }
         return 1; //not enough coins
     }
-    /* Income is 1 worker */
+
+    /**
+     * @param currentPlayer action owner player
+     * @return boolean true always
+     */
     public boolean obtainIncomeOfDwelling(Player currentPlayer) {
         currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
         return true;

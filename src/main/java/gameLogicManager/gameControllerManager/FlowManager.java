@@ -53,7 +53,7 @@ public class FlowManager{
      * Terraform the given terrain if you have enough resources
      * @param terrainID	which terrain to tranform
      * @param newTerrainType chosen new type of the terrain
-     * @return			whether terraform is successful or not
+     * @return int	0 if it is successful, otherwise a positive integer according to the reason of failure
      */
     public int transformTerrain(int terrainID, TerrainType newTerrainType) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.
@@ -79,7 +79,7 @@ public class FlowManager{
     /**
      * Build dwelling on the given terrain if you have enough resources
      * @param terrainID	where the dwelling will be built on
-     * @return			whether build is successful or not
+     * @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
      */
     public int buildDwelling(int terrainID)
     {
@@ -142,6 +142,10 @@ public class FlowManager{
         return 0;
     }
 
+    /**
+     @param terrainID ID of the chosen terrain
+     @return Terrain
+     */
     private Terrain getTerrain(int terrainID) {
         return game.getTerrain( terrainID );
     }
