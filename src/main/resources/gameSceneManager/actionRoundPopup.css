@@ -1,0 +1,5 @@
+#AnchorPaneActionPopup {
+    -fx-background-image: url("./images/actionPopup_background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}

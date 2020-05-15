@@ -1,15 +1,22 @@
 package gameSceneManager;
 
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -60,6 +67,9 @@ public class LocalGameController extends SceneController {
             scene = BoardGenerator.generateRandomTerrainMap(scene, (int) (Math.random() * 6 + 1));
         }
 
+        //popup for action round
+        showActionRoundPopup();
+
     }
 
 
@@ -91,7 +101,7 @@ public class LocalGameController extends SceneController {
             fadeAnimation.play();
         });
 
-        buildDwellingOnMouseClick(0);
+
 
     }
 
@@ -127,6 +137,119 @@ public class LocalGameController extends SceneController {
             rectangle.setVisible(true);
         });
     }
+
+    /**
+     * Action Round Popup Stage initializer
+     */
+    public void showActionRoundPopup() throws IOException {
+        // Properties
+        Button transformAndBuildActionBtn;
+        Button advanceShippingActionBtn;
+        Button lowerExchangeRateSpadesActionBtn;
+        Button upgradeStructureActionBtn;
+        Button sendPriestToCultActionBtn;
+        Button takePowerActionBtn;
+        Button takeSpecialActionBtn;
+        Button passActionBtn;
+
+
+        Stage actionRoundStage = new Stage();
+        actionRoundStage.initModality(Modality.APPLICATION_MODAL);
+        actionRoundStage.setTitle("Action Round Popup");
+        actionRoundStage.setHeight(500);
+        actionRoundStage.setWidth(400);
+
+        //load the css file
+        Parent actionRoundPopupFXML  = loadFXML("actionRoundPopup");
+        Scene actionRoundScene = new Scene(actionRoundPopupFXML);
+
+        actionRoundScene.getStylesheets().clear();
+        actionRoundScene.getStylesheets().add(getClass().getResource("actionRoundPopup.css").toExternalForm());
+        actionRoundStage.setScene(actionRoundScene);
+        actionRoundStage.show();
+
+        // connect the button logic
+        transformAndBuildActionBtn = (Button) scene.lookup("#action1Btn");
+        advanceShippingActionBtn = (Button) scene.lookup("#action2Btn");
+        lowerExchangeRateSpadesActionBtn = (Button) scene.lookup("#action3Btn");
+        upgradeStructureActionBtn = (Button) scene.lookup("#action4Btn");
+        sendPriestToCultActionBtn = (Button) scene.lookup("#action5Btn");
+        takePowerActionBtn = (Button) scene.lookup("#action6Btn");
+        takeSpecialActionBtn = (Button) scene.lookup("#action7Btn");
+        passActionBtn = (Button) scene.lookup("#action8Btn");
+
+        // TODO: Connect buttons to the action logic
+        transformAndBuildActionBtn.setOnMouseClicked(event -> {
+            System.out.println("transformAndBuildAction...");
+        });
+        advanceShippingActionBtn.setOnMouseClicked(event -> {
+            System.out.println("advanceShippingAction...");
+        });
+        lowerExchangeRateSpadesActionBtn.setOnMouseClicked(event -> {
+            System.out.println("lowerExchangeRateSpadesAction...");
+        });
+        upgradeStructureActionBtn.setOnMouseClicked(event -> {
+            System.out.println("upgradeStructureAction...");
+        });
+        sendPriestToCultActionBtn.setOnMouseClicked(event -> {
+            System.out.println("sendPriestToCultActionAction...");
+        });
+        takePowerActionBtn.setOnMouseClicked(event -> {
+            System.out.println("takePowerAction...");
+        });
+        takeSpecialActionBtn.setOnMouseClicked(event -> {
+            System.out.println("takeSpecialAction...");
+        });
+        passActionBtn.setOnMouseClicked(event -> {
+            System.out.println("passAction...");
+        });
+
+    }
+
+
+    /**
+     * Random popup example
+     */
+    public void showActionRoundPopup_demo() {
+        Stage actionRoundStage = new Stage();
+        actionRoundStage.initModality(Modality.APPLICATION_MODAL);
+        actionRoundStage.setTitle("Action Round Popup");
+        actionRoundStage.setHeight(500);
+        actionRoundStage.setWidth(400);
+
+        //load the css file
+        String actionRoundPopupCss = getClass().getResource("actionRoundPopup.css").toExternalForm();
+
+
+        final Popup popup = new Popup();
+        popup.setX(300);
+        popup.setY(200);
+
+        // this add a circle on the screen
+        popup.getContent().addAll(new Circle(25, 25, 50, Color.AQUAMARINE));
+
+        Button show = new Button("Show");
+        show.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.show(actionRoundStage);
+            }
+        });
+
+        Button hide = new Button("Hide");
+        hide.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                popup.hide();
+            }
+        });
+
+        HBox layout = new HBox(10);
+        layout.getChildren().addAll(show, hide);
+        actionRoundStage.setScene(new Scene(layout));
+        actionRoundStage.show();
+    }
+
     /*
     for( int i = 0; i < 13 ){
         for( int j = 0; j < 5; j++ ){

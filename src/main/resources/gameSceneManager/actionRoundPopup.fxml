@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="AnchorPaneActionPopup" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="500.0" prefWidth="400.0">
+
+    <Button fx:id="action1Btn" text="1" layoutX="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="400.0" />
+    <Button fx:id="action2Btn" text="2" layoutX="75.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="350" />
+    <Button fx:id="action3Btn" text="3" layoutX="50.0" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0"  AnchorPane.bottomAnchor="300" />
+    <Button fx:id="action4Btn" text="4" layoutX="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="250" />
+    <Button fx:id="action5Btn" text="5" layoutX="50.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="200" />
+    <Button fx:id="action6Btn" text="6" layoutX="50.0" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0"  AnchorPane.bottomAnchor="150" />
+    <Button fx:id="action7Btn" text="7" layoutX="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="100" />
+    <Button fx:id="action8Btn" text="8" layoutX="50.0" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="50" />
+</AnchorPane>
+
+
+
+
