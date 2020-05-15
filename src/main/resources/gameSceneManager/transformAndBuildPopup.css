@@ -1,0 +1,5 @@
+#AnchorPaneTerraforming {
+    -fx-background-image: url("./images/terraforming_popup_background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}
