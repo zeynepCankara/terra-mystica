@@ -22,11 +22,21 @@ public class ActionController implements NotificationHandler{
 
     private ActionController(){}
 
+    /**
+     @param terrain which terrain to tranform
+     @param newTerrainType the new type of the terrain
+     @return boolean always true
+     */
     public boolean transformTerrain(Terrain terrain, TerrainType newTerrainType){
         terrain.setType(newTerrainType);
         return true;
     }
 
+    /**
+     * @param currentPlayer action owner player
+     * @param terrain which terrain to build the dwelling on
+     * @return oolean always true
+     */
     public boolean build(Player currentPlayer, Terrain terrain) { //ADD SERVER METHOD
         Dwelling  dwelling = new Dwelling();
         currentPlayer.addStructure(dwelling);

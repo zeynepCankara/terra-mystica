@@ -23,6 +23,12 @@ public class ResourceController implements NotificationHandler{
 
     private ResourceController(){}
 
+    /**
+     @param currentPlayer action owner player
+     @param type the type of the current terrain
+     @param newType new type of the terrain
+     @return boolean whether there are enough resources or not
+     */
     public boolean obtainSpade(Player currentPlayer,int type, int newType) {
         int spadesNeedToConvert = Math.abs(type - newType);
         if(spadesNeedToConvert > 3)
@@ -36,10 +42,14 @@ public class ResourceController implements NotificationHandler{
         return false;
     }
 
-    public boolean obtainResourceOfDwelling(Player currentPlayer) {
+    /**
+     @param currentPlayer action owner player
+     @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
+     */
+    public int obtainResourceOfDwelling(Player currentPlayer) {
         /* out of dwelling */
         if(currentPlayer.getRemainedDwelling() == 0){
-            return false;
+            return 7;
         }
         int workersNeeded = (new Dwelling()).getRequiredWorkers();
         int coinsNeeded = (new Dwelling()).getRequiredWorkers();
@@ -47,17 +57,28 @@ public class ResourceController implements NotificationHandler{
         if(currentPlayer.getNumOfWorkers() >= workersNeeded && currentPlayer.getCoins() >= coinsNeeded){
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - workersNeeded);
             currentPlayer.setCoins(currentPlayer.getCoins()-coinsNeeded);
-            return true;
+            return 0;
         }
-        return false;
+        if(currentPlayer.getNumOfWorkers() < workersNeeded){ //not enough workers
+            return 2;
+        }
+        return 1; //not enough coins
     }
-    /* Income is 1 worker */
+
+    /**
+     * @param currentPlayer action owner player
+     * @return boolean true always
+     */
     public boolean obtainIncomeOfDwelling(Player currentPlayer) {
         currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
         return true;
     }
-
-    public boolean obtainResourceForShipping(Player currentPlayer) {
+    /**
+     * Checking if the player has enough resource for improving shipping
+     * @param currentPlayer to determine which player is doing the action
+     * @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
+     */
+    public int obtainResourceForShipping(Player currentPlayer) {
         //In order to get the resources first the player has to have the greater or equal than the desired amount
         //of both priests and coins.
         int requiredCoins = 4;
@@ -68,9 +89,14 @@ public class ResourceController implements NotificationHandler{
         {
             currentPlayer.setCoins(currentPlayer.getCoins() - requiredCoins);
             currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() - requiredPriests);
-            return true;
+            return 0;
         }
-        return false;
+        //Not enough coins
+        if(currentPlayer.getCoins() < requiredCoins)
+            return 1;
+        //Not enough priests
+        else
+            return 3;
     }
 
     public boolean obtainIncomeForShipping(Player currentPlayer) {
@@ -80,8 +106,12 @@ public class ResourceController implements NotificationHandler{
 
         return true;
     }
-
-    public boolean obtainResourceForImprovement(Player currentPlayer) {
+    /**
+     * Checking if the player has enough resource.
+     * @param currentPlayer to determine which player is doing the action
+     * @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
+     */
+    public int obtainResourceForImprovement(Player currentPlayer) {
         /* required resources for the operation */
         int requiredWorkers = 2;
         int requiredCoins = 5;
@@ -89,14 +119,18 @@ public class ResourceController implements NotificationHandler{
         /* check resources and decrease if the player has resources */
         if(currentPlayer.getNumOfWorkers() >= requiredWorkers && currentPlayer.getCoins() >= requiredCoins
                 && currentPlayer.getNumOfPriests() >= requiredPriests){
-
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - requiredWorkers);
             currentPlayer.setCoins(currentPlayer.getCoins() - requiredCoins);
             currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() - requiredPriests);
-            return true;
+            return 0;
         }
         /* inadequate resource */
-        return false;
+        if(currentPlayer.getNumOfWorkers() < requiredWorkers)
+            return 2;
+        if(currentPlayer.getNumOfPriests() < requiredPriests)
+            return 3;
+        else
+            return 1;
     }
 
     public boolean obtainIncomeForImprovement(Player currentPlayer) {

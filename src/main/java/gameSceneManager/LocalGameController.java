@@ -1,5 +1,6 @@
 package gameSceneManager;
 
+import gameLogicManager.gameControllerManager.GameEngine;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
