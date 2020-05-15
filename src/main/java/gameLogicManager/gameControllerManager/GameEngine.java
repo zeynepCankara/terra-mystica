@@ -34,8 +34,31 @@ public class GameEngine {
         return false;
     }
 
-    public void buildDwelling( int terrainID ) {
-        flowManager.buildDwelling(terrainID);
+    public boolean buildDwelling( int terrainID ) {
+        int result = flowManager.buildDwelling(terrainID);
+        updateGameStatus(result);
+        if(result == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean improveShipping(){
+        int result = flowManager.improveShipping();
+        updateGameStatus(result);
+        if(result == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean improveTerraforming(){
+        int result = flowManager.improveTerraforming();
+        updateGameStatus(result);
+        if(result == 0){
+            return true;
+        }
+        return false;
     }
 
     /**
