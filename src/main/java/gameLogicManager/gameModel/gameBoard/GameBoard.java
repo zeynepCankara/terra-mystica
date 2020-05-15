@@ -44,4 +44,8 @@ public class GameBoard {
     public Terrain getTerrain( int terrainID ){
         return terrainList[terrainID];
     }
+
+    public Terrain[] getTerrainList(){
+        return terrainList;
+    }
 }

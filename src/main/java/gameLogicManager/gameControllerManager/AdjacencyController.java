@@ -2,6 +2,12 @@ package gameLogicManager.gameControllerManager;
 
 import gameLogicManager.gameModel.gameBoard.*;
 import gameLogicManager.gameModel.player.*;
+import javafx.util.Pair;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.stream.IntStream;
 
 /**
  * This class is to control if an action is affected by adjacency.
@@ -20,25 +26,56 @@ public class AdjacencyController implements NotificationHandler{
         return uniqueInstance;
     }
 
-    private AdjacencyController(){}
+    private AdjacencyController(){
 
-    public boolean updateAdjacencyList(Player player, Terrain terrain){ //Should add terrain's adjacents
-
-        // TODO
-
-        return false;
     }
 
-    public boolean updateAdjacencyList(Player player){ //Should update considering new Shipping
 
-        // TODO
+    public boolean isAdjacent(Player player, Terrain terrain, Terrain[] terrainList ) {
 
+        int[] level0 = {-13,-12,-1,1,12,13};
+        int[] level1 = {-25,-14,-11,11,14,25};
+        int[] level2 = {-26,-24,-2,2,24,26};
+        int[] level3 = {-38,-37,-27,-23,-15,-10,10,15,23,27,37,38};
+        int[] level4 = {};//TODO
+        switch(player.getShipping()) {
+            case 3:
+                for( int i = 0; i < 12; i++ ){
+                    if(terrain.getId()+level3[i]<113 && terrain.getId()+level3[i]>=0 ){
+                        if( terrainList[terrain.getId()+level3[i]].getOwner()==player ){
+                            return true;
+                        }
+                    }
+                }
+            case 2:
+                for( int i = 0; i < 6; i++ ){
+                    if(terrain.getId()+level2[i]<113 && terrain.getId()+level2[i]>=0 ){
+                        if( terrainList[terrain.getId()+level2[i]].getOwner()==player ){
+                            return true;
+                        }
+                    }
+                }
+            case 1:
+                for( int i = 0; i < 6; i++ ){
+                    if(terrain.getId()+level1[i]<113 && terrain.getId()+level1[i]>=0 ){
+                        if( terrainList[terrain.getId()+level1[i]].getOwner()==player ){
+                            return true;
+                        }
+                    }
+                }
+            case 0:
+                for( int i = 0; i < 6; i++ ){
+                    if(terrain.getId()+level0[i]<113 && terrain.getId()+level0[i]>=0 ){
+                        if( terrainList[terrain.getId()+level0[i]].getOwner()==player ){
+                            return true;
+                        }
+                    }
+                }
+                break;
+            default:
+                return false;
+        }
         return false;
-    }
 
-    public boolean isAdjacent(Player player, Terrain terrain) {
-        //TODO
-
-        return false;
     }
 }

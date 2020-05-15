@@ -71,7 +71,9 @@ public class Game {
         return gameBoard.getTerrain(terrainID);
     }
 
-
+    public Terrain[] getTerrainList(){
+        return gameBoard.getTerrainList();
+    }
 
 
 }

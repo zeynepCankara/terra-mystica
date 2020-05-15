@@ -64,7 +64,8 @@ public class FlowManager{
 
         actionController.transformTerrain(terrain, newTerrainType);
 
-        adjacencyController.updateAdjacencyList(currentPlayer, terrain);
+        //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
+        //Bu method score güncelleye bir method halini alacak
 
         return true;
     }
@@ -84,7 +85,7 @@ public class FlowManager{
         }
 
         /* Chosen terrain must be adjacent to other structure terrains */
-        if(!adjacencyController.isAdjacent(currentPlayer, terrain)){
+        if(!adjacencyController.isAdjacent(currentPlayer, terrain, game.getTerrainList())){
             return false;
         }
 
@@ -95,7 +96,7 @@ public class FlowManager{
 
         actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attributes of player
         resourceController.obtainIncomeOfDwelling(currentPlayer);
-        adjacencyController.updateAdjacencyList(currentPlayer, terrain);
+        //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
         return true;
     }
@@ -113,7 +114,7 @@ public class FlowManager{
 
         actionController.improveShipping(currentPlayer);
         resourceController.obtainIncomeForShipping(currentPlayer);
-        adjacencyController.updateAdjacencyList(currentPlayer);
+        //adjacencyController.updateAdjacencyList(currentPlayer);
 
         return true;
     }
