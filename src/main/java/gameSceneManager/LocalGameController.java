@@ -4,12 +4,16 @@ import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -38,6 +42,8 @@ import static gameSceneManager.BoardGenerator.terrainColorMap;
 public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
+
+
 
     static HashMap<Integer, Polygon> dwellingMap = new HashMap<Integer, Polygon>();
     // Define the dwelling polygons
@@ -68,7 +74,9 @@ public class LocalGameController extends SceneController {
         }
 
         //popup for action round
-        showActionRoundPopup();
+        displayActionRoundPopup();
+        // buttonmain.setOnAction(e -> displayActionPopup());
+
 
     }
 
@@ -140,8 +148,9 @@ public class LocalGameController extends SceneController {
 
     /**
      * Action Round Popup Stage initializer
+     * @return chosenAction chosen action from the popup window
      */
-    public void showActionRoundPopup() throws IOException {
+    public void  displayActionRoundPopup() throws IOException {
         // Properties
         Button transformAndBuildActionBtn;
         Button advanceShippingActionBtn;
@@ -169,14 +178,14 @@ public class LocalGameController extends SceneController {
         actionRoundStage.show();
 
         // connect the button logic
-        transformAndBuildActionBtn = (Button) scene.lookup("#action1Btn");
-        advanceShippingActionBtn = (Button) scene.lookup("#action2Btn");
-        lowerExchangeRateSpadesActionBtn = (Button) scene.lookup("#action3Btn");
-        upgradeStructureActionBtn = (Button) scene.lookup("#action4Btn");
-        sendPriestToCultActionBtn = (Button) scene.lookup("#action5Btn");
-        takePowerActionBtn = (Button) scene.lookup("#action6Btn");
-        takeSpecialActionBtn = (Button) scene.lookup("#action7Btn");
-        passActionBtn = (Button) scene.lookup("#action8Btn");
+        transformAndBuildActionBtn = (Button) actionRoundScene.lookup("#action1Btn");
+        advanceShippingActionBtn = (Button) actionRoundScene.lookup("#action2Btn");
+        lowerExchangeRateSpadesActionBtn = (Button) actionRoundScene.lookup("#action3Btn");
+        upgradeStructureActionBtn = (Button) actionRoundScene.lookup("#action4Btn");
+        sendPriestToCultActionBtn = (Button) actionRoundScene.lookup("#action5Btn");
+        takePowerActionBtn = (Button) actionRoundScene.lookup("#action6Btn");
+        takeSpecialActionBtn = (Button) actionRoundScene.lookup("#action7Btn");
+        passActionBtn = (Button) actionRoundScene.lookup("#action8Btn");
 
         // TODO: Connect buttons to the action logic
         transformAndBuildActionBtn.setOnMouseClicked(event -> {
@@ -203,14 +212,13 @@ public class LocalGameController extends SceneController {
         passActionBtn.setOnMouseClicked(event -> {
             System.out.println("passAction...");
         });
-
     }
 
 
     /**
      * Random popup example
      */
-    public void showActionRoundPopup_demo() {
+    public void displayActionRoundPopup_demo() {
         Stage actionRoundStage = new Stage();
         actionRoundStage.initModality(Modality.APPLICATION_MODAL);
         actionRoundStage.setTitle("Action Round Popup");
@@ -249,6 +257,7 @@ public class LocalGameController extends SceneController {
         actionRoundStage.setScene(new Scene(layout));
         actionRoundStage.show();
     }
+
 
     /*
     for( int i = 0; i < 13 ){
