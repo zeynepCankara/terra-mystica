@@ -124,21 +124,22 @@ public class FlowManager{
 
         return 0;
     }
-
-    public boolean improveTerraforming()
+    /**
+     * Improve the terraforming skills
+     * @return	0 if it is successful, otherwise a positive integer according to the reason of failure
+     */
+    public int improveTerraforming()
     {
         /*worker per spade cannot be less than 1, cannot be upgraded anymore */
         if(currentPlayer.getSpadeRate() == 1){
-            return false;
+            return 6;
         }
-
-        if(!resourceController.obtainResourceForImprovement(currentPlayer)){
-            return false;
+        if(resourceController.obtainResourceForImprovement(currentPlayer) != 0){
+            return resourceController.obtainResourceForImprovement(currentPlayer);
         }
         actionController.improveTerraforming(currentPlayer);
         resourceController.obtainIncomeForImprovement(currentPlayer);
-
-        return true;
+        return 0;
     }
 
     private Terrain getTerrain(int terrainID) {

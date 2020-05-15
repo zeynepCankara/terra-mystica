@@ -59,7 +59,11 @@ public class ResourceController implements NotificationHandler{
         currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
         return true;
     }
-
+    /**
+     * Checking if the player has enough resource for improving shipping
+     * @param currentPlayer to determine which player is doing the action
+     * @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
+     */
     public int obtainResourceForShipping(Player currentPlayer) {
         //In order to get the resources first the player has to have the greater or equal than the desired amount
         //of both priests and coins.
@@ -88,8 +92,12 @@ public class ResourceController implements NotificationHandler{
 
         return true;
     }
-
-    public boolean obtainResourceForImprovement(Player currentPlayer) {
+    /**
+     * Checking if the player has enough resource.
+     * @param currentPlayer to determine which player is doing the action
+     * @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
+     */
+    public int obtainResourceForImprovement(Player currentPlayer) {
         /* required resources for the operation */
         int requiredWorkers = 2;
         int requiredCoins = 5;
@@ -100,10 +108,15 @@ public class ResourceController implements NotificationHandler{
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - requiredWorkers);
             currentPlayer.setCoins(currentPlayer.getCoins() - requiredCoins);
             currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() - requiredPriests);
-            return true;
+            return 0;
         }
         /* inadequate resource */
-        return false;
+        if(currentPlayer.getNumOfWorkers() < requiredWorkers)
+            return 2;
+        if(currentPlayer.getNumOfPriests() < requiredPriests)
+            return 3;
+        else
+            return 1;
     }
 
     public boolean obtainIncomeForImprovement(Player currentPlayer) {
