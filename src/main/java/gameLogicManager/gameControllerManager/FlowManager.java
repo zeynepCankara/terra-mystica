@@ -107,22 +107,22 @@ public class FlowManager{
         return 0;
     }
 
-    public boolean improveShipping()
+    public int improveShipping()
     {
         /*shipping cannot be more than 3, cannot be upgraded anymore */
         if(currentPlayer.getShipping() == 3){
-            return false;
+            return 6;
         }
         //Added a '!' since the obtainResourceForShipping returns true when player can afford coins & priests.
-        if(!resourceController.obtainResourceForShipping(currentPlayer)){
-            return false;
+        if(resourceController.obtainResourceForShipping(currentPlayer) != 0){
+            return resourceController.obtainResourceForShipping(currentPlayer);
         }
 
         actionController.improveShipping(currentPlayer);
         resourceController.obtainIncomeForShipping(currentPlayer);
         //adjacencyController.updateAdjacencyList(currentPlayer);
 
-        return true;
+        return 0;
     }
 
     public boolean improveTerraforming()

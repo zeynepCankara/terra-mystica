@@ -60,7 +60,7 @@ public class ResourceController implements NotificationHandler{
         return true;
     }
 
-    public boolean obtainResourceForShipping(Player currentPlayer) {
+    public int obtainResourceForShipping(Player currentPlayer) {
         //In order to get the resources first the player has to have the greater or equal than the desired amount
         //of both priests and coins.
         int requiredCoins = 4;
@@ -71,9 +71,14 @@ public class ResourceController implements NotificationHandler{
         {
             currentPlayer.setCoins(currentPlayer.getCoins() - requiredCoins);
             currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() - requiredPriests);
-            return true;
+            return 0;
         }
-        return false;
+        //Not enough coins
+        if(currentPlayer.getCoins() < requiredCoins)
+            return 1;
+        //Not enough priests
+        else
+            return 3;
     }
 
     public boolean obtainIncomeForShipping(Player currentPlayer) {
@@ -92,7 +97,6 @@ public class ResourceController implements NotificationHandler{
         /* check resources and decrease if the player has resources */
         if(currentPlayer.getNumOfWorkers() >= requiredWorkers && currentPlayer.getCoins() >= requiredCoins
                 && currentPlayer.getNumOfPriests() >= requiredPriests){
-
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - requiredWorkers);
             currentPlayer.setCoins(currentPlayer.getCoins() - requiredCoins);
             currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() - requiredPriests);
