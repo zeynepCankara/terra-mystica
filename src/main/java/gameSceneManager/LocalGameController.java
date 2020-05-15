@@ -74,8 +74,9 @@ public class LocalGameController extends SceneController {
         }
 
         //popup for action round
-        displayActionRoundPopup();
+        //displayActionRoundPopup();
         // buttonmain.setOnAction(e -> displayActionPopup());
+        displayTransformAndBuildPopup();
 
 
     }
@@ -147,8 +148,7 @@ public class LocalGameController extends SceneController {
     }
 
     /**
-     * Action Round Popup Stage initializer
-     * @return chosenAction chosen action from the popup window
+     * Action Round Popup
      */
     public void  displayActionRoundPopup() throws IOException {
         // Properties
@@ -177,7 +177,7 @@ public class LocalGameController extends SceneController {
         actionRoundStage.setScene(actionRoundScene);
         actionRoundStage.show();
 
-        // connect the button logic
+        // Fetch button from the FXML file
         transformAndBuildActionBtn = (Button) actionRoundScene.lookup("#action1Btn");
         advanceShippingActionBtn = (Button) actionRoundScene.lookup("#action2Btn");
         lowerExchangeRateSpadesActionBtn = (Button) actionRoundScene.lookup("#action3Btn");
@@ -212,6 +212,27 @@ public class LocalGameController extends SceneController {
         passActionBtn.setOnMouseClicked(event -> {
             System.out.println("passAction...");
         });
+    }
+
+    /**
+     * Popup for Transform and Build Action
+     */
+    public void  displayTransformAndBuildPopup() throws IOException {
+        // Properties
+        Stage terraformingStage = new Stage();
+        terraformingStage.initModality(Modality.APPLICATION_MODAL);
+        terraformingStage.setTitle("Transform and Build Action");
+        terraformingStage.setHeight(350);
+        terraformingStage.setWidth(850);
+
+        //load the css file
+        Parent transformAndBuildPopupFXML  = loadFXML("transformAndBuildPopup");
+        Scene transformAndBuildScene = new Scene(transformAndBuildPopupFXML);
+        transformAndBuildScene.getStylesheets().clear();
+        transformAndBuildScene.getStylesheets().add(getClass().getResource("transformAndBuildPopup.css").toExternalForm());
+        terraformingStage.setScene(transformAndBuildScene);
+        terraformingStage.show();
+
     }
 
 
@@ -259,19 +280,4 @@ public class LocalGameController extends SceneController {
     }
 
 
-    /*
-    for( int i = 0; i < 13 ){
-        for( int j = 0; j < 5; j++ ){
-            //ADD A HEXAGON at (236 + 68*i, x + 120*j)
-            //ID = j*25 + i
-        }
-    }
-
-    for( int i = 0; i < 12 ){
-        for( int j = 0; j < 4; j++ ){
-            //ADD A HEXAGON at (236 + 34 + 68*i, x + 60 + 120*j)
-            //ID = 13 + j*25 + i
-        }
-    }
-     */
 }
