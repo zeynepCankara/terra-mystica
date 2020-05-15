@@ -61,8 +61,8 @@ public class GameEngine {
         return false;
     }
 
-    public boolean upgradeStructure(int terrainID, String newStructure){
-        int result = flowManager.upgradeStructure(terrainID, newStructure);
+    public boolean upgradeStructure(int terrainID, StructureType newStructureType){
+        int result = flowManager.upgradeStructure(terrainID, newStructureType);
         updateGameStatus(result);
         if(result == 0){
             return true;
@@ -91,8 +91,6 @@ public class GameEngine {
                 gameStatus = "Failed: Terrain is not adjacent";
             case 6:
                 gameStatus = "Failed: Improvement limit has been reached";
-            case 7:
-                gameStatus = "Failed: Out of structure";
         }
     }
 

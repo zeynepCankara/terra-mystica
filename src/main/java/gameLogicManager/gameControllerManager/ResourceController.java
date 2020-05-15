@@ -42,14 +42,6 @@ public class ResourceController implements NotificationHandler{
     }
 
     /**
-     * @param currentPlayer action owner player
-     * @return boolean true always
-     */
-    public boolean obtainIncomeOfDwelling(Player currentPlayer) {
-        currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
-        return true;
-    }
-    /**
      * Checking if the player has enough resource for improving shipping
      * @param currentPlayer to determine which player is doing the action
      * @return int 0 if it is successful, otherwise a positive integer according to the reason of failure
@@ -114,37 +106,22 @@ public class ResourceController implements NotificationHandler{
         return false;
     }
 
-    public int obtainResourceOfStructure(Player currentPlayer, String newStructure) {
-        Structure tempStructure;
-        switch (newStructure){ // figures out which structure is needed
-            case "Dwelling":
-                tempStructure = new Dwelling();
-                if(currentPlayer.getRemainedTradingHouse() == 0){
-                    return 7; //out of trading house
-                }
-            case "Trading House":
-                tempStructure = new TradingHouse();
-                if(currentPlayer.getRemainedTradingHouse() == 0){
-                    return 7; //out of trading house
-                }
-            case "Temple":
-                tempStructure = new Temple();
-                if(currentPlayer.getRemainedTemple() == 0){
-                    return 7; //out of temple
-                }
-            case "Sanctuary":
-                tempStructure = new Sanctuary();
-                if(currentPlayer.getRemainedSanctuary() == 0){
-                    return 7;
-                }
+    public int obtainResourceOfStructure(Player currentPlayer, StructureType newStructureType) {
+        Structure tempStrructure;
+        switch (newStructureType){ // creates the object of new Structure
+            case DWELLING:
+                tempStrructure = new Dwelling();
+            case TRADINGHOUSE:
+                tempStrructure = new TradingHouse();
+            case TEMPLE:
+                tempStrructure = new Temple();
+            case SANCTUARY:
+                tempStrructure = new Sanctuary();
             default: //Otherwise it is Stronghold
-                tempStructure = new StrongHold();
-                if(currentPlayer.getRemainedStronghold() == 0){
-                    return 7;
-                }
+                tempStrructure = new StrongHold();
         }
-        int workersNeeded = tempStructure.getRequiredWorkers();
-        int coinsNeeded = tempStructure.getRequiredWorkers();
+        int workersNeeded = tempStrructure.getRequiredWorkers();
+        int coinsNeeded = tempStrructure.getRequiredWorkers();
         /* check worker and coins */
         if(currentPlayer.getNumOfWorkers() >= workersNeeded && currentPlayer.getCoins() >= coinsNeeded){
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() - workersNeeded);
@@ -156,5 +133,22 @@ public class ResourceController implements NotificationHandler{
         }
         return 1; //not enough coins
 
+    }
+
+    public boolean obtainIncomeOfStructure(Player currentPlayer, StructureType newStructureType) {
+        switch (newStructureType){ // creates the object of new Structure
+            case DWELLING:
+                currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
+            case TRADINGHOUSE:
+                currentPlayer.setCoins(currentPlayer.getCoins() + 2);
+                currentPlayer.gainPower(2); //depends, may change!
+            case TEMPLE:
+                currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);
+            case SANCTUARY:
+                currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);  //depends, may change!
+            default: //Otherwise it is Stronghold
+                currentPlayer.gainPower(2);
+        }
+        return true;
     }
 }

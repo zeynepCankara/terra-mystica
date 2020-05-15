@@ -104,12 +104,13 @@ public class FlowManager{
         }
 
         /* Check required resources and obtain resources if possible */
-        if(resourceController.obtainResourceOfStructure(currentPlayer, "Dwelling") != 0){
-            return resourceController.obtainResourceOfStructure(currentPlayer, "Dwelling");
+        int result = resourceController.obtainResourceOfStructure(currentPlayer ,StructureType.DWELLING);
+        if(result != 0){
+            return result;
         }
 
         actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attributes of player
-        resourceController.obtainIncomeOfDwelling(currentPlayer);
+        resourceController.obtainIncomeOfStructure(currentPlayer, StructureType.DWELLING);
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
         return 0;
@@ -150,17 +151,21 @@ public class FlowManager{
         return 0;
     }
 
-    public int upgradeStructure(int terrainID, String newStructure) {
+    public int upgradeStructure(int terrainID, StructureType newStructureType) {
         Terrain terrain = getTerrain(terrainID);
 
-        /* Check required resources and obtain resources if possible */
-        if(resourceController.obtainResourceOfStructure(currentPlayer, newStructure) != 0){
-            return resourceController.obtainResourceOfStructure(currentPlayer, newStructure);
+        /* Check required resources and obtain resources if possible,
+        structure pointer is upgraded to new structure in this method */
+        int result = resourceController.obtainResourceOfStructure(currentPlayer, newStructureType);
+        if(result != 0){
+            return result;
         }
 
-        //TODO
+        actionController.upgradeStructure(currentPlayer, terrain, newStructureType);//create new Structure on terrain, update attributes of player
+        resourceController.obtainIncomeOfStructure(currentPlayer, newStructureType);
+        //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
-        return 0;
+        return result;
     }
 
 

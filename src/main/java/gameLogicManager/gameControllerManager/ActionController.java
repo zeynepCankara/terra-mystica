@@ -37,10 +37,9 @@ public class ActionController implements NotificationHandler{
      * @param terrain which terrain to build the dwelling on
      * @return oolean always true
      */
-    public boolean build(Player currentPlayer, Terrain terrain) { //ADD SERVER METHOD
+    public boolean build(Player currentPlayer, Terrain terrain) { //ADD SERVER METHOD!!!!!!
         Dwelling  dwelling = new Dwelling();
         currentPlayer.addStructure(dwelling);
-        currentPlayer.setRemainedDwelling(currentPlayer.getRemainedDwelling() - 1);
         terrain.setStructure(dwelling); //needs server update for map
         return true;
     }
@@ -53,7 +52,25 @@ public class ActionController implements NotificationHandler{
 
     public boolean improveTerraforming(Player currentPlayer) {
         currentPlayer.setSpadeRate(currentPlayer.getSpadeRate() - 1);
+        return true;
+    }
 
+    //HANDLE SERVER IN THIS METHOD!!!!!!
+    public boolean upgradeStructure(Player currentPlayer, Terrain terrain, StructureType newStructureType) {
+        Structure newStructure;
+        switch (newStructureType){
+            case TRADINGHOUSE:
+                newStructure = new TradingHouse();
+            case TEMPLE:
+                newStructure = new Temple();
+            case SANCTUARY:
+                newStructure = new Sanctuary();
+            default:
+                newStructure = new StrongHold();
+        }
+        currentPlayer.removeStructure(terrain.getStructure()); //remove old structure from player's list
+        currentPlayer.addStructure(newStructure);
+        terrain.setStructure(newStructure);//needs server update for map
         return true;
     }
 }
