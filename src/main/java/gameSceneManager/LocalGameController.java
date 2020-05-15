@@ -42,6 +42,8 @@ import static gameSceneManager.BoardGenerator.terrainColorMap;
 public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
+    // Holds the information about game state
+    HashMap<String, Integer> gameState;
 
 
 
@@ -53,6 +55,13 @@ public class LocalGameController extends SceneController {
 
     // Constructor
     public LocalGameController(Stage stage) throws IOException {
+
+        gameState = new HashMap<String, Integer>();
+        //TODO: Initialize to the current action round
+        gameState.put("action",  -1);
+        //TODO: Initialize to the user's home terrain
+        gameState.put("terrain_id",  -1);
+
 
         super.root = null;
         try {
@@ -109,6 +118,7 @@ public class LocalGameController extends SceneController {
             });
             fadeAnimation.play();
         });
+
 
 
 
@@ -190,27 +200,43 @@ public class LocalGameController extends SceneController {
         // TODO: Connect buttons to the action logic
         transformAndBuildActionBtn.setOnMouseClicked(event -> {
             System.out.println("transformAndBuildAction...");
+            gameState.put("action", 1);
+            actionRoundStage.close();
         });
         advanceShippingActionBtn.setOnMouseClicked(event -> {
             System.out.println("advanceShippingAction...");
+            gameState.put("action", 2);
+            actionRoundStage.close();
         });
         lowerExchangeRateSpadesActionBtn.setOnMouseClicked(event -> {
             System.out.println("lowerExchangeRateSpadesAction...");
+            gameState.put("action", 3);
+            actionRoundStage.close();
         });
         upgradeStructureActionBtn.setOnMouseClicked(event -> {
             System.out.println("upgradeStructureAction...");
+            gameState.put("action", 4);
+            actionRoundStage.close();
         });
         sendPriestToCultActionBtn.setOnMouseClicked(event -> {
             System.out.println("sendPriestToCultActionAction...");
+            gameState.put("action", 5);
+            actionRoundStage.close();
         });
         takePowerActionBtn.setOnMouseClicked(event -> {
             System.out.println("takePowerAction...");
+            gameState.put("action", 6);
+            actionRoundStage.close();
         });
         takeSpecialActionBtn.setOnMouseClicked(event -> {
             System.out.println("takeSpecialAction...");
+            gameState.put("action", 7);
+            actionRoundStage.close();
         });
         passActionBtn.setOnMouseClicked(event -> {
             System.out.println("passAction...");
+            gameState.put("action", 8);
+            actionRoundStage.close();
         });
     }
 
@@ -219,10 +245,19 @@ public class LocalGameController extends SceneController {
      */
     public void  displayTransformAndBuildPopup() throws IOException {
         // Properties
+        Button plainsBtn;
+        Button swampBtn;
+        Button lakesBtn;
+        Button forestBtn;
+        Button mountainsBtn;
+        Button wastelandBtn;
+        Button desertBtn;
+
+        // Stage setup
         Stage terraformingStage = new Stage();
         terraformingStage.initModality(Modality.APPLICATION_MODAL);
         terraformingStage.setTitle("Transform and Build Action");
-        terraformingStage.setHeight(350);
+        terraformingStage.setHeight(250);
         terraformingStage.setWidth(850);
 
         //load the css file
@@ -233,6 +268,44 @@ public class LocalGameController extends SceneController {
         terraformingStage.setScene(transformAndBuildScene);
         terraformingStage.show();
 
+        // Fetch button from the FXML file
+        plainsBtn = (Button) transformAndBuildScene.lookup("#plains");
+        swampBtn = (Button) transformAndBuildScene.lookup("#swamp");
+        lakesBtn = (Button) transformAndBuildScene.lookup("#lakes");
+        forestBtn = (Button) transformAndBuildScene.lookup("#forest");
+        mountainsBtn = (Button) transformAndBuildScene.lookup("#mountains");
+        wastelandBtn = (Button) transformAndBuildScene.lookup("#wasteland");
+        desertBtn = (Button) transformAndBuildScene.lookup("#desert");
+
+        // TODO: Use  buttons to change terrain type
+        plainsBtn.setOnMouseClicked(event -> {
+            gameState.put("terrain_id", 0);
+            terraformingStage.close();
+        });
+        swampBtn.setOnMouseClicked(event -> {
+            gameState.put("terrain_id", 1);
+            terraformingStage.close();
+        });
+        lakesBtn.setOnMouseClicked(event -> {
+            gameState.put("terrain_id", 2);
+            terraformingStage.close();
+        });
+        forestBtn.setOnMouseClicked(event -> {
+            gameState.put("terrain_id", 3);
+            terraformingStage.close();
+        });
+        mountainsBtn.setOnMouseClicked(event -> {
+            gameState.put("terrain_id", 4);
+            terraformingStage.close();
+        });
+        wastelandBtn.setOnMouseClicked(event -> {
+            gameState.put("terrain_id", 5);
+            terraformingStage.close();
+        });
+        desertBtn.setOnMouseClicked(event -> {
+            gameState.put("terrain_id", 6);
+            terraformingStage.close();
+        });
     }
 
 

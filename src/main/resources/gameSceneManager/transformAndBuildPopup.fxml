@@ -8,7 +8,14 @@
 
 <AnchorPane fx:id="AnchorPaneTerraforming" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            prefHeight="350.0" prefWidth="850.0">
+            prefHeight="245.0" prefWidth="850.0">
 
+    <Button fx:id="plains" text="P" layoutX="150" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" AnchorPane.bottomAnchor="100.0" />
+    <Button fx:id="swamp" text="S" layoutX="230" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" AnchorPane.bottomAnchor="100" />
+    <Button fx:id="lakes" text="L" layoutX="310" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0"  AnchorPane.bottomAnchor="100" />
+    <Button fx:id="forest" text="F" layoutX="390" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" AnchorPane.bottomAnchor="100" />
+    <Button fx:id="mountains" text="M" layoutX="470" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" AnchorPane.bottomAnchor="100" />
+    <Button fx:id="wasteland" text="W" layoutX="550" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0"  AnchorPane.bottomAnchor="100" />
+    <Button fx:id="desert" text="D" layoutX="630" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" AnchorPane.bottomAnchor="100" />
 
 </AnchorPane>

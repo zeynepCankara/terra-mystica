@@ -3,3 +3,33 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover, auto;
 }
+
+
+#plains {
+    -fx-background-color: DARKORANGE;
+}
+
+#lakes {
+    -fx-background-color: BLUE;
+}
+
+#forest {
+    -fx-background-color: FORESTGREEN;
+}
+
+#mountains {
+    -fx-background-color: BROWN;
+}
+
+#wasteland {
+    -fx-background-color: SADDLEBROWN;
+}
+
+#desert {
+    -fx-background-color: LIGHTGOLDENRODYELLOW;
+}
+
+#swamp {
+    -fx-background-color: DARKGREEN;
+}
+
