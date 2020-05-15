@@ -49,17 +49,17 @@ public class FlowManager{
         game = Game.getInstance(isRandom); // + Players and their factions //TODO
     }
 
-    public boolean transformTerrain(int terrainID, TerrainType newTerrainType) {
+    public int transformTerrain(int terrainID, TerrainType newTerrainType) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.
 
         /* Player cannot transform if the terrain is not available or it's the same terrain */
         if(!terrain.isAvailable() || terrain.getType().getTerrainTypeID() == newTerrainType.getTerrainTypeID()){
-            return false;
+            return 4;
         }
 
         /* Check if the player has enough workers to have enough spades, obtain spades if possible */
         if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){
-            return false;
+            return 2;
         }
 
         actionController.transformTerrain(terrain, newTerrainType);
@@ -67,7 +67,7 @@ public class FlowManager{
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
         //Bu method score güncelleye bir method halini alacak
 
-        return true;
+        return 0;
     }
 
     /**
