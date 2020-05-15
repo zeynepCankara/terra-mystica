@@ -76,4 +76,9 @@ public class Player {
     public void setSpadeRate(int spadeRate) {
         this.spadeRate = spadeRate;
     }
+
+    public boolean hasStronghold() {
+        //TODO
+        return true;
+    }
 }

@@ -17,4 +17,8 @@ public class Faction {
     public TerrainType getTerrainType() {
         return homeTerrain;
     }
+
+    public Object getType() {
+        return type;
+    }
 }
