@@ -11,6 +11,7 @@ public class GameEngine {
     //properties
     private static GameEngine uniqueInstance; //Singleton
     private static FlowManager flowManager;
+    private static String gameStatus;
 
     public static GameEngine getInstance(){
         if( uniqueInstance == null ){
@@ -19,7 +20,10 @@ public class GameEngine {
         return uniqueInstance;
     }
 
-    private GameEngine(){}
+    private GameEngine(){
+        flowManager = FlowManager.getInstance();
+        gameStatus = "Game has started.";
+    }
 
     public void transformTerrain( int terrainID, TerrainType terrainType ){
         flowManager.transformTerrain(terrainID, terrainType);
@@ -27,6 +31,29 @@ public class GameEngine {
 
     public void buildDwelling( int terrainID ) {
         flowManager.buildDwelling(terrainID);
+    }
+
+    /* This method updates gameStatus according to the results from the actions.
+     * Each case is self explanatory in the code.
+     * @param result the results of actions
+     */
+    public void updateGameStatus(int result){
+        switch (result){
+            case 0:
+                gameStatus = "Action is done successfully";
+            case 1:
+                gameStatus = "Failed: Not enough coins";
+            case 2:
+                gameStatus = "Failed: Not enough workers";
+            case 3:
+                gameStatus = "Failed: Not enough priests";
+            case 4:
+                gameStatus = "Failed: Terrain is not available";
+            case 5:
+                gameStatus = "Failed: Terrain is not adjacent";
+            case 6:
+                gameStatus = "Failed: Improvement limit has been reached";
+        }
     }
 
 }

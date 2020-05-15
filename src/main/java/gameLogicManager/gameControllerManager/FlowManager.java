@@ -50,7 +50,7 @@ public class FlowManager{
     }
 
     public boolean transformTerrain(int terrainID, TerrainType newTerrainType) {
-        Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.(DECIDE THE CLASS OF THE FUNCTION)
+        Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.
 
         /* Player cannot transform if the terrain is not available or it's the same terrain */
         if(!terrain.isAvailable() || terrain.getType().getTerrainTypeID() == newTerrainType.getTerrainTypeID()){
@@ -136,7 +136,6 @@ public class FlowManager{
     }
 
     private Terrain getTerrain(int terrainID) {
-
         return game.getTerrain( terrainID );
     }
 
