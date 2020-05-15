@@ -58,4 +58,23 @@ public class FactionController implements NotificationHandler{
             return 0;
         }
     }
+
+    /**
+     *
+     * @param p
+     * @return 0: Faction of the player has no effect.
+     * @return 1: Mermaids can improve (for once) shipping without any cost.
+     */
+    public int improveShipping( Player p ){
+        if( p.hasStronghold() && p.getFaction().getType() == FactionType.MERMAIDS){ //special action
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public int improveTerraforming( Player p ){
+        return 0;
+    }
 }
