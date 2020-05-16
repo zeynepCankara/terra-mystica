@@ -17,6 +17,12 @@
         </image>
     </ImageView>
 
+    <ImageView fx:id="cultBoard" mouseTransparent="false" fitWidth="300" fitHeight="800" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
+        <image>
+            <Image url="@./images/cultBoard.png" />
+        </image>
+    </ImageView>
+
     <Button fx:id="transformTerrainBtn" text="Transform Terrain"  mnemonicParsing="false" prefHeight="40" prefWidth="200" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="30.0" />
 
     <Polygon fx:id="0" fill="DODGERBLUE" layoutX="236" layoutY="200" stroke="BLACK" strokeType="INSIDE" scaleX="0.68" scaleY="0.68">
