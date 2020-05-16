@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -63,27 +64,25 @@ public class LocalGameController extends SceneController {
         // initialize the map buttons
         terrainMapHexagons = new Polygon[113];
 
+        // Hold the game state in a HashMap
         gameStateLocal = new HashMap<String, Integer>();
         //TODO: Initialize to the current action round
         gameStateLocal.put("action",  -1);
         //TODO: Initialize to the user's home terrain
-        gameStateLocal.put("terrain_id",  -1);
-        // the terrain tile clicked by user
-        gameStateLocal.put("selected_terrain_id",  -1);
+        gameStateLocal.put("terrainId",  -1);
+        // The terrain tile selected by mouse press
+        gameStateLocal.put("terrainSelected",  -1);
+        // transformAndBuild --option buildDwelling: 1 (yes), 0 (no), -1  (not init)
+        gameStateLocal.put("isBuildDwelling",  -1);
 
-        super.root = null;
-        try {
-            super.root = loadFXML("localGame");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        // Load the FXML file
+        super.root = loadFXML("localGame");
         // scene = stage.getScene(); // NOTE: This causes error in exec
         super.scene = new Scene(super.root);
 
         // initialize the controller
         initController(stage);
-
-
         //scene = BoardGenerator.generateDefaultTerrainMap(scene);
         HashMap<String, Boolean> gameState = GameSetupController.getInitParameters();
         if( gameState.get("isDefaultMap")){
@@ -91,7 +90,7 @@ public class LocalGameController extends SceneController {
         } else {
             super.scene = BoardGenerator.generateRandomTerrainMap(super.scene, (int) (Math.random() * 6 + 1));
         }
-        
+
         //popup for action round
         //displayActionRoundPopup();
         // buttonmain.setOnAction(e -> displayActionPopup());
@@ -111,14 +110,11 @@ public class LocalGameController extends SceneController {
             // save the selected hexagon in game state
             terrainMapHexagons[i].setOnMouseClicked(event -> {
                 System.out.println("select: " + terrainTileId);
-                gameStateLocal.put("selected_terrain_id", terrainTileId);
+                gameStateLocal.put("terrainSelected", terrainTileId);
             });
         }
 
-        //System.out.println(gameStateLocal.get("selected_terrain_id"));
-        //System.out.println(gameStateLocal.get("terrain_id"));
-        //changeTerrainOnMouseClick(gameStateLocal.get("selected_terrain_id"), gameStateLocal.get("terrain_id"));
-        //changeTerrainOnMouseClick(0, 5);
+
     }
 
 
@@ -150,43 +146,41 @@ public class LocalGameController extends SceneController {
         });
 
         transformTerrainBtn.setOnMouseClicked(event -> {
-            changeTerrainSelected(gameStateLocal.get("selected_terrain_id"), gameStateLocal.get("terrain_id"));
+            changeTerrainSelected(gameStateLocal.get("terrainSelected"), gameStateLocal.get("terrainId"));
+            buildDwellingOnSelected(gameStateLocal.get("terrainSelected"));
         });
+
+        // Action round popup initialization
         displayActionRoundPopup();
     }
 
     // methods for Terrain Manipulation
-
     /**
      * Transforms the selected terrain space with specified terrain type.
-     * @param polygonId reference if of the UI hexagon
+     * @param polygonId reference of the UI hexagon
      * @param terrainId, terrain type
      */
     public void changeTerrainSelected(int polygonId, int terrainId) {
         Polygon hexagon = (Polygon) super.scene.lookup("#" + polygonId);
         hexagon.setFill(terrainColorMap.get(terrainId));
-        terrainMapHexagons[polygonId].setStyle("-fx-opacity: 1");
     }
 
     /**
      * Place dwelling on board
      * @param polygonId reference to the UI hexagon
      */
-    public void buildDwellingOnMouseClick(int polygonId) {
+    public void buildDwellingOnSelected(int polygonId) {
+        // TODO: add a rectangle to the scene selected terrain tile
+        // TODO: Bug fix required
+        System.out.println("Dwelling built: " + gameStateLocal.get("isBuildDwelling"));
         Rectangle rectangle = new Rectangle(200, 200);
         rectangle.setFill(Color.AZURE);
-
-        Polygon hexagon = (Polygon) scene.lookup("#" + polygonId);
-        System.out.println("Hexagon selected...");
-        hexagon.setOnMouseClicked(event -> {
-            System.out.println("Hexagon clicked...");
-            rectangle.setLayoutX(hexagon.getLayoutX());
-            rectangle.setLayoutY(hexagon.getLayoutY());
-
-            rectangle.setVisible(true);
-        });
+        rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX());
+        rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY());
+        rectangle.setVisible(true);
     }
 
+    // Popups for game flow
     /**
      * Action Round Popup
      */
@@ -275,8 +269,9 @@ public class LocalGameController extends SceneController {
         });
     }
 
+
     /**
-     * Popup for Terrain Transformation
+     * Popup for Transform and build action
      */
     public void  displayTransformAndBuildPopup() throws IOException {
         // Properties
@@ -287,6 +282,7 @@ public class LocalGameController extends SceneController {
         Button mountainsBtn;
         Button wastelandBtn;
         Button desertBtn;
+        Button noChangeBtn;
 
         // Stage setup
         Stage terraformingStage = new Stage();
@@ -311,38 +307,121 @@ public class LocalGameController extends SceneController {
         mountainsBtn = (Button) transformAndBuildScene.lookup("#mountains");
         wastelandBtn = (Button) transformAndBuildScene.lookup("#wasteland");
         desertBtn = (Button) transformAndBuildScene.lookup("#desert");
+        noChangeBtn = (Button) transformAndBuildScene.lookup("#noChangeBtn");
 
-        // TODO: Use  buttons to change terrain type
         plainsBtn.setOnMouseClicked(event -> {
-            gameStateLocal.put("terrain_id", 0);
-            System.out.println(gameStateLocal.get("terrain_id"));
+            gameStateLocal.put("terrainId", 0);
+            try {
+                displayBuildDwellingPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             terraformingStage.close();
         });
         swampBtn.setOnMouseClicked(event -> {
-            gameStateLocal.put("terrain_id", 1);
+            gameStateLocal.put("terrainId", 1);
+            try {
+                displayBuildDwellingPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             terraformingStage.close();
         });
         lakesBtn.setOnMouseClicked(event -> {
-            gameStateLocal.put("terrain_id", 2);
+            gameStateLocal.put("terrainId", 2);
+            try {
+                displayBuildDwellingPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             terraformingStage.close();
         });
         forestBtn.setOnMouseClicked(event -> {
-            gameStateLocal.put("terrain_id", 3);
+            gameStateLocal.put("terrainId", 3);
+            try {
+                displayBuildDwellingPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             terraformingStage.close();
         });
         mountainsBtn.setOnMouseClicked(event -> {
-            gameStateLocal.put("terrain_id", 4);
+            gameStateLocal.put("terrainId", 4);
+            try {
+                displayBuildDwellingPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             terraformingStage.close();
         });
         wastelandBtn.setOnMouseClicked(event -> {
-            gameStateLocal.put("terrain_id", 5);
+            gameStateLocal.put("terrainId", 5);
+            try {
+                displayBuildDwellingPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             terraformingStage.close();
         });
         desertBtn.setOnMouseClicked(event -> {
-            gameStateLocal.put("terrain_id", 6);
+            gameStateLocal.put("terrainId", 6);
+            try {
+                displayBuildDwellingPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            terraformingStage.close();
+        });
+        noChangeBtn.setOnMouseClicked(event -> {
+            try {
+                displayBuildDwellingPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             terraformingStage.close();
         });
     }
+
+    /**
+     * Popup for Build Dwelling
+     */
+    public void  displayBuildDwellingPopup() throws IOException {
+        // Properties
+        Button yesBuildDwellingBtn;
+        Button noBuildDwellingBtn;
+
+        // Stage setup
+        Stage buildDwellingStage = new Stage();
+        buildDwellingStage.initModality(Modality.APPLICATION_MODAL);
+        buildDwellingStage.setTitle("Build Dwelling");
+        buildDwellingStage.setHeight(250);
+        buildDwellingStage.setWidth(850);
+
+        //load the css file
+        Parent buildDwellingPopupFXML  = loadFXML("buildDwellingPopup");
+        Scene buildDwellingScene = new Scene(buildDwellingPopupFXML);
+        buildDwellingScene.getStylesheets().clear();
+        buildDwellingScene.getStylesheets().add(getClass().getResource("buildDwellingPopup.css").toExternalForm());
+        buildDwellingStage.setScene(buildDwellingScene);
+        buildDwellingStage.show();
+
+        // Fetch button from the FXML file
+        yesBuildDwellingBtn = (Button) buildDwellingScene.lookup("#yesBtn");
+        noBuildDwellingBtn = (Button) buildDwellingScene.lookup("#noBtn");
+
+        // TODO: Use buttons to fetch information user want to build dwelling or not
+        yesBuildDwellingBtn.setOnMouseClicked(event -> {
+            gameStateLocal.put("isBuildDwelling", 1);
+            buildDwellingStage.close();
+        });
+        noBuildDwellingBtn.setOnMouseClicked(event -> {
+            gameStateLocal.put("isBuildDwelling",0);
+            buildDwellingStage.close();
+        });
+    }
+
+
+
 
 
     /**
@@ -381,7 +460,6 @@ public class LocalGameController extends SceneController {
                 popup.hide();
             }
         });
-
         HBox layout = new HBox(10);
         layout.getChildren().addAll(show, hide);
         actionRoundStage.setScene(new Scene(layout));

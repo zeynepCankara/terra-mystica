@@ -17,5 +17,6 @@
     <Button fx:id="mountains" text="M" layoutX="470" maxHeight="58.0" maxWidth="166.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" AnchorPane.bottomAnchor="100" />
     <Button fx:id="wasteland" text="W" layoutX="550" focusTraversable="true"  mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0"  AnchorPane.bottomAnchor="100" />
     <Button fx:id="desert" text="D" layoutX="630" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" AnchorPane.bottomAnchor="100" />
+    <Button fx:id="noChangeBtn" text="No Change" layoutX="710" mnemonicParsing="false" prefHeight="30.0" prefWidth="90" AnchorPane.bottomAnchor="100" />
 
 </AnchorPane>

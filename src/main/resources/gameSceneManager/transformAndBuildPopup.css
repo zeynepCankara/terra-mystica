@@ -33,3 +33,7 @@
     -fx-background-color: DARKGREEN;
 }
 
+#noChangeBtn {
+    -fx-background-image: url("./images/btn_image.png");
+    -fx-background-size: cover, auto;
+}

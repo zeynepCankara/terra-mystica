@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<AnchorPane fx:id="AnchorPaneBuildDwelling" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="245.0" prefWidth="850.0">
+
+    <Button fx:id="yesBtn" text="YES" layoutX="150" mnemonicParsing="false" prefHeight="50" prefWidth="150" AnchorPane.bottomAnchor="50" />
+    <Button fx:id="noBtn" text="NO"  layoutX="500"  mnemonicParsing="false" prefHeight="50" prefWidth="150" AnchorPane.bottomAnchor="50" />
+
+</AnchorPane>

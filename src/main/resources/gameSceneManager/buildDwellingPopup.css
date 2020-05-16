@@ -1,0 +1,15 @@
+#AnchorPaneBuildDwelling {
+    -fx-background-image: url("./images/buildDwelling_popup_background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}
+
+#yesBtn {
+    -fx-background-image: url("./images/btn_image.png");
+    -fx-background-size: cover, auto;
+}
+
+#noBtn {
+    -fx-background-image: url("./images/btn_image.png");
+    -fx-background-size: cover, auto;
+}
