@@ -5,6 +5,7 @@ import gameLogicManager.gameModel.gameResources.FavorTileList;
 import gameLogicManager.gameModel.gameResources.ScoringTileList;
 import gameLogicManager.gameModel.gameResources.TownTileList;
 import gameLogicManager.gameModel.player.Faction;
+import gameLogicManager.gameModel.player.FactionType;
 import gameLogicManager.gameModel.player.Player;
 import javafx.util.Pair;
 
@@ -24,7 +25,6 @@ public class Game {
     private GameBoard gameBoard;
     private CultBoard cultBoard;
     private Player[] players;
-    private String[] transformationCycle; //Bu class olabilir aslında
     private ScoringTileList scoringTiles;
     private FavorTileList favorTiles;
     private TownTileList townTiles;
@@ -34,11 +34,26 @@ public class Game {
 
     private Game(boolean isMapRandom){
         gameBoard = new GameBoard(isMapRandom);
-        players = new Player[4];
+        cultBoard = new CultBoard();//TODO
+        players = initilizePlayers(4);
         bonusCards = new BonusCardList(); //TODO
         townTiles = new TownTileList(); //TODO
         scoringTiles = new ScoringTileList(); //TODO
         currentPlayerIndex = 0;
+    }
+
+    /**
+     * Initialize Player objects with the given number of players.
+     * @param playerCount total number of players
+     * @return Player[] player list
+     */
+    private Player[] initilizePlayers(int playerCount) {
+        Player[] players = new Player[playerCount];
+        players[0] = new Player(FactionType.WITCHES);
+        players[1] = new Player(FactionType.NOMADS);
+        players[2] = new Player(FactionType.HALFLINGS);
+        players[3] = new Player(FactionType.MERMAIDS);
+        return players;
     }
 
     /**

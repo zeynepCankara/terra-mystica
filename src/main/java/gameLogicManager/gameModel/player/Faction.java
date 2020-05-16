@@ -14,6 +14,24 @@ public class Faction {
     private int coinAtSetup;
     private TerrainType homeTerrain;
 
+    public static int getWorkerAtSetup(FactionType factionType) {
+        //TODO
+        switch (factionType){
+            case WITCHES:
+            //All factions should be handled.
+        }
+        return 0;
+    }
+
+    public static int getCoinAtSetup(FactionType factionType) {
+        //TODO
+        switch (factionType){
+            case WITCHES:
+                //All factions should be handled.
+        }
+        return 0;
+    }
+
     public TerrainType getTerrainType() {
         return homeTerrain;
     }

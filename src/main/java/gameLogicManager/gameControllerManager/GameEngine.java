@@ -12,15 +12,17 @@ public class GameEngine {
     private static GameEngine uniqueInstance; //Singleton
     private static FlowManager flowManager;
     private static String gameStatus;
+    private static Game game;
 
-    public static GameEngine getInstance(){
+    public static GameEngine getInstance(boolean isMapRandom){
         if( uniqueInstance == null ){
-            uniqueInstance = new GameEngine();
+            uniqueInstance = new GameEngine(isMapRandom);
         }
         return uniqueInstance;
     }
 
-    private GameEngine(){
+    private GameEngine(boolean isMapRandom){
+        game = Game.getInstance(isMapRandom);
         flowManager = FlowManager.getInstance();
         gameStatus = "Game has started.";
     }

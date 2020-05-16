@@ -15,6 +15,17 @@ public class Player {
     private int numOfPriests;
     private int score;
 
+    public Player(FactionType factionType) {
+        this.faction = faction;
+        shipping = 0;
+        spadeRate = 3;
+        numOfWorkers = Faction.getWorkerAtSetup(factionType);
+        coins = Faction.getCoinAtSetup(factionType);
+        structuresBuilt = new HashSet<Structure>();
+        numOfPriests = 0;
+        score = 20;
+    }
+
     public Faction getFaction() {
         return faction;
     }
