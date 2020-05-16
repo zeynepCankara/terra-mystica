@@ -6,31 +6,31 @@
 
 
 #plains {
-    -fx-background-color: DARKORANGE;
+    -fx-background-color: #c85e11;
 }
 
 #lakes {
-    -fx-background-color: BLUE;
+    -fx-background-color: #3e625a;
 }
 
 #forest {
-    -fx-background-color: FORESTGREEN;
+    -fx-background-color: #1bbc0e;
 }
 
 #mountains {
-    -fx-background-color: BROWN;
+    -fx-background-color: #959799;
 }
 
 #wasteland {
-    -fx-background-color: SADDLEBROWN;
+    -fx-background-color: #883b36;
 }
 
 #desert {
-    -fx-background-color: LIGHTGOLDENRODYELLOW;
+    -fx-background-color: #fff94f;
 }
 
 #swamp {
-    -fx-background-color: DARKGREEN;
+    -fx-background-color: #10350e;
 }
 
 #noChangeBtn {

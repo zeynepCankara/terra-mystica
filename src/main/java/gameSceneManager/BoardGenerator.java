@@ -20,14 +20,14 @@ public class BoardGenerator {
     // Properties: Logic Related
     static HashMap<Integer, Color> terrainColorMap = new HashMap<Integer, Color>();
     // Define the terrain colors (7 Terrain type) + River
-    static Color riverColor = Color.DARKBLUE;
-    static Color desertColor = Color.LIGHTGOLDENRODYELLOW;
-    static Color swampColor = Color.DARKGREEN;
-    static Color forestColor = Color.FORESTGREEN;
-    static Color mountainColor = Color.BROWN;
-    static Color lakeColor = Color.BLUE;
-    static Color wastelandColor = Color.SADDLEBROWN;
-    static Color plainColor = Color.DARKORANGE;
+    static Color riverColor = Color.web("#101662");
+    static Color desertColor = Color.web("#fff94f");
+    static Color swampColor = Color.web("#10350e");
+    static Color forestColor = Color.web("#1bbc0e");
+    static Color mountainColor = Color.web("#959799");
+    static Color lakeColor = Color.web("#3e625a");
+    static Color wastelandColor = Color.web("#883b36");
+    static Color plainColor = Color.web("#c85e11");
 
 
     // Contains terrainIdList which will be used to initialize the terrain map to defaultMap
