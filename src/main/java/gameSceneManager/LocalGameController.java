@@ -77,6 +77,17 @@ public class LocalGameController extends SceneController {
         gameStateLocal.put("isBuildDwelling",  -1);
         // sendPriestToCult --option sendCult: 0 (fire), 1 (water),  2 (earth), 3 (air)
         gameStateLocal.put("cultId",  -1);
+        // sendPriestToCult --option priestInitPos: from GameEngine Init pries location to one of 4 corner
+        /*
+         0: Not enough priest.
+         1: You need key to proceed
+         2: Move 3 steps, occupy top left slot 
+         3: Move 2 steps, occupy top right slot 
+         4: Move 2 steps, occupy bottom left slot 
+         5: Move 2 steps, occupy bottom right slot 
+         6: All slots are occupied 
+         */
+        gameStateLocal.put("priestInitPos",  2);
 
 
         // Load the FXML file
@@ -160,7 +171,7 @@ public class LocalGameController extends SceneController {
         fireCultBtn.setOnMouseClicked(event -> {
             gameStateLocal.put("cultId", 0);
             try {
-                sendPriestToCult(0);
+                sendPriestToCult(0, gameStateLocal.get("priestInitPos"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -168,7 +179,7 @@ public class LocalGameController extends SceneController {
         waterCultBtn.setOnMouseClicked(event -> {
             gameStateLocal.put("cultId", 1);
             try {
-                sendPriestToCult(1);
+                sendPriestToCult(1, gameStateLocal.get("priestInitPos"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -176,7 +187,7 @@ public class LocalGameController extends SceneController {
         earthCultBtn.setOnMouseClicked(event -> {
             gameStateLocal.put("cultId", 2);
             try {
-                sendPriestToCult(2);
+                sendPriestToCult(2, gameStateLocal.get("priestInitPos"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -184,7 +195,7 @@ public class LocalGameController extends SceneController {
         airCultBtn.setOnMouseClicked(event -> {
             gameStateLocal.put("cultId", 3);
             try {
-                sendPriestToCult(3);
+                sendPriestToCult(3, gameStateLocal.get("priestInitPos"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -225,12 +236,14 @@ public class LocalGameController extends SceneController {
     /**
      * Send a priest to the cult board (symbol Violet circle)
      * @param cultId reference to the UI hexagon
+     * @param priestInitPos priest initialization location
      */
-    public void sendPriestToCult(int cultId) throws FileNotFoundException {
-        //TODO: Init a circle on cult board
-        // cult  board location
+    public void sendPriestToCult(int cultId, int priestInitPos) throws FileNotFoundException {
+        // cult board location
         double posX;
         double posY;
+        double offsetX;
+        double offsetY;
         switch(cultId) {
             case 0:
                 posX = fireCultBtn.getLayoutX();
@@ -243,6 +256,7 @@ public class LocalGameController extends SceneController {
             case 2:
                 posX = earthCultBtn.getLayoutX();
                 posY = earthCultBtn.getLayoutY();
+                break;
             case 3:
                 posX = airCultBtn.getLayoutX();
                 posY = airCultBtn.getLayoutY();
@@ -250,12 +264,54 @@ public class LocalGameController extends SceneController {
             default:
                 throw new IllegalStateException("Unexpected value: " + cultId);
         }
-        Circle circle = new Circle(10);
-        circle.setFill(Color.VIOLET);
-        circle.setLayoutX(posX);
-        circle.setLayoutY(posY);
-        circle.setVisible(true);
-        anchorPane.getChildren().addAll(circle);
+        switch(priestInitPos) {
+            case 0:
+                // 0: Not enough priest
+                offsetX = -1.0;
+                offsetY = -1.0;
+                break;
+            case 1:
+                // 1: You need key to proceed
+                offsetX = -1.0;
+                offsetY = -1.0;
+                break;
+            case 2:
+                // 2: Move 3 steps, occupy top left slot
+                offsetX = -18.0;
+                offsetY = -18.0;
+                break;
+            case 3:
+                // 3: Move 2 steps, occupy top right slot
+                offsetX = +18.0;
+                offsetY = -18.0;
+                break;
+            case 4:
+                // 4: Move 2 steps, occupy bottom left slot
+                offsetX = -18.0;
+                offsetY = +18.0;
+                break;
+            case 5:
+                // 5: Move 2 steps, occupy bottom right slot
+                offsetX = +18.0;
+                offsetY = +18.0;
+                break;
+            case 6:
+                // 6: All slots are occupied
+                offsetX = -1.0;
+                offsetY = -1.0;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + cultId);
+        }
+        //TODO: GameFlow logic to initialize priest position
+        if(offsetX != -1 && offsetY != -1){
+            Circle circle = new Circle(10);
+            circle.setFill(Color.VIOLET);
+            circle.setLayoutX(posX + 20 + offsetX);
+            circle.setLayoutY(posY - 25 + offsetY);
+            circle.setVisible(true);
+            anchorPane.getChildren().addAll(circle);
+        }
     }
 
     // Popups for game flow
