@@ -12,3 +12,9 @@
 #goBackImg:hover {
     -fx-opacity: 1;
 }
+
+#transformTerrainBtn {
+    -fx-background-image: url("./images/btn_image.png");
+    -fx-background-size: cover, auto;
+}
+

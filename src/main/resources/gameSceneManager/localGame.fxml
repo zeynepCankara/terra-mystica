@@ -6,7 +6,8 @@
 <?import javafx.scene.shape.*?>
 
 
-<AnchorPane centerShape="true"  id="AnchorPaneSinglePlayer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="1536.0" styleClass="anchor" visible="true" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Button?>
+<AnchorPane centerShape="true" id="AnchorPaneSinglePlayer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="1536.0" styleClass="anchor" visible="true" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
 <children>
     <ImageView fx:id="localGame_background" fitHeight="892.774972456681" fitWidth="1598.9998779296875" layoutX="-2.0" layoutY="0.0" opacity="0.75" pickOnBounds="true" preserveRatio="true">
     </ImageView>
@@ -15,6 +16,8 @@
             <Image url="@./images/goBackImg.png" />
         </image>
     </ImageView>
+
+    <Button fx:id="transformTerrainBtn" text="Transform Terrain"  mnemonicParsing="false" prefHeight="40" prefWidth="200" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="30.0" />
 
     <Polygon fx:id="0" fill="DODGERBLUE" layoutX="236" layoutY="200" stroke="BLACK" strokeType="INSIDE" scaleX="0.68" scaleY="0.68">
         <points>

@@ -43,6 +43,8 @@ import static gameSceneManager.BoardGenerator.terrainColorMap;
 public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
+    Button transformTerrainBtn;
+
     // Contains Buttons of the Game UI
     Polygon[] terrainMapHexagons;
     // Holds the information about game state
@@ -76,7 +78,7 @@ public class LocalGameController extends SceneController {
             e.printStackTrace();
         }
         // scene = stage.getScene(); // NOTE: This causes error in exec
-        scene = new Scene(super.root);
+        super.scene = new Scene(super.root);
 
         // initialize the controller
         initController(stage);
@@ -85,40 +87,51 @@ public class LocalGameController extends SceneController {
         //scene = BoardGenerator.generateDefaultTerrainMap(scene);
         HashMap<String, Boolean> gameState = GameSetupController.getInitParameters();
         if( gameState.get("isDefaultMap")){
-            scene = BoardGenerator.generateDefaultTerrainMap(scene);
+           super.scene = BoardGenerator.generateDefaultTerrainMap(super.scene);
         } else {
-            scene = BoardGenerator.generateRandomTerrainMap(scene, (int) (Math.random() * 6 + 1));
+            super.scene = BoardGenerator.generateRandomTerrainMap(super.scene, (int) (Math.random() * 6 + 1));
         }
-
-        // fetch buttons from the FXML file
-
+        
         //popup for action round
         //displayActionRoundPopup();
         // buttonmain.setOnAction(e -> displayActionPopup());
-        displayTransformAndBuildPopup();
 
+        // init Hexagons on Terrain Map
         for (int i = 0; i  < 113; i++){
             terrainMapHexagons[i] = (Polygon) scene.lookup("#" + i);
+
             Integer terrainTileId = i;
+            // Use opacity to show selection
+            terrainMapHexagons[i].setOnMouseEntered(event -> {
+                terrainMapHexagons[terrainTileId].setStyle("-fx-opacity: 0.5;");
+            });
+            terrainMapHexagons[i].setOnMouseExited(event -> {
+                terrainMapHexagons[terrainTileId].setStyle("-fx-opacity: 1");
+            });
+            // save the selected hexagon in game state
             terrainMapHexagons[i].setOnMouseClicked(event -> {
                 System.out.println("select: " + terrainTileId);
-                //gameStateLocal.put("selected_terrain_id", terrainTileId);
+                gameStateLocal.put("selected_terrain_id", terrainTileId);
             });
         }
+
         //System.out.println(gameStateLocal.get("selected_terrain_id"));
+        //System.out.println(gameStateLocal.get("terrain_id"));
         //changeTerrainOnMouseClick(gameStateLocal.get("selected_terrain_id"), gameStateLocal.get("terrain_id"));
+        //changeTerrainOnMouseClick(0, 5);
     }
 
 
     @Override
     public void initController(Stage stage) throws IOException {
-        scene.getStylesheets().clear();
-        scene.getStylesheets().add(getClass().getResource("localGame.css").toExternalForm());
-        stage.setScene(scene);
+        super.scene.getStylesheets().clear();
+        super.scene.getStylesheets().add(getClass().getResource("localGame.css").toExternalForm());
+        stage.setScene(super.scene);
         stage.show();
 
-        // Return to the main window
-        goBackImg = (ImageView) scene.lookup("#goBackImg");
+        // fetch UI elements from the FXML file
+        goBackImg = (ImageView) super.scene.lookup("#goBackImg");
+        transformTerrainBtn = (Button) super.scene.lookup("#transformTerrainBtn");
 
         Parent finalRoot = super.root;
 
@@ -136,21 +149,23 @@ public class LocalGameController extends SceneController {
             fadeAnimation.play();
         });
 
-
+        transformTerrainBtn.setOnMouseClicked(event -> {
+            changeTerrainSelected(gameStateLocal.get("selected_terrain_id"), gameStateLocal.get("terrain_id"));
+        });
+        displayActionRoundPopup();
     }
 
-    // METHODS for Terrain Manipulation
+    // methods for Terrain Manipulation
 
     /**
-     * Transforms terrain space with specified terrain type when pressed.
-     * @param polygonId reference to the UI hexagon
+     * Transforms the selected terrain space with specified terrain type.
+     * @param polygonId reference if of the UI hexagon
      * @param terrainId, terrain type
      */
-    public void changeTerrainOnMouseClick(int polygonId, int terrainId) {
-        Polygon hexagon = (Polygon) scene.lookup("#" + polygonId);
-        hexagon.setOnMouseClicked(event -> {
-            hexagon.setFill(terrainColorMap.get(terrainId));
-        });
+    public void changeTerrainSelected(int polygonId, int terrainId) {
+        Polygon hexagon = (Polygon) super.scene.lookup("#" + polygonId);
+        hexagon.setFill(terrainColorMap.get(terrainId));
+        terrainMapHexagons[polygonId].setStyle("-fx-opacity: 1");
     }
 
     /**
@@ -216,6 +231,11 @@ public class LocalGameController extends SceneController {
         transformAndBuildActionBtn.setOnMouseClicked(event -> {
             System.out.println("transformAndBuildAction...");
             gameStateLocal.put("action", 1);
+            try {
+                displayTransformAndBuildPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             actionRoundStage.close();
         });
         advanceShippingActionBtn.setOnMouseClicked(event -> {
@@ -256,7 +276,7 @@ public class LocalGameController extends SceneController {
     }
 
     /**
-     * Popup for Transform and Build Action
+     * Popup for Terrain Transformation
      */
     public void  displayTransformAndBuildPopup() throws IOException {
         // Properties
@@ -295,6 +315,7 @@ public class LocalGameController extends SceneController {
         // TODO: Use  buttons to change terrain type
         plainsBtn.setOnMouseClicked(event -> {
             gameStateLocal.put("terrain_id", 0);
+            System.out.println(gameStateLocal.get("terrain_id"));
             terraformingStage.close();
         });
         swampBtn.setOnMouseClicked(event -> {
