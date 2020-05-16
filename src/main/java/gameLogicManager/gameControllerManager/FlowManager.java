@@ -169,4 +169,13 @@ public class FlowManager{
     }
 
 
+    public int sendPriestToCult(int trackID) {
+        if( currentPlayer.getNumOfPriests() == 0 ){
+            return 0;
+        }
+        else if( true ) {
+            //TODO check cult track
+        }
+        return 0;
+    }
 }

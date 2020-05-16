@@ -151,4 +151,14 @@ public class ResourceController{
         }
         return true;
     }
+
+    public boolean payPriest( Player currentPlayer ) {
+        if( currentPlayer.getNumOfPriests() == 0 ){
+            return false;
+        }
+        else{
+            currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() - 1);
+            return true;
+        }
+    }
 }

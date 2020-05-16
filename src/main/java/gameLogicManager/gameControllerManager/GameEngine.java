@@ -70,6 +70,12 @@ public class GameEngine {
         return false;
     }
 
+    public int sendPriestToCult( int trackID ){
+        int result = flowManager.sendPriestToCult(trackID);
+        updateGameStatus(result);
+        return result;
+    }
+
     /**
      * This method updates gameStatus according to the results from the actions.
      * Each case is self explanatory in the code.

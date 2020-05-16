@@ -39,6 +39,7 @@ public class Game {
         townTiles = new TownTileList(); //TODO
         scoringTiles = new ScoringTileList(); //TODO
         currentPlayerIndex = 0;
+        //TODO cultBoard = new CultBoard(players); //buna player listesi lazım
     }
 
     /**
