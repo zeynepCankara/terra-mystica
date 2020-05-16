@@ -6,14 +6,14 @@ package gameLogicManager.gameModel.gameBoard;
  * @version 10.05.2020
  */
 public enum TerrainType {
-    PLAINS(0),
-    SWAMP(1),
-    LAKES(2),
-    FOREST(3),
-    MOUNTAINS(4),
-    WASTELAND(5),
-    DESERT(6),
-    RIVER(7);
+    Plains(0),
+    Swamp(1),
+    Lakes(2),
+    Forest(3),
+    Mountains(4),
+    Wasteland(5),
+    Desert(6),
+    River(7);
 
     private int terrainTypeID;
 

@@ -59,11 +59,11 @@ public class ActionController{
     public boolean upgradeStructure(Player currentPlayer, Terrain terrain, StructureType newStructureType) {
         Structure newStructure;
         switch (newStructureType){
-            case TRADINGHOUSE:
+            case TradingHouse:
                 newStructure = new TradingHouse();
-            case TEMPLE:
+            case Temple:
                 newStructure = new Temple();
-            case SANCTUARY:
+            case Sanctuary:
                 newStructure = new Sanctuary();
             default:
                 newStructure = new StrongHold();

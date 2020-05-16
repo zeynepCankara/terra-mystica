@@ -6,5 +6,6 @@ public class Dwelling extends Structure{
         super.requiredCoins = 2;
         super.requiredWorkers = 1;
         super.powerValue = 1;
+        super.structureType = StructureType.Dwelling;
     }
 }

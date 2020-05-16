@@ -5,6 +5,10 @@ public abstract class Structure {
     protected int requiredCoins;
     protected int powerValue;
 
+
+
+    protected StructureType structureType;
+
     public  int getRequiredWorkers() {
         return requiredWorkers;
     }
@@ -15,6 +19,10 @@ public abstract class Structure {
 
     public  int getPowerValue() {
         return powerValue;
+    }
+
+    public StructureType getStructureType() {
+        return structureType;
     }
 
 }

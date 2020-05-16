@@ -104,13 +104,13 @@ public class FlowManager{
         }
 
         /* Check required resources and obtain resources if possible */
-        int result = resourceController.obtainResourceOfStructure(currentPlayer ,StructureType.DWELLING);
+        int result = resourceController.obtainResourceOfStructure(currentPlayer ,StructureType.Dwelling);
         if(result != 0){
             return result;
         }
 
         actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attributes of player
-        resourceController.obtainIncomeOfStructure(currentPlayer, StructureType.DWELLING);
+        resourceController.obtainIncomeOfStructure(currentPlayer, StructureType.Dwelling);
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
         return 0;

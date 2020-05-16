@@ -36,6 +36,15 @@ public class Terrain {
         this.structure = structure;
     }
 
+    public void setStructure(StructureType structureType) {
+        switch(structureType){
+            case Dwelling:
+                setStructure(new Dwelling());
+            default:
+                structure = null;
+        }
+    }
+
     public Player getOwner() {
         return owner;
     }

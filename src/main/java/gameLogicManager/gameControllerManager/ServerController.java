@@ -1,6 +1,6 @@
 package gameLogicManager.gameControllerManager;
 
-import gameLogicManager.gameModel.gameBoard.TerrainType;
+import gameLogicManager.gameModel.gameBoard.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -14,39 +14,65 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class ServerController {
     //static String restURI="http://localhost:5000/";
     static String restURI="http://ymacit-001-site1.ctempurl.com/cs319/";
     public static void main(String[] args) throws IOException, JSONException {
         //GetBoard();
-        TransformTerrain(TerrainType.FOREST, 0, 4);
+        TransformTerrain(TerrainType.Forest, 0, 4);
         //GetChanges(1);
         //TransformTerrain(TerrainType.FOREST, 3, 3);
-        ConstructBuilding(StructureType.TRADINGHOUSE,  0,2);
+        ConstructBuilding(StructureType.TradingHouse, 0, 2);
         //GetChanges(1);
-        GetBoard();
+        ArrayList<Terrain> ters1 = GetBoard();
+        for (int i = 0; i < ters1.size(); i++)
+        {
+            System.out.println(ters1.get(i).getType());
+            System.out.println(ters1.get(i).getStructure());
+        }
+        TransformTerrain(TerrainType.Plains, 0, 4);
+        for (int i = 0; i < ters1.size(); i++)
+        {
+            System.out.println(ters1.get(i).getType());
+            System.out.println(ters1.get(i).getStructure());
+        }
         // System.out.println(tmp_json);
     }
-    static void GetBoard() throws IOException, JSONException {
+    static ArrayList<Terrain> GetBoard() throws IOException, JSONException {
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(restURI+"game/Board");
         HttpResponse response = client.execute(request);
         String tmp_json= IOUtils.toString(response.getEntity().getContent(),  StandardCharsets.UTF_8);
         JSONObject myObj = new JSONObject(tmp_json);
         JSONArray arr = myObj.getJSONArray("cells");
-
+        ArrayList<Terrain> ters = new ArrayList<Terrain>();
         for (int i = 0; i < arr.length(); i++)
         {
-            System.out.println( "row " + i);
+            //System.out.println( "row " + i);
             JSONArray arr2 = arr.getJSONArray(i);
             for (int j = 0; j < arr2.length(); j++)
             {
-                System.out.print( arr2.getJSONObject(j).getString("type"));
-                System.out.println("- "+ arr2.getJSONObject(j).getString("structure"));
+                Terrain a = new Terrain();
 
+                //System.out.print( arr2.getJSONObject(j).getString("type"));
+                String Terrain = arr2.getJSONObject(j).getString("type");
+
+                TerrainType terEnum = TerrainType.valueOf(Terrain);
+                //System.out.print(terEnum);
+                String Struct = arr2.getJSONObject(j).getString("structure");
+                //System.out.println("- "+ arr2.getJSONObject(j).getString("structure"));
+                StructureType StructEnum = StructureType.valueOf(Struct);
+                Structure s = new Dwelling();
+                a.setStructure(s.getStructureType());
+                a.setType(terEnum);
+                ters.add(a);
+                //System.out.println(ters.get(0).getType());
+                //System.out.println(ters.get(0).getStructure());
             }
         }
+        return ters;
     }
     static void GetChanges(int lastSequence) throws IOException, JSONException {
         HttpClient client = new DefaultHttpClient();

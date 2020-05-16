@@ -109,13 +109,13 @@ public class ResourceController{
     public int obtainResourceOfStructure(Player currentPlayer, StructureType newStructureType) {
         Structure tempStrructure;
         switch (newStructureType){ // creates the object of new Structure
-            case DWELLING:
+            case Dwelling:
                 tempStrructure = new Dwelling();
-            case TRADINGHOUSE:
+            case TradingHouse:
                 tempStrructure = new TradingHouse();
-            case TEMPLE:
+            case Temple:
                 tempStrructure = new Temple();
-            case SANCTUARY:
+            case Sanctuary:
                 tempStrructure = new Sanctuary();
             default: //Otherwise it is Stronghold
                 tempStrructure = new StrongHold();
@@ -137,14 +137,14 @@ public class ResourceController{
 
     public boolean obtainIncomeOfStructure(Player currentPlayer, StructureType newStructureType) {
         switch (newStructureType){ // creates the object of new Structure
-            case DWELLING:
+            case Dwelling:
                 currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
-            case TRADINGHOUSE:
+            case TradingHouse:
                 currentPlayer.setCoins(currentPlayer.getCoins() + 2);
                 currentPlayer.gainPower(2); //depends, may change!
-            case TEMPLE:
+            case Temple:
                 currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);
-            case SANCTUARY:
+            case Sanctuary:
                 currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);  //depends, may change!
             default: //Otherwise it is Stronghold
                 currentPlayer.gainPower(2);

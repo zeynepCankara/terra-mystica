@@ -34,7 +34,7 @@ public class GameBoard {
 
     public void randomize( int n ) {
         for( Terrain t : terrainList ){
-            if(t.getType() != TerrainType.RIVER) {
+            if(t.getType() != TerrainType.River) {
                 int newTerrainTypeID = ( t.getType().getTerrainTypeID() + n ) % 7;
                 t.setType(newTerrainTypeID);
             }
