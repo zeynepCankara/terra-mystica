@@ -17,10 +17,20 @@ public class Faction {
     public static int getWorkerAtSetup(FactionType factionType) {
         //TODO
         switch (factionType){
-            case WITCHES:
+            case CHAOS_MAGICIANS:
+                return 4;
+            case NOMADS:
+                return 2;
+            case DARKLINGS:
+                return 1;
+            case SWARMLINGS:
+                return 8;
+            case ENGINEERS:
+                return 2;
+            default:
+                return 3;
             //All factions should be handled.
         }
-        return 0;
     }
 
     public static int getCoinAtSetup(FactionType factionType) {
