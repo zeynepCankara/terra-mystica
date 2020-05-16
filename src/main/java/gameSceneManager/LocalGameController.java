@@ -166,18 +166,22 @@ public class LocalGameController extends SceneController {
     }
 
     /**
-     * Place dwelling on board
+     * Place dwelling on board (symbol Violet rectangle)
      * @param polygonId reference to the UI hexagon
      */
     public void buildDwellingOnSelected(int polygonId) {
-        // TODO: add a rectangle to the scene selected terrain tile
-        // TODO: Bug fix required
-        System.out.println("Dwelling built: " + gameStateLocal.get("isBuildDwelling"));
-        Rectangle rectangle = new Rectangle(200, 200);
-        rectangle.setFill(Color.AZURE);
-        rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX());
-        rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY());
-        rectangle.setVisible(true);
+        if(gameStateLocal.get("isBuildDwelling") == 1){
+            AnchorPane anchorPane = (AnchorPane) super.scene.lookup("#AnchorPaneSinglePlayer");
+            System.out.println("Dwelling built: " + gameStateLocal.get("isBuildDwelling"));
+            Rectangle rectangle = new Rectangle(10, 10);
+            // dwelling is purple
+            rectangle.setFill(Color.VIOLET);
+
+            rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX());
+            rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY());
+            rectangle.setVisible(true);
+            anchorPane.getChildren().addAll(rectangle);
+        }
     }
 
     // Popups for game flow
