@@ -65,13 +65,26 @@ public class LocalGameController extends SceneController {
         // initialize the map buttons
         terrainMapHexagons = new Polygon[113];
 
-        // Hold the game state in a HashMap
+        // Holds the game state in a HashMap
         gameStateLocal = new HashMap<String, Integer>();
         //TODO: Initialize to the current action round
         gameStateLocal.put("action",  -1);
+        //TODO: Player's faction specific home terrain color
+        /*
+         -1: not initialized, transparent
+          0: plainColor, (default)
+          1: swampColor,
+          2: lakeColor
+          3: forestColor
+          4: mountainColor
+          5: wastelandColor
+          6: desertColor
+          7: riverColor
+         */
+        gameStateLocal.put("factionColorId",  0);
         //TODO: Initialize to the user's home terrain
         gameStateLocal.put("terrainId",  -1);
-        // The terrain tile selected by mouse press
+        // The terrain tile selected by mouse press (131 possible Hexagon Terrain Tile)
         gameStateLocal.put("terrainSelected",  -1);
         // transformAndBuild --option buildDwelling: 1 (yes), 0 (no), -1  (not init)
         gameStateLocal.put("isBuildDwelling",  -1);
@@ -108,7 +121,6 @@ public class LocalGameController extends SceneController {
         // init Hexagons on Terrain Map
         for (int i = 0; i  < 113; i++){
             terrainMapHexagons[i] = (Polygon) scene.lookup("#" + i);
-
             Integer terrainTileId = i;
             // Use opacity to show selection
             terrainMapHexagons[i].setOnMouseEntered(event -> {
@@ -130,6 +142,7 @@ public class LocalGameController extends SceneController {
 
     @Override
     public void initController(Stage stage) throws IOException {
+        // Setup scene style from CSS
         super.scene.getStylesheets().clear();
         super.scene.getStylesheets().add(getClass().getResource("localGame.css").toExternalForm());
         stage.setScene(super.scene);
@@ -144,7 +157,7 @@ public class LocalGameController extends SceneController {
         earthCultBtn = (Button) super.scene.lookup("#earthCultBtn");
         airCultBtn = (Button) super.scene.lookup("#airCultBtn");
 
-        // add listeners to buttons
+        // Add listeners to buttons
         Parent finalRoot = super.root;
         goBackImg.setOnMouseClicked(event -> {
             FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);
@@ -225,7 +238,7 @@ public class LocalGameController extends SceneController {
     public void buildDwellingOnSelected(int polygonId) throws FileNotFoundException {
         if(gameStateLocal.get("isBuildDwelling") == 1){
             Rectangle rectangle = new Rectangle(35, 25);
-            rectangle.setFill(Color.VIOLET);
+            rectangle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
             rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
             rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
             rectangle.setVisible(true);
@@ -306,7 +319,7 @@ public class LocalGameController extends SceneController {
         //TODO: GameFlow logic to initialize priest position
         if(offsetX != -1 && offsetY != -1){
             Circle circle = new Circle(10);
-            circle.setFill(Color.VIOLET);
+            circle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
             circle.setLayoutX(posX + 20 + offsetX);
             circle.setLayoutY(posY - 25 + offsetY);
             circle.setVisible(true);
