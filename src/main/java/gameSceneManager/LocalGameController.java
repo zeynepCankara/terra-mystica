@@ -26,6 +26,8 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -147,7 +149,11 @@ public class LocalGameController extends SceneController {
 
         transformTerrainBtn.setOnMouseClicked(event -> {
             changeTerrainSelected(gameStateLocal.get("terrainSelected"), gameStateLocal.get("terrainId"));
-            buildDwellingOnSelected(gameStateLocal.get("terrainSelected"));
+            try {
+                buildDwellingOnSelected(gameStateLocal.get("terrainSelected"));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         });
 
         // Action round popup initialization
@@ -169,16 +175,13 @@ public class LocalGameController extends SceneController {
      * Place dwelling on board (symbol Violet rectangle)
      * @param polygonId reference to the UI hexagon
      */
-    public void buildDwellingOnSelected(int polygonId) {
+    public void buildDwellingOnSelected(int polygonId) throws FileNotFoundException {
         if(gameStateLocal.get("isBuildDwelling") == 1){
             AnchorPane anchorPane = (AnchorPane) super.scene.lookup("#AnchorPaneSinglePlayer");
-            System.out.println("Dwelling built: " + gameStateLocal.get("isBuildDwelling"));
-            Rectangle rectangle = new Rectangle(10, 10);
-            // dwelling is purple
+            Rectangle rectangle = new Rectangle(35, 25);
             rectangle.setFill(Color.VIOLET);
-
-            rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX());
-            rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY());
+            rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
+            rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
             rectangle.setVisible(true);
             anchorPane.getChildren().addAll(rectangle);
         }
