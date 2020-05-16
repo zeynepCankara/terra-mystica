@@ -34,7 +34,7 @@ public class Game {
 
     private Game(boolean isMapRandom){
         gameBoard = new GameBoard(isMapRandom);
-        cultBoard = new CultBoard();//TODO
+        //cultBoard = new CultBoard();//TODO
         players = initilizePlayers(4);
         bonusCards = new BonusCardList(); //TODO
         townTiles = new TownTileList(); //TODO
