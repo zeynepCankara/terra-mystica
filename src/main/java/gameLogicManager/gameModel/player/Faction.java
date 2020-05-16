@@ -26,10 +26,14 @@ public class Faction {
     public static int getCoinAtSetup(FactionType factionType) {
         //TODO
         switch (factionType){
-            case WITCHES:
+            case SWARMLINGS:
+                return 20;
+            case ENGINEERS:
+                return 10;
+            default:
+                return 15;
                 //All factions should be handled.
         }
-        return 0;
     }
 
     public TerrainType getTerrainType() {
