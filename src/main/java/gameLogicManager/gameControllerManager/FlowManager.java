@@ -19,7 +19,7 @@ public class FlowManager{
     private AdjacencyController adjacencyController;
 
     private Player currentPlayer;
-    private GameEngine gameEngine;
+    //private GameEngine gameEngine;
     private static Game game;
 
     public static FlowManager getInstance(){
@@ -33,7 +33,7 @@ public class FlowManager{
         resourceController = ResourceController.getInstance(); //TODO
         actionController = ActionController.getInstance(); //TODO
         adjacencyController = AdjacencyController.getInstance(); //TODO
-        gameEngine = GameEngine.getInstance(); //TODO
+        //gameEngine = GameEngine.getInstance(); //TODO
     }
 
 /*
