@@ -29,14 +29,12 @@ public class ServerController {
         ArrayList<Terrain> ters1 = GetBoard();
         for (int i = 0; i < ters1.size(); i++)
         {
-            System.out.println(ters1.get(i).getType());
-            System.out.println(ters1.get(i).getStructure());
+            System.out.println(ters1.get(i).getType() + " - " + ters1.get(i).getStructure().getStructureType());
         }
         TransformTerrain(TerrainType.Plains, 0, 4);
         for (int i = 0; i < ters1.size(); i++)
         {
-            System.out.println(ters1.get(i).getType());
-            System.out.println(ters1.get(i).getStructure());
+            System.out.println(ters1.get(i).getType() + " - " + ters1.get(i).getStructure().getStructureType());
         }
         // System.out.println(tmp_json);
     }
@@ -47,32 +45,31 @@ public class ServerController {
         String tmp_json= IOUtils.toString(response.getEntity().getContent(),  StandardCharsets.UTF_8);
         JSONObject myObj = new JSONObject(tmp_json);
         JSONArray arr = myObj.getJSONArray("cells");
-        ArrayList<Terrain> ters = new ArrayList<Terrain>();
+        ArrayList<Terrain> terrainList = new ArrayList<Terrain>();
         for (int i = 0; i < arr.length(); i++)
         {
             //System.out.println( "row " + i);
             JSONArray arr2 = arr.getJSONArray(i);
             for (int j = 0; j < arr2.length(); j++)
             {
-                Terrain a = new Terrain();
+                Terrain terrain = new Terrain();
 
                 //System.out.print( arr2.getJSONObject(j).getString("type"));
-                String Terrain = arr2.getJSONObject(j).getString("type");
-
-                TerrainType terEnum = TerrainType.valueOf(Terrain);
+                String terrainName = arr2.getJSONObject(j).getString("type");
+                TerrainType terrainType = TerrainType.valueOf(terrainName);
+                terrain.setType(terrainType);
                 //System.out.print(terEnum);
-                String Struct = arr2.getJSONObject(j).getString("structure");
+                String structureName = arr2.getJSONObject(j).getString("structure");
                 //System.out.println("- "+ arr2.getJSONObject(j).getString("structure"));
-                StructureType StructEnum = StructureType.valueOf(Struct);
-                Structure s = new Dwelling();
-                a.setStructure(s.getStructureType());
-                a.setType(terEnum);
-                ters.add(a);
+                StructureType structureType = StructureType.valueOf(structureName);
+                terrain.setStructure(structureType);
+
+                terrainList.add(terrain);
                 //System.out.println(ters.get(0).getType());
                 //System.out.println(ters.get(0).getStructure());
             }
         }
-        return ters;
+        return terrainList;
     }
     static void GetChanges(int lastSequence) throws IOException, JSONException {
         HttpClient client = new DefaultHttpClient();

@@ -39,9 +39,17 @@ public class Terrain {
     public void setStructure(StructureType structureType) {
         switch(structureType){
             case Dwelling:
-                setStructure(new Dwelling());
-            default:
-                structure = null;
+                this.structure = new Dwelling();
+            case TradingHouse:
+                this.structure = new TradingHouse();
+            case Temple:
+                this.structure = new Temple();
+            case Sanctuary:
+                this.structure = new Sanctuary();
+            case StrongHold:
+                this.structure = new StrongHold();
+            case None:
+                this.structure = new StrongHold();
         }
     }
 
