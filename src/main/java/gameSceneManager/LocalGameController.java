@@ -46,18 +46,17 @@ import static gameSceneManager.BoardGenerator.terrainColorMap;
 public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
+    AnchorPane anchorPane;
     Button transformTerrainBtn;
+    Button fireCultBtn;
+    Button earthCultBtn;
+    Button waterCultBtn;
+    Button airCultBtn;
 
     // Contains Buttons of the Game UI
     Polygon[] terrainMapHexagons;
     // Holds the information about game state
     HashMap<String, Integer> gameStateLocal;
-
-
-
-    static HashMap<Integer, Polygon> dwellingMap = new HashMap<Integer, Polygon>();
-    // Define the dwelling polygons
-    //Polygon polygon = new Polygon();
 
 
 
@@ -76,6 +75,8 @@ public class LocalGameController extends SceneController {
         gameStateLocal.put("terrainSelected",  -1);
         // transformAndBuild --option buildDwelling: 1 (yes), 0 (no), -1  (not init)
         gameStateLocal.put("isBuildDwelling",  -1);
+        // sendPriestToCult --option sendCult: 0 (fire), 1 (water),  2 (earth), 3 (air)
+        gameStateLocal.put("cultId",  -1);
 
 
         // Load the FXML file
@@ -92,10 +93,6 @@ public class LocalGameController extends SceneController {
         } else {
             super.scene = BoardGenerator.generateRandomTerrainMap(super.scene, (int) (Math.random() * 6 + 1));
         }
-
-        //popup for action round
-        //displayActionRoundPopup();
-        // buttonmain.setOnAction(e -> displayActionPopup());
 
         // init Hexagons on Terrain Map
         for (int i = 0; i  < 113; i++){
@@ -128,11 +125,16 @@ public class LocalGameController extends SceneController {
         stage.show();
 
         // fetch UI elements from the FXML file
+        anchorPane = (AnchorPane) super.scene.lookup("#AnchorPaneSinglePlayer");
         goBackImg = (ImageView) super.scene.lookup("#goBackImg");
         transformTerrainBtn = (Button) super.scene.lookup("#transformTerrainBtn");
+        fireCultBtn = (Button) super.scene.lookup("#fireCultBtn");
+        waterCultBtn = (Button) super.scene.lookup("#waterCultBtn");
+        earthCultBtn = (Button) super.scene.lookup("#earthCultBtn");
+        airCultBtn = (Button) super.scene.lookup("#airCultBtn");
 
+        // add listeners to buttons
         Parent finalRoot = super.root;
-
         goBackImg.setOnMouseClicked(event -> {
             FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);
             fadeAnimation.setOnFinished(event1 ->
@@ -155,6 +157,40 @@ public class LocalGameController extends SceneController {
                 e.printStackTrace();
             }
         });
+        fireCultBtn.setOnMouseClicked(event -> {
+            gameStateLocal.put("cultId", 0);
+            try {
+                sendPriestToCult(0);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+        waterCultBtn.setOnMouseClicked(event -> {
+            gameStateLocal.put("cultId", 1);
+            try {
+                sendPriestToCult(1);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+        earthCultBtn.setOnMouseClicked(event -> {
+            gameStateLocal.put("cultId", 2);
+            try {
+                sendPriestToCult(2);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+        airCultBtn.setOnMouseClicked(event -> {
+            gameStateLocal.put("cultId", 3);
+            try {
+                sendPriestToCult(3);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
+
 
         // Action round popup initialization
         displayActionRoundPopup();
@@ -177,7 +213,6 @@ public class LocalGameController extends SceneController {
      */
     public void buildDwellingOnSelected(int polygonId) throws FileNotFoundException {
         if(gameStateLocal.get("isBuildDwelling") == 1){
-            AnchorPane anchorPane = (AnchorPane) super.scene.lookup("#AnchorPaneSinglePlayer");
             Rectangle rectangle = new Rectangle(35, 25);
             rectangle.setFill(Color.VIOLET);
             rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
@@ -185,6 +220,42 @@ public class LocalGameController extends SceneController {
             rectangle.setVisible(true);
             anchorPane.getChildren().addAll(rectangle);
         }
+    }
+
+    /**
+     * Send a priest to the cult board (symbol Violet circle)
+     * @param cultId reference to the UI hexagon
+     */
+    public void sendPriestToCult(int cultId) throws FileNotFoundException {
+        //TODO: Init a circle on cult board
+        // cult  board location
+        double posX;
+        double posY;
+        switch(cultId) {
+            case 0:
+                posX = fireCultBtn.getLayoutX();
+                posY = fireCultBtn.getLayoutY();
+                break;
+            case 1:
+                posX = waterCultBtn.getLayoutX();
+                posY = waterCultBtn.getLayoutY();
+                break;
+            case 2:
+                posX = earthCultBtn.getLayoutX();
+                posY = earthCultBtn.getLayoutY();
+            case 3:
+                posX = airCultBtn.getLayoutX();
+                posY = airCultBtn.getLayoutY();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + cultId);
+        }
+        Circle circle = new Circle(10);
+        circle.setFill(Color.VIOLET);
+        circle.setLayoutX(posX);
+        circle.setLayoutY(posY);
+        circle.setVisible(true);
+        anchorPane.getChildren().addAll(circle);
     }
 
     // Popups for game flow
@@ -429,12 +500,13 @@ public class LocalGameController extends SceneController {
 
 
 
-
-
     /**
      * Random popup example
      */
     public void displayActionRoundPopup_demo() {
+        //popup for action round
+        //displayActionRoundPopup();
+        // buttonmain.setOnAction(e -> displayActionPopup());
         Stage actionRoundStage = new Stage();
         actionRoundStage.initModality(Modality.APPLICATION_MODAL);
         actionRoundStage.setTitle("Action Round Popup");

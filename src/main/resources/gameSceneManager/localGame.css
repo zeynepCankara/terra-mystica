@@ -18,3 +18,22 @@
     -fx-background-size: cover, auto;
 }
 
+#fireCultBtn {
+    -fx-background-image: url("./images/fire_cult.png");
+    -fx-background-size: cover, auto;
+}
+
+#earthCultBtn {
+    -fx-background-image: url("./images/earth_cult.png");
+    -fx-background-size: cover, auto;
+}
+
+#waterCultBtn {
+    -fx-background-image: url("./images/water_cult.png");
+    -fx-background-size: cover, auto;
+}
+
+#airCultBtn {
+    -fx-background-image: url("./images/air_cult.png");
+    -fx-background-size: cover, auto;
+}
