@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
@@ -215,7 +216,6 @@ public class LocalGameController extends SceneController {
         });
 
 
-
         // Action round popup initialization
         displayActionRoundPopup();
     }
@@ -232,7 +232,7 @@ public class LocalGameController extends SceneController {
     }
 
     /**
-     * Place dwelling on board (symbol Violet rectangle)
+     * Place dwelling on board (dwelling symbol FactionColor rectangle)
      * @param polygonId reference to the UI hexagon
      */
     public void buildDwellingOnSelected(int polygonId) throws FileNotFoundException {
@@ -246,12 +246,15 @@ public class LocalGameController extends SceneController {
         }
     }
 
+    // methods for Cult Track
     /**
-     * Send a priest to the cult board (symbol Violet circle)
-     * @param cultId reference to the UI hexagon
+     * Send a priest to the cult board (priest symbol FactionColor circle)
+     * @param cultId reference to the Cult track
      * @param priestInitPos priest initialization location
      */
     public void sendPriestToCult(int cultId, int priestInitPos) throws FileNotFoundException {
+        //TODO: GameFlow logic to initialize priest position
+
         // cult board location
         double posX;
         double posY;
@@ -316,7 +319,6 @@ public class LocalGameController extends SceneController {
             default:
                 throw new IllegalStateException("Unexpected value: " + cultId);
         }
-        //TODO: GameFlow logic to initialize priest position
         if(offsetX != -1 && offsetY != -1){
             Circle circle = new Circle(10);
             circle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
@@ -325,6 +327,25 @@ public class LocalGameController extends SceneController {
             circle.setVisible(true);
             anchorPane.getChildren().addAll(circle);
         }
+    }
+
+    // methods for Cult Track manipulation
+    /**
+     * Retrieve current priest marker and advance by the number of steps
+     * @param cultId reference to the Cult Track
+     * @param cultPos position of the current priest marker
+     * @param stepSize advancement of the current priest marker
+     */
+    public void updateCultBoard(int cultId, int cultPos, int stepSize) throws FileNotFoundException {
+        /*
+        Rectangle rectangle = new Rectangle(25, 35);
+        rectangle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
+        // get the previou
+        //rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
+        //rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
+        rectangle.setVisible(true);
+        anchorPane.getChildren().addAll(rectangle);
+         */
     }
 
     // Popups for game flow
