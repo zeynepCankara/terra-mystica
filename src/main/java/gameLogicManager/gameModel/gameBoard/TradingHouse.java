@@ -5,5 +5,6 @@ public class TradingHouse extends Structure {
         super.requiredCoins = 6;
         super.requiredWorkers = 2;
         super.powerValue = 2;
+        super.structureType = StructureType.TradingHouse;
     }
 }

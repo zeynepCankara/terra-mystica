@@ -5,5 +5,6 @@ public class StrongHold extends Structure {
         super.requiredCoins = 6;
         super.requiredWorkers = 4;
         super.powerValue = 3;
+        super.structureType = StructureType.StrongHold;
     }
 }

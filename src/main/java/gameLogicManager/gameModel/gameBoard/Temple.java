@@ -5,5 +5,6 @@ public class Temple extends Structure {
         super.requiredCoins = 5;
         super.requiredWorkers = 2;
         super.powerValue = 2;
+        super.structureType = StructureType.Temple;
     }
 }
