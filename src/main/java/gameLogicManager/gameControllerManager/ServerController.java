@@ -27,15 +27,16 @@ public class ServerController {
         ConstructBuilding(StructureType.TradingHouse, 0, 2);
         //GetChanges(1);
         ArrayList<Terrain> ters1 = GetBoard();
+        /* These will give NULLPOINTEREXCEPTION if the structure on the terrain is empty
         for (int i = 0; i < ters1.size(); i++)
         {
-            System.out.println(ters1.get(i).getType() + " - " + ters1.get(i).getStructure().getStructureType());
+            //System.out.println(ters1.get(i).getType() + " - " + ters1.get(i).getStructure().getStructureType());
         }
         TransformTerrain(TerrainType.Plains, 0, 4);
         for (int i = 0; i < ters1.size(); i++)
         {
-            System.out.println(ters1.get(i).getType() + " - " + ters1.get(i).getStructure().getStructureType());
-        }
+            //System.out.println(ters1.get(i).getType() + " - " + ters1.get(i).getStructure().getStructureType());
+        }*/
         // System.out.println(tmp_json);
     }
     static ArrayList<Terrain> GetBoard() throws IOException, JSONException {
@@ -54,15 +55,16 @@ public class ServerController {
             {
                 Terrain terrain = new Terrain();
 
-                //System.out.print( arr2.getJSONObject(j).getString("type"));
                 String terrainName = arr2.getJSONObject(j).getString("type");
                 TerrainType terrainType = TerrainType.valueOf(terrainName);
                 terrain.setType(terrainType);
-                //System.out.print(terEnum);
+
                 String structureName = arr2.getJSONObject(j).getString("structure");
-                //System.out.println("- "+ arr2.getJSONObject(j).getString("structure"));
+
                 StructureType structureType = StructureType.valueOf(structureName);
+                //System.out.println("!!!!!!!!" + structureType);
                 terrain.setStructure(structureType);
+
 
                 terrainList.add(terrain);
                 //System.out.println(ters.get(0).getType());

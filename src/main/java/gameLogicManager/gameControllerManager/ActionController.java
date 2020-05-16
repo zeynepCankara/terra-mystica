@@ -27,8 +27,9 @@ public class ActionController{
      @param newTerrainType the new type of the terrain
      @return boolean always true
      */
-    public boolean transformTerrain(Terrain terrain, TerrainType newTerrainType){
+    public boolean transformTerrain(Terrain terrain, TerrainType newTerrainType){//EDIT SERVER METHOD!!!!!!
         terrain.setType(newTerrainType);
+        ServerController.TransformTerrain(newTerrainType, terrain.getId(), terrain.getId());//EDIT!!!
         return true;
     }
 
@@ -37,10 +38,11 @@ public class ActionController{
      * @param terrain which terrain to build the dwelling on
      * @return oolean always true
      */
-    public boolean build(Player currentPlayer, Terrain terrain) { //ADD SERVER METHOD!!!!!!
+    public boolean build(Player currentPlayer, Terrain terrain) { //EDIT SERVER METHOD!!!!!!
         Dwelling  dwelling = new Dwelling();
         currentPlayer.addStructure(dwelling);
         terrain.setStructure(dwelling); //needs server update for map
+        ServerController.ConstructBuilding(dwelling.getStructureType(), terrain.getId(), terrain.getId());//EDIT!!!
         return true;
     }
 
