@@ -10,7 +10,22 @@
 }
 
 #randomMapBtn {
-    -fx-background-image: url("./images/btn_image.png");
-    -fx-background-size: cover, auto;
+     -fx-background-image: url("./images/btn_image.png");
+     -fx-background-size: cover, auto;
+ }
+
+#witchFaction {
+     -fx-opacity: 0.5;
+ }
+
+#witchFaction:hover {
+    -fx-opacity: 1;
 }
 
+#aurenFaction {
+    -fx-opacity: 0.5;
+}
+
+#aurenFaction:hover {
+    -fx-opacity: 1;
+}
