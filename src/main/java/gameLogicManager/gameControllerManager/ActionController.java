@@ -9,7 +9,7 @@ import gameLogicManager.gameModel.player.Player;
  * @author Rafi Coktalas
  * @version 10.05.2020
  */
-public class ActionController implements NotificationHandler{
+public class ActionController{
 
     private static ActionController uniqueInstance; //Singleton
 

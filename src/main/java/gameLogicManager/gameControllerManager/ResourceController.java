@@ -9,7 +9,7 @@ import gameLogicManager.gameModel.player.Player;
  * @author Rafi Coktalas
  * @version 10.05.2020
  */
-public class ResourceController implements NotificationHandler{
+public class ResourceController{
 
     private static ResourceController uniqueInstance; //Singleton
 

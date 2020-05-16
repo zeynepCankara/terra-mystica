@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
  * @author Rafi Coktalas
  * @version 10.05.2020
  */
-public class AdjacencyController implements NotificationHandler{
+public class AdjacencyController{
 
     private static AdjacencyController uniqueInstance; //Singleton
 

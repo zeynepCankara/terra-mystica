@@ -10,7 +10,7 @@ import gameLogicManager.gameModel.player.Player;
  * @author Rafi Coktalas
  * @version 10.05.2020
  */
-public class FactionController implements NotificationHandler{
+public class FactionController{
 
     private static FactionController uniqueInstance; //Singleton
 
