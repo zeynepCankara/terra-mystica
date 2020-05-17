@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane id="AnchorPaneLoginMenu" styleClass="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="1536.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+    <children>
+        <ImageView fx:id="goBackImg" fitHeight="49.49665832519531" fitWidth="66.96606805656647" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="20.0">
+            <image>
+                <Image url= "@./images/goBackImg.png" />
+            </image>
+        </ImageView>
+
+        <Button fx:id="submitBtn"  text="SUBMIT" layoutX="692.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="166.0" AnchorPane.bottomAnchor="153.0" />
+
+    </children>
+</AnchorPane>
+

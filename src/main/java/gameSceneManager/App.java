@@ -105,6 +105,9 @@ public class App extends Application {
             case 3:
                 controller = new GameSetupController(stage);
                 break;
+            case 4:
+                controller = new LoginMenuController(stage);
+                break;
         }
     }
 
