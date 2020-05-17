@@ -16,7 +16,7 @@ public class Player {
     private int score;
 
     public Player(FactionType factionType) {
-        this.faction = faction;
+        this.faction = faction; //TODO Switch CASE !!!!
         shipping = 0;
         spadeRate = 3;
         numOfWorkers = Faction.getWorkerAtSetup(factionType);
@@ -89,5 +89,11 @@ public class Player {
         //TODO
 
     }
+    /*
+    public Faction factionConverter(FactionType factionType){
+        switch (factionType){
+            case
+        }
+    }*/
 
 }

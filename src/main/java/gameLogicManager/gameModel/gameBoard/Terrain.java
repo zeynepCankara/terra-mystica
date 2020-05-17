@@ -10,18 +10,21 @@ import gameLogicManager.gameModel.player.Player;
 public class Terrain {
     private TerrainType type;
     private int id; //id of a terrain is used to place it on the Map
-    private boolean isAvailable;
     private Structure structure;
     private Player owner;
 
     public Terrain(){}
-    public Terrain(int id, int terrainTypeID){
+    public Terrain(int id, TerrainType terrainType, StructureType structureType){
         this.id = id;
-        this.type = terrainIdToTypeConverter(terrainTypeID);
+        this.type = terrainType;
+        setStructure(structureType);
     }
 
     public boolean isAvailable() {
-        return isAvailable;
+        if(structure == null){
+            return true;
+        }
+        return false;
     }
     public TerrainType getType(){
         return type;
@@ -64,15 +67,6 @@ public class Terrain {
         }
     }
 
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
-
-
     public int getId() {
         return id;
     }
@@ -104,4 +98,11 @@ public class Terrain {
         }
     }
 
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
 }

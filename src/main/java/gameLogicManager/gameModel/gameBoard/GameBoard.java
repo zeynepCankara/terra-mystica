@@ -1,6 +1,8 @@
 package gameLogicManager.gameModel.gameBoard;
 
 
+import gameLogicManager.gameControllerManager.ServerController;
+
 import java.util.ArrayList;
 
 public class GameBoard {
@@ -17,16 +19,19 @@ public class GameBoard {
             6, 2, 0, 7, 7, 7, 2, 1, 7, 4, 0, 4,
             5, 1, 4, 2, 5, 3, 6, 0, 4, 7, 2, 3, 5
     };
-    private Terrain[] terrainList;
+    private Terrain[] terrainList ;
 
     public GameBoard( boolean isRandom ) {
-        terrainList = new Terrain[113];
-
-        for (int i = 0; i < NO_OF_TERRAINS; i++) {
-            terrainList[i] = new Terrain(i, DEFAULT_MAP[i]);
+        if(!isRandom) {
+            terrainList = (Terrain[]) ServerController.GetBoard().toArray();
         }
+        else { //NOT USED SO FAR
+            terrainList = new Terrain[113];
 
-        if( isRandom ){
+            for (int i = 0; i < NO_OF_TERRAINS; i++) {
+                terrainList[i] = new Terrain(i, Terrain.terrainIdToTypeConverter(DEFAULT_MAP[i]), null);
+            }
+
             randomize((int) (Math.random() * 6 + 1));
         }
 
