@@ -5,9 +5,10 @@ public abstract class Structure {
     protected int requiredCoins;
     protected int powerValue;
 
-
-
     protected StructureType structureType;
+    Structure(){
+        structureType = StructureType.None;
+    }
 
     public  int getRequiredWorkers() {
         return requiredWorkers;

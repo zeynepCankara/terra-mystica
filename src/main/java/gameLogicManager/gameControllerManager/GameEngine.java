@@ -1,6 +1,11 @@
 package gameLogicManager.gameControllerManager;
 
 import gameLogicManager.gameModel.gameBoard.*;
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * This class initializes the game according to UIController input,
@@ -13,6 +18,7 @@ public class GameEngine {
     private static FlowManager flowManager;
     private static String gameStatus;
     private static Game game;
+    private static Timer timer;
 
     public static GameEngine getInstance(boolean isMapRandom){
         if( uniqueInstance == null ){
@@ -28,7 +34,9 @@ public class GameEngine {
     }
 
     public boolean transformTerrain( int terrainID, int terrainType ){
+
         int result = flowManager.transformTerrain(terrainID, Terrain.terrainIdToTypeConverter(terrainType));
+
         updateGameStatus(result);
         if(result == 0){
             return true;
@@ -100,6 +108,18 @@ public class GameEngine {
             case 6:
                 gameStatus = "Failed: Improvement limit has been reached";
         }
+    }
+
+    public static void update() {
+
+        timer.schedule(
+                new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        System.out.println("Rafi");
+                    }
+                }, 0, 5000);
     }
 
 }

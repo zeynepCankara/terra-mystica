@@ -4,6 +4,7 @@ package gameLogicManager.gameModel.gameBoard;
 import gameLogicManager.gameControllerManager.ServerController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameBoard {
 
@@ -22,30 +23,37 @@ public class GameBoard {
     private Terrain[] terrainList ;
 
     public GameBoard( boolean isRandom ) {
+        terrainList = new Terrain[NO_OF_TERRAINS];
+        ArrayList<Terrain> serverTerrainList = ServerController.GetBoard();
+
         if(!isRandom) {
-            terrainList = (Terrain[]) ServerController.GetBoard().toArray();
+
+            for( int i = 0; i < NO_OF_TERRAINS; i++ ){
+                terrainList[i] = new Terrain(i, Terrain.terrainIdToTypeConverter(DEFAULT_MAP[i]), StructureType.None );
+                if( serverTerrainList.get(i).getType() != terrainList[i].getType() )
+                    ServerController.TransformTerrain(Terrain.terrainIdToTypeConverter(DEFAULT_MAP[i]),i);
+                if( serverTerrainList.get(i).getStructure() != null && serverTerrainList.get(i).getStructure().getStructureType() != StructureType.None )
+                    ServerController.ConstructBuilding(StructureType.None,i);
+            }
+
         }
-        else { //NOT USED SO FAR
-            terrainList = new Terrain[113];
+        else {
 
             for (int i = 0; i < NO_OF_TERRAINS; i++) {
-                terrainList[i] = new Terrain(i, Terrain.terrainIdToTypeConverter(DEFAULT_MAP[i]), null);
+                terrainList[i] = new Terrain(i, Terrain.terrainIdToTypeConverter(randomize(DEFAULT_MAP[i])), StructureType.None );
             }
 
-            randomize((int) (Math.random() * 6 + 1));
+
+
         }
 
     }
-
-
-    public void randomize( int n ) {
-        for( Terrain t : terrainList ){
-            if(t.getType() != TerrainType.River) {
-                int newTerrainTypeID = ( t.getType().getTerrainTypeID() + n ) % 7;
-                t.setType(newTerrainTypeID);
-            }
-        }
+    public int randomize( int n ){
+        return (((int) (Math.random() * 6 + 1)) + n) % 7;
     }
+
+
+
 
     public Terrain getTerrain( int terrainID ){
         return terrainList[terrainID];

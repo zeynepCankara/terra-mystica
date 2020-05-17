@@ -39,7 +39,7 @@ public class Game {
         bonusCards = new BonusCardList(); //TODO
         townTiles = new TownTileList(); //TODO
         scoringTiles = new ScoringTileList(); //TODO
-        currentPlayerIndex = 0;
+        currentPlayerIndex = -1;
         //TODO cultBoard = new CultBoard(players); //buna player listesi lazım
     }
 

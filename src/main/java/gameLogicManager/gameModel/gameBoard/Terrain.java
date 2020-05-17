@@ -64,6 +64,7 @@ public class Terrain {
                 break;
             default:
                 this.structure = null;
+                break;
         }
     }
 
@@ -104,5 +105,9 @@ public class Terrain {
 
     public void setOwner(Player owner) {
         this.owner = owner;
+    }
+
+    public String toString(){
+        return String.valueOf(type);
     }
 }

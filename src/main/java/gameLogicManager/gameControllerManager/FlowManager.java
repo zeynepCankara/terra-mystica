@@ -22,6 +22,7 @@ public class FlowManager{
     //private GameEngine gameEngine;
     private static Game game;
 
+
     public static FlowManager getInstance(){
         if( uniqueInstance == null ){
             uniqueInstance = new FlowManager();
@@ -33,7 +34,8 @@ public class FlowManager{
         resourceController = ResourceController.getInstance(); //TODO
         actionController = ActionController.getInstance(); //TODO
         adjacencyController = AdjacencyController.getInstance(); //TODO
-        //gameEngine = GameEngine.getInstance(); //TODO
+        game = Game.getInstance(); //TODO
+        currentPlayer = game.getNextPlayer();
     }
 
 /*
@@ -54,6 +56,7 @@ public class FlowManager{
      @return Terrain
      */
     private Terrain getTerrain(int terrainID) {
+        game = Game.getInstance();
         return game.getTerrain( terrainID );
     }
 
@@ -67,14 +70,14 @@ public class FlowManager{
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.
 
         /* Player cannot transform if the terrain is not available or it's the same terrain */
-        if(!terrain.isAvailable() || terrain.getType().getTerrainTypeID() == newTerrainType.getTerrainTypeID()){
-            return 4;
-        }
+        //if(!terrain.isAvailable() || terrain.getType().getTerrainTypeID() == newTerrainType.getTerrainTypeID()){
+            //return 4;
+        //}
 
         /* Check if the player has enough workers to have enough spades, obtain spades if possible */
-        if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){
-            return 2;
-        }
+        //if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){
+            //return 2;
+        //}
 
         actionController.transformTerrain(terrain, newTerrainType);
 
