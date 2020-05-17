@@ -83,7 +83,7 @@ public class GameEngine {
      * Each case is self explanatory in the code.
      * @param result the results of actions
      */
-    public void updateGameStatus(int result){
+    public static void updateGameStatus(int result){
         switch (result){
             case 0:
                 gameStatus = "Action is done successfully";

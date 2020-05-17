@@ -57,7 +57,7 @@ public class App extends Application {
         stage.setTitle("Terra Mystica Desktop");
         stage.setWidth(1536);
         stage.setHeight(824);
-        timer.schedule(
+        /*timer.schedule(
                 new TimerTask() {
 
                     @Override
@@ -70,17 +70,17 @@ public class App extends Application {
                             e.printStackTrace();
                         }
                     }
-                }, 0, 5000);
+                }, 0, 5000);*/
         // controller = new MainMenuController(stage);
         //LocalGameController localGameController = new LocalGameController(stage);
         controller = new MainMenuController(stage);
     }
-    //TODO RAFİ genel yapısı böyle olucak gibi, değiştirebilirsin, fikir versin diye koydum
+    /*TODO RAFİ genel yapısı böyle olucak gibi, değiştirebilirsin, fikir versin diye koydum
     private void updateGamePeriodically() throws IOException, JSONException {
         ArrayList<Terrain> terrainList = ServerController.GetBoard();
         (new GameBoard(true)).updateTerrainList(terrainList);
         //Refreshing at UI by using the new terrainList.
-    }
+    }*/
 
 
     static void setRoot(String fxml, Scene scene) throws IOException {
