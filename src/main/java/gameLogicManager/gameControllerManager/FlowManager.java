@@ -23,6 +23,7 @@ public class FlowManager{
     private static Game game;
 
     private int currentRound;//used for scoring tile checking
+    private int totalPasses; // used to keep track of the count of passed players
 
 
     public static FlowManager getInstance(){
@@ -39,6 +40,7 @@ public class FlowManager{
         game = Game.getInstance();
         currentPlayer = game.getNextPlayer();
         currentRound = 0;
+        totalPasses = 0;
     }
 
 /*
@@ -86,7 +88,7 @@ public class FlowManager{
 
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
         //Bu method score güncelleye bir method halini alacak
-
+        currentPlayer = game.getNextPlayer();
         return 0;
     }
 
@@ -121,7 +123,7 @@ public class FlowManager{
         resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, StructureType.Dwelling);
 
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
-
+        currentPlayer = game.getNextPlayer();
         return 0;
     }
 
@@ -139,7 +141,7 @@ public class FlowManager{
         actionController.improveShipping(currentPlayer);
         resourceController.obtainIncomeForShipping(currentPlayer);
         //adjacencyController.updateAdjacencyList(currentPlayer);
-
+        currentPlayer = game.getNextPlayer();
         return 0;
     }
     /**
@@ -157,6 +159,7 @@ public class FlowManager{
         }
         actionController.improveTerraforming(currentPlayer);
         resourceController.obtainIncomeForImprovement(currentPlayer);
+        currentPlayer = game.getNextPlayer();
         return 0;
     }
 
@@ -174,7 +177,7 @@ public class FlowManager{
         resourceController.obtainIncomeOfStructure(currentPlayer, newStructureType);
         resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, newStructureType);
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
-
+        currentPlayer = game.getNextPlayer();
         return result;
     }
 
@@ -186,11 +189,21 @@ public class FlowManager{
         else if( true ) {
             //TODO check cult track
         }
+        currentPlayer = game.getNextPlayer();
         return 0;
     }
 
     public void pass(){
         resourceController.getEndOfRoundIncomeOfScoringTile(currentPlayer, currentRound);
+        currentPlayer = game.getNextPlayer();
+        totalPasses++;
+        if(totalPasses == 4){
+            currentRound++;
+            totalPasses = 0;
+            if(currentRound == 6){
+                //TODO FINISH THE GAME
+            }
+        }
     }
 
 }
