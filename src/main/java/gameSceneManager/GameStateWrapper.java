@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 /**
  * Class for fetching the game state from UI scenes
  * Created for establishing a protocol between logic and UI
+ * Turn this class into an instance, test the class
  * Place the logic items  UI use
  * @author Zeynep Cankara
  * @version 17.05.2020
@@ -88,7 +89,17 @@ public class GameStateWrapper {
         placePriestPosition = LocalGameController.gameStateLocal.get("priestInitPos");
     }
 
-    //TODO: Setters from Logic
+    //TODO: Functions needed for UI interactions
+
+    /**
+     * Lookup to see whether user exists in the database
+     * @param username username entered  by the user
+     * @param password password entered by the user
+     */
+    public static boolean validateUsername(String username, String password){
+        //TODO: Establish server communication
+        return true;
+    }
 
 
 }

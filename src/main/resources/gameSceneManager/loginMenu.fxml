@@ -15,8 +15,11 @@
                 <Image url= "@./images/goBackImg.png" />
             </image>
         </ImageView>
+        <TextField fx:id="usernameField" layoutX="580.0" layoutY="292.0" prefHeight="38.0" prefWidth="390.0" promptText="Username" AnchorPane.topAnchor="300"/>
+        <PasswordField fx:id="passwordField" layoutX="580.0" layoutY="389.0" prefHeight="38.0" prefWidth="390.0" promptText="Password" AnchorPane.topAnchor="360" />
 
-        <Button fx:id="submitBtn"  text="SUBMIT" layoutX="692.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="166.0" AnchorPane.bottomAnchor="153.0" />
+        <Button fx:id="submitBtn"  text="SUBMIT" layoutX="680.0" mnemonicParsing="false" prefHeight="40" prefWidth="160" AnchorPane.topAnchor="420.0" />
+        <Label fx:id="statusLabel"  text="" layoutX="680.0" mnemonicParsing="false" prefHeight="40" prefWidth="80" AnchorPane.topAnchor="460.0" />
 
     </children>
 </AnchorPane>

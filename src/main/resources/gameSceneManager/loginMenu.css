@@ -30,3 +30,7 @@
     -fx-background-size: cover, auto;
     -fx-text-fill: WHITE;
 }
+
+#statusLabel {
+    -fx-text-fill: WHITE;
+}
