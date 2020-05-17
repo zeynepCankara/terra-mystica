@@ -23,9 +23,7 @@ public class GameBoard {
         terrainList = new Terrain[113];
 
         for (int i = 0; i < NO_OF_TERRAINS; i++) {
-            terrainList[i] = new Terrain();
-            terrainList[i].setId(i);
-            terrainList[i].setType(DEFAULT_MAP[i]);
+            terrainList[i] = new Terrain(i, DEFAULT_MAP[i]);
         }
 
         if( isRandom ){

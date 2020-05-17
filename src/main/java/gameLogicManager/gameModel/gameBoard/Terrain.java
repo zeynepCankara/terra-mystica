@@ -14,6 +14,12 @@ public class Terrain {
     private Structure structure;
     private Player owner;
 
+    public Terrain(){}
+    public Terrain(int id, int terrainTypeID){
+        this.id = id;
+        this.type = terrainIdToTypeConverter(terrainTypeID);
+    }
+
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -74,4 +80,28 @@ public class Terrain {
     public void setId(int id) {
         this.id = id;
     }
+
+    public static TerrainType terrainIdToTypeConverter(int terrainTypeID){
+        switch (terrainTypeID){
+            case 0:
+                return TerrainType.Plains;
+            case 1:
+                return TerrainType.Swamp;
+            case 2:
+                return TerrainType.Lakes;
+            case 3:
+                return TerrainType.Forest;
+            case 4:
+                return TerrainType.Mountains;
+            case 5:
+                return TerrainType.Wasteland;
+            case 6:
+                return TerrainType.Desert;
+            case 7:
+                return TerrainType.River;
+            default:
+                return TerrainType.River;
+        }
+    }
+
 }
