@@ -37,3 +37,7 @@
     -fx-background-image: url("./images/air_cult.png");
     -fx-background-size: cover, auto;
 }
+
+#statusLabel {
+    -fx-text-fill: WHITE;
+}
