@@ -86,6 +86,11 @@ public class GameEngine {
         return result;
     }
 
+    public void pass(){
+        flowManager.pass();
+    }
+
+
     /**
      * This method updates gameStatus according to the results from the actions.
      * Each case is self explanatory in the code.

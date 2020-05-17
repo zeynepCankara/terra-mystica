@@ -188,4 +188,9 @@ public class FlowManager{
         }
         return 0;
     }
+
+    public void pass(){
+        resourceController.getEndOfRoundIncomeOfScoringTile(currentPlayer, currentRound);
+    }
+
 }

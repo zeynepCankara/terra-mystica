@@ -174,4 +174,28 @@ public class ResourceController{
         }
         // SCORING TILE 4 AND 5 IS NOT IMPLEMENTED YET!
     }
+
+    public void getEndOfRoundIncomeOfScoringTile(Player currentPlayer, int currentRound) {
+        //ADVANCEMENT VARIABLES SHOULD BE SET TO 0 LATER!!!
+        /* 4 Fire = 4 Power */
+        if(currentRound == 0 && currentPlayer.getFireAdvancement() > 4){
+            currentPlayer.gainPower((currentPlayer.getFireAdvancement() / 4) * 4);
+            return;
+        }
+        /* 4 Water = Priest */
+        if(currentRound == 1 && currentPlayer.getWaterAdvancement() > 4){
+            currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + (currentPlayer.getWaterAdvancement() / 4));
+            return;
+        }
+        /* 2 Fire = Worker */
+        if(currentRound == 2 && currentPlayer.getFireAdvancement() > 2){
+            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (currentPlayer.getFireAdvancement() / 2) * 2);
+            return;
+        }
+        /* 2 Air = Worker */
+        if(currentRound == 3 && currentPlayer.getAirAdvancement() > 2){
+            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (currentPlayer.getAirAdvancement() / 2) * 2);
+            return;
+        }
+    }
 }

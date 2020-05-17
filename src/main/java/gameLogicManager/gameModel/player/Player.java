@@ -90,4 +90,23 @@ public class Player {
 
     }
 
+    public int getFireAdvancement() {
+        //TODO
+        return 0;
+    }
+
+    public int getWaterAdvancement() {
+        //TODO
+        return 0;
+    }
+
+    public int getAirAdvancement() {
+        //TODO
+        return 0;
+    }
+
+    public int getEarthAdvancement(){
+        //TODO
+        return 0;
+    }
 }
