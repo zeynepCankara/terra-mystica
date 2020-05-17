@@ -60,7 +60,7 @@ public class Terrain {
                 this.structure = new Sanctuary();
                 break;
             case StrongHold:
-                this.structure = new StrongHold();;
+                this.structure = new StrongHold();
                 break;
             default:
                 this.structure = null;

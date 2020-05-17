@@ -1,6 +1,7 @@
 package gameLogicManager.gameControllerManager;
 
 import gameLogicManager.gameModel.gameBoard.*;
+import gameLogicManager.gameModel.gameResources.ScoringTile;
 import gameLogicManager.gameModel.player.*;
 
 /**
@@ -19,8 +20,9 @@ public class FlowManager{
     private AdjacencyController adjacencyController;
 
     private Player currentPlayer;
-    //private GameEngine gameEngine;
     private static Game game;
+
+    private int currentRound;//used for scoring tile checking
 
 
     public static FlowManager getInstance(){
@@ -31,11 +33,12 @@ public class FlowManager{
     }
 
     private FlowManager(){
-        resourceController = ResourceController.getInstance(); //TODO
-        actionController = ActionController.getInstance(); //TODO
-        adjacencyController = AdjacencyController.getInstance(); //TODO
-        game = Game.getInstance(); //TODO
+        resourceController = ResourceController.getInstance();
+        actionController = ActionController.getInstance();
+        adjacencyController = AdjacencyController.getInstance();
+        game = Game.getInstance();
         currentPlayer = game.getNextPlayer();
+        currentRound = 0;
     }
 
 /*
@@ -113,7 +116,10 @@ public class FlowManager{
         }
 
         actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attributes of player
+
         resourceController.obtainIncomeOfStructure(currentPlayer, StructureType.Dwelling);
+        resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, StructureType.Dwelling);
+
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
         return 0;
@@ -166,6 +172,7 @@ public class FlowManager{
 
         actionController.upgradeStructure(currentPlayer, terrain, newStructureType);//create new Structure on terrain, update attributes of player
         resourceController.obtainIncomeOfStructure(currentPlayer, newStructureType);
+        resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, newStructureType);
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
 
         return result;

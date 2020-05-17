@@ -1,9 +1,6 @@
 package gameLogicManager.gameModel.gameBoard;
 
-import gameLogicManager.gameModel.gameResources.BonusCardList;
-import gameLogicManager.gameModel.gameResources.FavorTileList;
-import gameLogicManager.gameModel.gameResources.ScoringTileList;
-import gameLogicManager.gameModel.gameResources.TownTileList;
+import gameLogicManager.gameModel.gameResources.*;
 import gameLogicManager.gameModel.player.Faction;
 import gameLogicManager.gameModel.player.FactionType;
 import gameLogicManager.gameModel.player.Player;
@@ -25,7 +22,7 @@ public class Game {
     private GameBoard gameBoard;
     private CultBoard cultBoard;
     private Player[] players;
-    private ScoringTileList scoringTiles;
+    private ScoringTile[] scoringTileList;
     private FavorTileList favorTiles;
     private TownTileList townTiles;
     private BonusCardList bonusCards;
@@ -38,7 +35,7 @@ public class Game {
         players = initilizePlayers(4);
         bonusCards = new BonusCardList(); //TODO
         townTiles = new TownTileList(); //TODO
-        scoringTiles = new ScoringTileList(); //TODO
+        scoringTileList = ScoringTileList.scoringTileInitializer(); //TODO
         currentPlayerIndex = -1;
         //TODO cultBoard = new CultBoard(players); //buna player listesi lazım
     }
@@ -91,5 +88,7 @@ public class Game {
         return gameBoard.getTerrainList();
     }
 
-
+    public ScoringTile[] getScoringTileList() {
+        return scoringTileList;
+    }
 }

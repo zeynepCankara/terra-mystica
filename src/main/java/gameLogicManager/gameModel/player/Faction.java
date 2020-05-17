@@ -12,7 +12,7 @@ public class Faction {
     private FactionType type;
     private int workerAtSetup;
     private int coinAtSetup;
-    private TerrainType homeTerrain;
+    private TerrainType homeTerrain; //IS IT USEFUL?
 
     public Faction(FactionType factionType){
         type = factionType;
@@ -21,7 +21,6 @@ public class Faction {
     }
 
     public static int getWorkerAtSetup(FactionType factionType) {
-        //TODO
         switch (factionType){
             case CHAOS_MAGICIANS:
                 return 4;
@@ -35,12 +34,10 @@ public class Faction {
                 return 2;
             default:
                 return 3;
-            //All factions should be handled.
         }
     }
 
     public static int getCoinAtSetup(FactionType factionType) {
-        //TODO
         switch (factionType){
             case SWARMLINGS:
                 return 20;
@@ -48,7 +45,6 @@ public class Faction {
                 return 10;
             default:
                 return 15;
-                //All factions should be handled.
         }
     }
 
@@ -59,4 +55,5 @@ public class Faction {
     public FactionType getType() {
         return type;
     }
+
 }

@@ -1,9 +1,13 @@
 package gameLogicManager.gameModel.gameResources;
 
 public abstract class Tile {
-    int id;
+    protected int tileID;
+
+    public Tile(int tileID) {
+        this.tileID = tileID;
+    }
 
     public int getId() {
-        return id;
+        return tileID;
     }
 }

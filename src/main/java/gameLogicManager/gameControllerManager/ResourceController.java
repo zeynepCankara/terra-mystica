@@ -161,4 +161,17 @@ public class ResourceController{
             return true;
         }
     }
+
+    public void obtainIncomeOfScoringTile(Player currentPlayer, int currentScoringTile, StructureType structureType) {
+        /* Obtain 2 victory points(score) if player builds dwelling when scoring tile is 0 or 1 */
+        if(structureType == StructureType.Dwelling && (currentScoringTile == 0 || currentScoringTile == 1)){
+            currentPlayer.setScore(currentPlayer.getScore() + 2);
+        }
+        /* Obtain 5 victory points(score) if player builds stronghold or sanctuary when scoring tile is 2 or 3 */
+        if((structureType == StructureType.Sanctuary || structureType == StructureType.StrongHold)
+            && (currentScoringTile == 2 || currentScoringTile == 3)){
+            currentPlayer.setScore(currentPlayer.getScore() + 5);
+        }
+        // SCORING TILE 4 AND 5 IS NOT IMPLEMENTED YET!
+    }
 }
