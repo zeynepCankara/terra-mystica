@@ -14,6 +14,12 @@ public class Faction {
     private int coinAtSetup;
     private TerrainType homeTerrain;
 
+    public Faction(FactionType factionType){
+        type = factionType;
+        workerAtSetup = getWorkerAtSetup(factionType);
+        coinAtSetup = getCoinAtSetup(factionType);
+    }
+
     public static int getWorkerAtSetup(FactionType factionType) {
         //TODO
         switch (factionType){
