@@ -20,16 +20,8 @@ import static gameSceneManager.App.loadFXML;
  * @version 11.05.2020
  */
 public class GameSetupController extends SceneController {
-    // Properties
-    ImageView goBackImg;
-    Button defaultMapButton;
-    Button randomMapButton;
-    // Button pressed
+    //  static properties
     static HashMap<String, Integer> gameState = new HashMap<String, Integer>();
-    Integer isDefaultMap = 1;
-
-    // ImageViews from UI
-    ImageView[] factionImageViews;
     static String []factionNames = {"AUREN",
             "WITCHES",
             "ALCHEMISTS",
@@ -44,27 +36,66 @@ public class GameSetupController extends SceneController {
             "GIANTS",
             "FAKIRS",
             "NOMADS"};
+    static HashMap<String, Integer> factionToTerrain = new HashMap<String, Integer>();
+    /*
+     -1: not initialized, transparent
+      0: plainColor, (default)
+      1: swampColor,
+      2: lakeColor
+      3: forestColor
+      4: mountainColor
+      5: wastelandColor
+      6: desertColor
+      7: riverColor
+     */
+    static {
+        factionToTerrain.put("AUREN", 3);
+        factionToTerrain.put("WITCHES", 3);
+        factionToTerrain.put("ALCHEMISTS",1);
+        factionToTerrain.put("DARKLINGS", 1);
+        factionToTerrain.put("HALFLINGS", 0);
+        factionToTerrain.put("CULTISTS", 0);
+        factionToTerrain.put("ENGINEERS", 4);
+        factionToTerrain.put("DWARVES", 4);
+        factionToTerrain.put("SWARMLINGS", 2);
+        factionToTerrain.put("MERMAIDS", 2);
+        factionToTerrain.put("CHAOS_MAGICIANS", 5);
+        factionToTerrain.put("GIANTS", 5);
+        factionToTerrain.put("FAKIRS", 6);
+        factionToTerrain.put("NOMADS", 6);
+    }
+    // UI Properties
+    ImageView goBackImg;
+    Button defaultMapButton;
+    Button randomMapButton;
+    // Logic properties (gameState)
+    Integer isDefaultMap = 1;
+    Integer factionColorId = -1;
+    String factionName = "";
+    Integer factionId = -1;
+
+    ImageView[] factionImageViews;
 
 
+
+    // Constructor
     public GameSetupController(Stage stage) throws IOException {
+        // Faction Image setup
         factionImageViews = new ImageView[14];
-        // Note: Used the index of factionNames as Id
-
         super.root = null;
         try {
             super.root = loadFXML("gameSetup");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // scene = stage.getScene(); // NOTE: This causes error in exec
         super.scene = new Scene(super.root);
         initController(stage);
-
     }
 
 
     @Override
     public void initController(Stage stage) throws IOException {
+        // Retrieve Stylesheets for the scene
         super.scene.getStylesheets().clear();
         super.scene.getStylesheets().add(getClass().getResource("gameSetup.css").toExternalForm());
         stage.setScene(super.scene);
@@ -123,14 +154,18 @@ public class GameSetupController extends SceneController {
             fadeAnimation.play();
         });
 
-        // Init listeners of the factions
+        // Add listeners of the faction images
         for(int i = 0; i  < 14; i++){
             factionImageViews[i] = (ImageView) super.scene.lookup("#" + factionNames[i]);
             // remember the selected faction
             Integer finalI = i;
             factionImageViews[i].setOnMouseClicked(event -> {
                 System.out.println("select: " + factionNames[finalI]);
-                gameState.put("faction", finalI);
+                // Note: Used the index of factionNames as Id
+                factionId = finalI;
+                factionName = factionNames[finalI];
+                factionColorId = factionToTerrain.get(factionName);
+                setInitParameters();
             });
         }
 
@@ -139,11 +174,15 @@ public class GameSetupController extends SceneController {
     }
 
     /**
-     * Setter for game initialization parameters
-     *
+     * Setter for game state initialization
+     * isDefaultMap: default map (Integer: 1), random map (Integer: 0)
+     * factionId: index factionNames array
+     * factionColorId: factionToTerrainHashmap to find terrain colors
      */
     public void setInitParameters(){
         gameState.put("isDefaultMap", isDefaultMap);
+        gameState.put("factionId", factionId);
+        gameState.put("factionColorId", factionColorId);
     }
 
     /**

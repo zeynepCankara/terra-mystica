@@ -49,7 +49,7 @@ public class BoardGenerator {
     private static void initTerrainColorMap(){
         terrainColorMap.put(0, plainColor);
         terrainColorMap.put(1,swampColor);
-        terrainColorMap.put(2,lakeColor);
+        terrainColorMap.put(2, lakeColor);
         terrainColorMap.put(3, forestColor);
         terrainColorMap.put(4, mountainColor);
         terrainColorMap.put(5, wastelandColor);

@@ -1,6 +1,7 @@
 package gameSceneManager;
 
 import gameLogicManager.gameControllerManager.GameEngine;
+import gameLogicManager.gameModel.gameBoard.GameBoard;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -53,7 +54,6 @@ public class LocalGameController extends SceneController {
     Button earthCultBtn;
     Button waterCultBtn;
     Button airCultBtn;
-
     // Contains Buttons of the Game UI
     Polygon[] terrainMapHexagons;
     // Holds the information about game state
@@ -65,31 +65,21 @@ public class LocalGameController extends SceneController {
     public LocalGameController(Stage stage) throws IOException {
         // initialize the map buttons
         terrainMapHexagons = new Polygon[113];
-
         // Holds the game state in a HashMap
         gameStateLocal = new HashMap<String, Integer>();
         //TODO: Initialize to the current action round
         gameStateLocal.put("action",  -1);
-        //TODO: Player's faction specific home terrain color
-        /*
-         -1: not initialized, transparent
-          0: plainColor, (default)
-          1: swampColor,
-          2: lakeColor
-          3: forestColor
-          4: mountainColor
-          5: wastelandColor
-          6: desertColor
-          7: riverColor
-         */
-        gameStateLocal.put("factionColorId",  0);
-        //TODO: Initialize to the user's home terrain
-        gameStateLocal.put("terrainId",  -1);
+        // Color id associated with faction
+        gameStateLocal.put("factionColorId",  GameSetupController.gameState.get("factionColorId"));
+        // Id associated with faction
+        gameStateLocal.put("factionId",  GameSetupController.gameState.get("factionId"));
+        // Action (1) terrain selection when no change keeps home terrain or previously selected
+        gameStateLocal.put("terrainId",  GameSetupController.gameState.get("factionColorId"));
         // The terrain tile selected by mouse press (131 possible Hexagon Terrain Tile)
         gameStateLocal.put("terrainSelected",  -1);
         // transformAndBuild --option buildDwelling: 1 (yes), 0 (no), -1  (not init)
-        gameStateLocal.put("isBuildDwelling",  -1);
-        // sendPriestToCult --option sendCult: 0 (fire), 1 (water),  2 (earth), 3 (air)
+        gameStateLocal.put("isBuildDwelling",  0);
+        // sendPriestToCult --option sendCult: 0 (fire), 1 (water),  2 (earth), 3 (air), -1 (not init)
         gameStateLocal.put("cultId",  -1);
         // sendPriestToCult --option priestInitPos: from GameEngine Init pries location to one of 4 corner
         /*
@@ -136,8 +126,6 @@ public class LocalGameController extends SceneController {
                 gameStateLocal.put("terrainSelected", terrainTileId);
             });
         }
-
-
     }
 
 
@@ -541,6 +529,10 @@ public class LocalGameController extends SceneController {
             terraformingStage.close();
         });
         noChangeBtn.setOnMouseClicked(event -> {
+            System.out.println(gameStateLocal.get("terrainId"));
+            if(gameStateLocal.get("terrainId") == -1){
+                gameStateLocal.put("terrainId", GameSetupController.gameState.get("factionColorId"));
+            }
             try {
                 displayBuildDwellingPopup();
             } catch (IOException e) {
