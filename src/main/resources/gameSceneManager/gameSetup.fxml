@@ -29,80 +29,80 @@
         </ImageView>
 
 
-        <ImageView fx:id="cultistsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="190" AnchorPane.topAnchor="460">
+        <ImageView fx:id="CULTISTS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="190" AnchorPane.topAnchor="460">
             <image>
                 <Image url= "@./images/cultists_faction_logo.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="halflingsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="190" AnchorPane.topAnchor="580">
+        <ImageView fx:id="HALFLINGS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="190" AnchorPane.topAnchor="580">
             <image>
                 <Image url= "@./images/halflings_faction_logo.png" />
             </image>
         </ImageView>
 
-        <ImageView fx:id="witchFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="370" AnchorPane.topAnchor="460">
+        <ImageView fx:id="WITCHES"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="370" AnchorPane.topAnchor="460">
             <image>
                 <Image url= "@./images/witch_faction_logo.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="aurenFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="370" AnchorPane.topAnchor="590">
+        <ImageView fx:id="AUREN"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="370" AnchorPane.topAnchor="590">
             <image>
                 <Image url= "@./images/auren_faction_logo.png" />
             </image>
         </ImageView>
 
 
-        <ImageView fx:id="darklingsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="550" AnchorPane.topAnchor="460">
+        <ImageView fx:id="DARKLINGS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="550" AnchorPane.topAnchor="460">
             <image>
                 <Image url= "@./images/darklings_faction_logo.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="alchemistsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="550" AnchorPane.topAnchor="580">
+        <ImageView fx:id="ALCHEMISTS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="550" AnchorPane.topAnchor="580">
             <image>
                 <Image url= "@./images/alchemists_faction_logo.png" />
             </image>
         </ImageView>
 
-        <ImageView fx:id="swarmlingsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="730" AnchorPane.topAnchor="460">
+        <ImageView fx:id="SWARMLINGS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="730" AnchorPane.topAnchor="460">
             <image>
                 <Image url= "@./images/swarmlings_faction_logo.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="mermaidsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="730" AnchorPane.topAnchor="570">
+        <ImageView fx:id="MERMAIDS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="730" AnchorPane.topAnchor="570">
             <image>
                 <Image url= "@./images/mermaids_faction_logo.png" />
             </image>
         </ImageView>
 
-        <ImageView fx:id="dwarvesFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="900" AnchorPane.topAnchor="470">
+        <ImageView fx:id="DWARVES"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="900" AnchorPane.topAnchor="470">
             <image>
                 <Image url= "@./images/dwarves_faction_logo.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="engineersFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="900" AnchorPane.topAnchor="580">
+        <ImageView fx:id="ENGINEERS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="900" AnchorPane.topAnchor="580">
             <image>
                 <Image url= "@./images/engineers_faction_logo.png" />
             </image>
         </ImageView>
 
-        <ImageView fx:id="giantsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="1080" AnchorPane.topAnchor="460">
+        <ImageView fx:id="GIANTS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="1080" AnchorPane.topAnchor="460">
             <image>
                 <Image url= "@./images/giants_faction_logo.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="chaosMagiciansFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="1080" AnchorPane.topAnchor="570">
+        <ImageView fx:id="CHAOS_MAGICIANS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="1080" AnchorPane.topAnchor="570">
             <image>
                 <Image url= "@./images/chaos_magicians_faction_logo.png" />
             </image>
         </ImageView>
 
 
-        <ImageView fx:id="fakirsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="1260" AnchorPane.topAnchor="460">
+        <ImageView fx:id="FAKIRS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="1260" AnchorPane.topAnchor="460">
             <image>
                 <Image url= "@./images/fakirs_faction_logo.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="nomadsFaction"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="1260" AnchorPane.topAnchor="570">
+        <ImageView fx:id="NOMADS"  fitHeight="125" fitWidth="125" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="1260" AnchorPane.topAnchor="570">
             <image>
                 <Image url= "@./images/nomads_faction_logo.png" />
             </image>

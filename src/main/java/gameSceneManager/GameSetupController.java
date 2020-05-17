@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -24,10 +25,31 @@ public class GameSetupController extends SceneController {
     Button defaultMapButton;
     Button randomMapButton;
     // Button pressed
-    static HashMap<String, Boolean> gameState = new HashMap<String, Boolean>();
-    Boolean isDefaultMap = true;
+    static HashMap<String, Integer> gameState = new HashMap<String, Integer>();
+    Integer isDefaultMap = 1;
+
+    // ImageViews from UI
+    ImageView[] factionImageViews;
+    static String []factionNames = {"AUREN",
+            "WITCHES",
+            "ALCHEMISTS",
+            "DARKLINGS",
+            "HALFLINGS",
+            "CULTISTS",
+            "ENGINEERS",
+            "DWARVES",
+            "MERMAIDS",
+            "SWARMLINGS",
+            "CHAOS_MAGICIANS",
+            "GIANTS",
+            "FAKIRS",
+            "NOMADS"};
+
 
     public GameSetupController(Stage stage) throws IOException {
+        factionImageViews = new ImageView[14];
+        // Note: Used the index of factionNames as Id
+
         super.root = null;
         try {
             super.root = loadFXML("gameSetup");
@@ -35,23 +57,24 @@ public class GameSetupController extends SceneController {
             e.printStackTrace();
         }
         // scene = stage.getScene(); // NOTE: This causes error in exec
-        scene = new Scene(super.root);
+        super.scene = new Scene(super.root);
         initController(stage);
+
     }
 
 
     @Override
     public void initController(Stage stage) throws IOException {
-        scene.getStylesheets().clear();
-        scene.getStylesheets().add(getClass().getResource("gameSetup.css").toExternalForm());
-        stage.setScene(scene);
+        super.scene.getStylesheets().clear();
+        super.scene.getStylesheets().add(getClass().getResource("gameSetup.css").toExternalForm());
+        stage.setScene(super.scene);
         stage.show();
 
 
         // Retrieve the UI items from fxml file
-        goBackImg = (ImageView) scene.lookup("#goBackImg");
-        defaultMapButton = (Button) scene.lookup("#defaultMapBtn");
-        randomMapButton = (Button) scene.lookup("#randomMapBtn");
+        goBackImg = (ImageView) super.scene.lookup("#goBackImg");
+        defaultMapButton = (Button) super.scene.lookup("#defaultMapBtn");
+        randomMapButton = (Button) super.scene.lookup("#randomMapBtn");
 
 
         Parent finalRoot = super.root;
@@ -89,7 +112,7 @@ public class GameSetupController extends SceneController {
             fadeAnimation.setOnFinished(event1 ->
             {
                 try {
-                    isDefaultMap = false;
+                    isDefaultMap = 0;
                     setInitParameters();
                     finalRoot.setVisible(false);
                     App.setController(2, stage);
@@ -99,6 +122,17 @@ public class GameSetupController extends SceneController {
             });
             fadeAnimation.play();
         });
+
+        // Init listeners of the factions
+        for(int i = 0; i  < 14; i++){
+            factionImageViews[i] = (ImageView) super.scene.lookup("#" + factionNames[i]);
+            // remember the selected faction
+            Integer finalI = i;
+            factionImageViews[i].setOnMouseClicked(event -> {
+                System.out.println("select: " + factionNames[finalI]);
+                gameState.put("faction", finalI);
+            });
+        }
 
         // initialize the game parameters
 
@@ -117,7 +151,7 @@ public class GameSetupController extends SceneController {
      * Getter for game initialization parameters
      *
      */
-    public static HashMap<String, Boolean> getInitParameters(){
+    public static HashMap<String, Integer> getInitParameters(){
         return gameState;
     }
 

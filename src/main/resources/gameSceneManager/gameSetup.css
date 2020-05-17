@@ -24,118 +24,114 @@
 
 
 
-#witchFaction {
+#WITCHES {
      -fx-opacity: 1;
  }
 
-#witchFaction:hover {
+#WITCHES:hover {
     -fx-opacity: 0.5;
 }
 
-#aurenFaction {
+#AUREN {
     -fx-opacity: 1;
 }
 
-#aurenFaction:hover {
+#AUREN:hover {
     -fx-opacity: 0.5;
 }
 
-
-#darklingsFaction {
+#DARKLINGS {
     -fx-opacity: 1;
 }
 
-#darklingsFaction:hover {
+#DARKLINGS:hover {
     -fx-opacity: 0.5;
 }
 
-#alchemistsFaction {
+#ALCHEMISTS {
     -fx-opacity: 1;
 }
 
-#alchemistsFaction:hover {
+#ALCHEMISTS:hover {
     -fx-opacity: 0.5;
 }
 
-
-#giantsFaction {
+#GIANTS {
     -fx-opacity: 1;
 }
 
-#giantsFaction:hover {
+#GIANTS:hover {
     -fx-opacity: 0.5;
 }
 
-#chaosMagiciansFaction {
+#CHAOS_MAGICIANS {
     -fx-opacity: 1;
 }
 
-#chaosMagiciansFaction:hover {
+#CHAOS_MAGICIANS:hover {
     -fx-opacity: 0.5;
 }
 
-#engineersFaction {
+#ENGINEERS {
     -fx-opacity: 1;
 }
 
-#engineersFaction:hover {
+#ENGINEERS:hover {
     -fx-opacity: 0.5;
 }
 
-#halflingsFaction {
+#HALFLINGS {
     -fx-opacity: 1;
 }
 
-#halflingsFaction:hover {
+#HALFLINGS:hover {
     -fx-opacity: 0.5;
 }
 
-#dwarvesFaction {
+#DWARVES {
     -fx-opacity: 1;
 }
 
-#dwarvesFaction:hover {
+#DWARVES:hover {
     -fx-opacity: 0.5;
 }
 
-#cultistsFaction {
+#CULTISTS {
     -fx-opacity: 1;
 }
 
-#cultistsFaction:hover {
+#CULTISTS:hover {
     -fx-opacity: 0.5;
 }
 
-
-#mermaidsFaction {
+#MERMAIDS {
     -fx-opacity: 1;
 }
 
-#mermaidsFaction:hover {
+#MERMAIDS:hover {
     -fx-opacity: 0.5;
 }
 
-#swarmlingsFaction {
+#SWARMLINGS {
     -fx-opacity: 1;
 }
 
-#swarmlingsFaction:hover {
+#SWARMLINGS:hover {
     -fx-opacity: 0.5;
 }
 
-
-#fakirsFaction {
+#FAKIRS {
     -fx-opacity: 1;
 }
 
-#fakirsFaction:hover {
+#FAKIRS:hover {
     -fx-opacity: 0.5;
 }
 
-#nomadsFaction {
+#NOMADS {
     -fx-opacity: 1;
 }
 
-#nomadsFaction:hover {
+#NOMADS:hover {
     -fx-opacity: 0.5;
 }

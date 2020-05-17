@@ -112,8 +112,8 @@ public class LocalGameController extends SceneController {
         // initialize the controller
         initController(stage);
         //scene = BoardGenerator.generateDefaultTerrainMap(scene);
-        HashMap<String, Boolean> gameState = GameSetupController.getInitParameters();
-        if( gameState.get("isDefaultMap")){
+        HashMap<String, Integer> gameState = GameSetupController.getInitParameters();
+        if( gameState.get("isDefaultMap") == 1){
            super.scene = BoardGenerator.generateDefaultTerrainMap(super.scene);
         } else {
             super.scene = BoardGenerator.generateRandomTerrainMap(super.scene, (int) (Math.random() * 6 + 1));
