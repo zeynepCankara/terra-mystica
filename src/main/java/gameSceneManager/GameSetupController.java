@@ -160,7 +160,6 @@ public class GameSetupController extends SceneController {
             // remember the selected faction
             Integer finalI = i;
             factionImageViews[i].setOnMouseClicked(event -> {
-                System.out.println("select: " + factionNames[finalI]);
                 // Note: Used the index of factionNames as Id
                 factionId = finalI;
                 factionName = factionNames[finalI];
