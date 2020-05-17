@@ -1,3 +1,11 @@
+.button {
+    -fx-opacity: 1;
+}
+
+.button:hover {
+    -fx-opacity: 0.5;
+}
+
 #AnchorPane {
     -fx-background-image: url("./images/localGame_background.png");
     -fx-background-repeat: no-repeat;
@@ -14,18 +22,120 @@
      -fx-background-size: cover, auto;
  }
 
+
+
 #witchFaction {
-     -fx-opacity: 0.5;
+     -fx-opacity: 1;
  }
 
 #witchFaction:hover {
-    -fx-opacity: 1;
-}
-
-#aurenFaction {
     -fx-opacity: 0.5;
 }
 
-#aurenFaction:hover {
+#aurenFaction {
     -fx-opacity: 1;
+}
+
+#aurenFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+
+#darklingsFaction {
+    -fx-opacity: 1;
+}
+
+#darklingsFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+#alchemistsFaction {
+    -fx-opacity: 1;
+}
+
+#alchemistsFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+
+#giantsFaction {
+    -fx-opacity: 1;
+}
+
+#giantsFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+#chaosMagiciansFaction {
+    -fx-opacity: 1;
+}
+
+#chaosMagiciansFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+#engineersFaction {
+    -fx-opacity: 1;
+}
+
+#engineersFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+#halflingsFaction {
+    -fx-opacity: 1;
+}
+
+#halflingsFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+#dwarvesFaction {
+    -fx-opacity: 1;
+}
+
+#dwarvesFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+#cultistsFaction {
+    -fx-opacity: 1;
+}
+
+#cultistsFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+
+#mermaidsFaction {
+    -fx-opacity: 1;
+}
+
+#mermaidsFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+#swarmlingsFaction {
+    -fx-opacity: 1;
+}
+
+#swarmlingsFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+
+#fakirsFaction {
+    -fx-opacity: 1;
+}
+
+#fakirsFaction:hover {
+    -fx-opacity: 0.5;
+}
+
+#nomadsFaction {
+    -fx-opacity: 1;
+}
+
+#nomadsFaction:hover {
+    -fx-opacity: 0.5;
 }
