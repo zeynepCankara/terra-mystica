@@ -111,14 +111,19 @@ public class ResourceController{
         switch (newStructureType){ // creates the object of new Structure
             case Dwelling:
                 tempStrructure = new Dwelling();
+                break;
             case TradingHouse:
                 tempStrructure = new TradingHouse();
+                break;
             case Temple:
                 tempStrructure = new Temple();
+                break;
             case Sanctuary:
                 tempStrructure = new Sanctuary();
+                break;
             default: //Otherwise it is Stronghold
                 tempStrructure = new StrongHold();
+                break;
         }
         int workersNeeded = tempStrructure.getRequiredWorkers();
         int coinsNeeded = tempStrructure.getRequiredWorkers();
@@ -139,15 +144,20 @@ public class ResourceController{
         switch (newStructureType){ // creates the object of new Structure
             case Dwelling:
                 currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
+                break;
             case TradingHouse:
                 currentPlayer.setCoins(currentPlayer.getCoins() + 2);
                 currentPlayer.gainPower(2); //depends, may change!
+                break;
             case Temple:
                 currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);
+                break;
             case Sanctuary:
                 currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);  //depends, may change!
+                break;
             default: //Otherwise it is Stronghold
                 currentPlayer.gainPower(2);
+                break;
         }
         return true;
     }

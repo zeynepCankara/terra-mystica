@@ -2,6 +2,7 @@ package gameLogicManager.gameControllerManager;
 
 
 import gameLogicManager.gameModel.gameBoard.Game;
+import gameLogicManager.gameModel.gameBoard.StructureType;
 
 public class LogicTest {
 
@@ -15,6 +16,8 @@ public class LogicTest {
         gameEngine.transformTerrain(0,6); //DESERT
         gameEngine.transformTerrain(1, 6); //DESERT
         gameEngine.transformTerrain(2, 6); //DESERT
+        gameEngine.buildDwelling(0);
+        gameEngine.upgradeStructure(0, StructureType.TradingHouse);
 
        //GameEngine.update();
 

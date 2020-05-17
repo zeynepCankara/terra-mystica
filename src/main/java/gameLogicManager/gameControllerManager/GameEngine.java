@@ -74,6 +74,7 @@ public class GameEngine {
     public boolean upgradeStructure(int terrainID, StructureType newStructureType){
         int result = flowManager.upgradeStructure(terrainID, newStructureType);
         updateGameStatus(result);
+        System.out.println(gameStatus);
         if(result == 0){
             return true;
         }
@@ -100,18 +101,25 @@ public class GameEngine {
         switch (result){
             case 0:
                 gameStatus = "Action is done successfully";
+                break;
             case 1:
                 gameStatus = "Failed: Not enough coins";
+                break;
             case 2:
                 gameStatus = "Failed: Not enough workers";
+                break;
             case 3:
                 gameStatus = "Failed: Not enough priests";
+                break;
             case 4:
                 gameStatus = "Failed: Terrain is not available";
+                break;
             case 5:
                 gameStatus = "Failed: Terrain is not adjacent";
+                break;
             case 6:
                 gameStatus = "Failed: Improvement limit has been reached";
+                break;
         }
     }
 

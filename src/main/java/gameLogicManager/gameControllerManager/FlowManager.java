@@ -107,7 +107,7 @@ public class FlowManager{
         }
 
         /* Chosen terrain must be adjacent to other structure terrains */
-        if(!adjacencyController.isAdjacent(currentPlayer, terrain, game.getTerrainList())){
+        if(!adjacencyController.isAdjacent(currentPlayer, terrain, game.getTerrainList())){//!!!!!! TODO En başta adjacent olmadığı için koydurtmuyor.
             return 5;
         }
 
@@ -121,7 +121,6 @@ public class FlowManager{
 
         resourceController.obtainIncomeOfStructure(currentPlayer, StructureType.Dwelling);
         resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, StructureType.Dwelling);
-
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
         currentPlayer = game.getNextPlayer();
         return 0;

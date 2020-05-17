@@ -63,16 +63,21 @@ public class ActionController{
         switch (newStructureType){
             case TradingHouse:
                 newStructure = new TradingHouse();
+                break;
             case Temple:
                 newStructure = new Temple();
+                break;
             case Sanctuary:
                 newStructure = new Sanctuary();
+                break;
             default:
                 newStructure = new StrongHold();
+                break;
         }
         currentPlayer.removeStructure(terrain.getStructure()); //remove old structure from player's list
         currentPlayer.addStructure(newStructure);
         terrain.setStructure(newStructure);//needs server update for map
+        ServerController.ConstructBuilding(newStructureType, terrain.getId());
         return true;
     }
 }
