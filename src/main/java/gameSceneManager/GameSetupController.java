@@ -136,7 +136,6 @@ public class GameSetupController extends SceneController {
 
         // initialize the game parameters
 
-
     }
 
     /**
