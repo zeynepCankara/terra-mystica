@@ -1,6 +1,8 @@
 package gameLogicManager.gameModel.gameBoard;
 
 
+import java.util.ArrayList;
+
 public class GameBoard {
 
     public final int NO_OF_TERRAINS = 113;
@@ -47,5 +49,10 @@ public class GameBoard {
 
     public Terrain[] getTerrainList(){
         return terrainList;
+    }
+
+    //TODO this function needs a check
+    public void updateTerrainList(ArrayList<Terrain> terrainList){
+        this.terrainList = terrainList.toArray(new Terrain[113]);
     }
 }

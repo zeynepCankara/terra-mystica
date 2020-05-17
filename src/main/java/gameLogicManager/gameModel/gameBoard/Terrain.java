@@ -40,30 +40,21 @@ public class Terrain {
         switch(structureType){
             case Dwelling:
                 this.structure = new Dwelling();
-                System.out.println(structure.structureType);
                 break;
             case TradingHouse:
                 this.structure = new TradingHouse();
-                System.out.println(structure.structureType);
                 break;
             case Temple:
                 this.structure = new Temple();
-                System.out.println(structure.structureType);
                 break;
             case Sanctuary:
                 this.structure = new Sanctuary();
-                System.out.println(structure.structureType);
                 break;
             case StrongHold:
-                this.structure = new StrongHold();
-                System.out.println(structure.structureType);
-                break;
-            case None:
-                this.structure = new StrongHold();
-                System.out.println(structure.structureType);
+                this.structure = new StrongHold();;
                 break;
             default:
-                System.out.println("Rafi"+structure.structureType);
+                this.structure = null;
         }
     }
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class ServerController {
     //static String restURI="http://localhost:5000/";
-    static String restURI="http://ymacit-001-site1.ctempurl.com/cs319/";
+    private static String restURI="http://ymacit-001-site1.ctempurl.com/cs319/";
     public static void main(String[] args) throws IOException, JSONException {
         //GetBoard();
         TransformTerrain(TerrainType.Forest, 0, 4);
@@ -39,7 +39,7 @@ public class ServerController {
         }*/
         // System.out.println(tmp_json);
     }
-    static ArrayList<Terrain> GetBoard() throws IOException, JSONException {
+    public static ArrayList<Terrain> GetBoard() throws IOException, JSONException {
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(restURI+"game/Board");
         HttpResponse response = client.execute(request);
@@ -73,7 +73,7 @@ public class ServerController {
         }
         return terrainList;
     }
-    static void GetChanges(int lastSequence) throws IOException, JSONException {
+    public static void GetChanges(int lastSequence) throws IOException, JSONException {
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(restURI+"game/Changes/"+ lastSequence);
         HttpResponse response = client.execute(request);
@@ -89,7 +89,7 @@ public class ServerController {
             System.out.println( myObj.getJSONObject("terrainPosition").getInt("y"));
         }
     }
-    static void TransformTerrain(TerrainType terrainType, int x,  int y)
+    public static void TransformTerrain(TerrainType terrainType, int x,  int y)
     {
         //HttpClient httpClient = HttpClientBuilder.create().build();
         HttpClient client = new DefaultHttpClient();
@@ -135,7 +135,7 @@ public class ServerController {
          */
     }
 
-    static void ConstructBuilding(StructureType inputStruct,int x , int y)
+    public static void ConstructBuilding(StructureType inputStruct,int x , int y)
     {
         HttpClient client = new DefaultHttpClient();
         try {

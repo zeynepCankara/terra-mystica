@@ -1,5 +1,8 @@
 package gameSceneManager;
 
+import gameLogicManager.gameControllerManager.ServerController;
+import gameLogicManager.gameModel.gameBoard.GameBoard;
+import gameLogicManager.gameModel.gameBoard.Terrain;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -20,9 +23,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import org.json.JSONException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * UIController of the application and manages the controller logic
@@ -44,15 +51,35 @@ public class App extends Application {
         System.out.println("Start Application...");
     }
 
+    Timer timer = new Timer();
     @Override
     public void start(Stage stage) throws IOException {
         stage.setTitle("Terra Mystica Desktop");
         stage.setWidth(1536);
         stage.setHeight(824);
+        timer.schedule(
+                new TimerTask() {
 
+                    @Override
+                    public void run() {
+                        try {
+                            updateGamePeriodically();//RAFİ- METOD KONUMU DEĞİŞİCEK
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, 0, 5000);
         // controller = new MainMenuController(stage);
         //LocalGameController localGameController = new LocalGameController(stage);
         controller = new MainMenuController(stage);
+    }
+    //TODO RAFİ genel yapısı böyle olucak gibi, değiştirebilirsin, fikir versin diye koydum
+    private void updateGamePeriodically() throws IOException, JSONException {
+        ArrayList<Terrain> terrainList = ServerController.GetBoard();
+        (new GameBoard(true)).updateTerrainList(terrainList);
+        //Refreshing at UI by using the new terrainList.
     }
 
 
@@ -91,6 +118,7 @@ public class App extends Application {
     @Override
     public void stop() throws Exception{
         // When Application stops running
+        timer.cancel();
         System.out.println("Stop Application...");
     }
 
