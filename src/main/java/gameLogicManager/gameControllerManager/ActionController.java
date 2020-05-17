@@ -29,7 +29,7 @@ public class ActionController{
      */
     public boolean transformTerrain(Terrain terrain, TerrainType newTerrainType){//EDIT SERVER METHOD!!!!!!
         terrain.setType(newTerrainType);
-        ServerController.TransformTerrain(newTerrainType, terrain.getId(), terrain.getId());//EDIT!!!
+        ServerController.TransformTerrain(newTerrainType, terrain.getId());//EDIT!!!
         return true;
     }
 
@@ -42,7 +42,7 @@ public class ActionController{
         Dwelling  dwelling = new Dwelling();
         currentPlayer.addStructure(dwelling);
         terrain.setStructure(dwelling); //needs server update for map
-        ServerController.ConstructBuilding(dwelling.getStructureType(), terrain.getId(), terrain.getId());//EDIT!!!
+        ServerController.ConstructBuilding(dwelling.getStructureType(), terrain.getId());//EDIT!!!
         return true;
     }
 
