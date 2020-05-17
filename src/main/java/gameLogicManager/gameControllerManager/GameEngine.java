@@ -130,9 +130,18 @@ public class GameEngine {
 
                     @Override
                     public void run() {
-                        System.out.println("Rafi");
+                        updateMap();
+                        //updateCultBoard();
+                        //updatePowerActions();//Make all of them available
                     }
                 }, 0, 5000);
     }
 
+    private static void updateMap() {
+        game.getGameBoard().updateTerrainList(ServerController.GetBoard());
+    }
+
+    public static Game getGame() {
+        return game;
+    }
 }

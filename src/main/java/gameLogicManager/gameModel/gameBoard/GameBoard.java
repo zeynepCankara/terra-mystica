@@ -1,6 +1,7 @@
 package gameLogicManager.gameModel.gameBoard;
 
 
+import gameLogicManager.gameControllerManager.GameEngine;
 import gameLogicManager.gameControllerManager.ServerController;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Arrays;
 
 public class GameBoard {
 
+    private static GameBoard uniqueInstance; //Singleton
     public final int NO_OF_TERRAINS = 113;
     public final int[] DEFAULT_MAP = {
             0, 4, 3, 2, 6, 5, 0, 1, 5, 3, 2, 5, 1,
@@ -22,6 +24,12 @@ public class GameBoard {
     };
     private Terrain[] terrainList ;
 
+    public static GameBoard getInstance(boolean isMapRandom){
+        if( uniqueInstance == null ){
+            uniqueInstance = new GameBoard(isMapRandom);
+        }
+        return uniqueInstance;
+    }
     public GameBoard( boolean isRandom ) {
         terrainList = new Terrain[NO_OF_TERRAINS];
         ArrayList<Terrain> serverTerrainList = ServerController.GetBoard();

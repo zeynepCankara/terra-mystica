@@ -11,9 +11,19 @@ import java.util.HashMap;
  */
 public class CultTrack {
     private String name;
+    private int advancements[];
+
+    public CultTrack(String name, int numberOfPlayers){
+        this.name = name;
+        advancements = new int[numberOfPlayers];
+        for(int i = 0; i < numberOfPlayers; i++){
+            advancements[i] = 0;
+        }
+    }
+
+    /*
     private Player[][] track;
     private HashMap<Integer, Boolean> orders;
-
     public CultTrack( Player[] players ){
         track = new Player[10][4]; // first index holds the slots on the track, the second index holds the players on the slot.
 
@@ -37,5 +47,5 @@ public class CultTrack {
                 }
             }
         }
-    }
+    }*/
 }

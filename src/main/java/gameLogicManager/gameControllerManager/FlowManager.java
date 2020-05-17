@@ -80,9 +80,9 @@ public class FlowManager{
         //}
 
         /* Check if the player has enough workers to have enough spades, obtain spades if possible */
-        //if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){
-            //return 2;
-        //}
+        if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){
+            return 2;
+        }
 
         actionController.transformTerrain(terrain, newTerrainType);
 
@@ -205,4 +205,7 @@ public class FlowManager{
         }
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 }

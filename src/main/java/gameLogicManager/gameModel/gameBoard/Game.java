@@ -30,8 +30,8 @@ public class Game {
     private int currentPlayerIndex;
 
     private Game(boolean isMapRandom){
-        gameBoard = new GameBoard(isMapRandom);
-        //cultBoard = new CultBoard();//TODO
+        gameBoard = GameBoard.getInstance(isMapRandom);
+        cultBoard = new CultBoard();
         players = initilizePlayers(4);
         bonusCards = new BonusCardList(); //TODO
         townTiles = new TownTileList(); //TODO
@@ -77,7 +77,7 @@ public class Game {
     }
 
     public Player getNextPlayer() {
-        return players[(currentPlayerIndex+1) % 4];
+        return players[(++currentPlayerIndex) % 4];
     }
 
     public Terrain getTerrain( int terrainID ){
@@ -90,5 +90,13 @@ public class Game {
 
     public ScoringTile[] getScoringTileList() {
         return scoringTileList;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
+    public Player[] getPlayers() {
+        return players;
     }
 }
