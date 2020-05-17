@@ -42,7 +42,7 @@ import static gameSceneManager.BoardGenerator.terrainColorMap;
 /**
  * Controls the local game play UI of the application
  * @author Zeynep Cankara
- * @version 12.05.2020
+ * @version 17.05.2020
  */
 
 public class LocalGameController extends SceneController {
@@ -57,7 +57,7 @@ public class LocalGameController extends SceneController {
     // Contains Buttons of the Game UI
     Polygon[] terrainMapHexagons;
     // Holds the information about game state
-    HashMap<String, Integer> gameStateLocal;
+    static HashMap<String, Integer> gameStateLocal;
 
 
 
