@@ -7,6 +7,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -24,10 +25,17 @@ public class ServerController {
     public static void main(String[] args) throws IOException, JSONException {
         //GetBoard();
         TransformTerrain(TerrainType.Forest, 0);
+        TransformTerrain(TerrainType.Plains, 5);
         //GetChanges(1);
         //TransformTerrain(TerrainType.FOREST, 3, 3);
-        ConstructBuilding(StructureType.TradingHouse, 0);
+        ConstructBuilding(StructureType.TradingHouse, 5);
         //GetChanges(1);
+        setPriestValue(0,0,5);
+        System.out.println(GetPriestValue(0,0));
+        setPowerValue(0,5);
+        System.out.println(GetPowerValue(0));
+        setCultValue(0,0,5);
+        System.out.println(GetCultValue(0,0));
         ArrayList<Terrain> ters1 = GetBoard();
         // These will give NULLPOINTEREXCEPTION if the structure on the terrain is empty
         for (int i = 0; i < ters1.size(); i++)
@@ -110,7 +118,7 @@ public class ServerController {
             request.addHeader("content-type", "application/json");
             request.setEntity(params);
             HttpResponse response = client.execute(request);
-            System.out.println("status: " + response.getStatusLine().getStatusCode());
+            //System.out.println("status: " + response.getStatusLine().getStatusCode());
 
 
             //handle response here...
@@ -152,7 +160,7 @@ public class ServerController {
             request.addHeader("content-type", "application/json");
             request.setEntity(params);
             HttpResponse response = client.execute(request);
-            System.out.println("status: " + response.getStatusLine().getStatusCode());
+            //System.out.println("status: " + response.getStatusLine().getStatusCode());
             System.out.println(params.toString());
             //handle response here...
 
@@ -224,6 +232,127 @@ public class ServerController {
         } finally {
             //Deprecated
             //httpClient.getConnectionManager().shutdown();
+        }
+        return retval;
+    }
+    static void setCultValue(int x,int y, int newValue)
+    {
+        HttpClient client = new DefaultHttpClient();
+        try {
+
+            HttpPatch request = new HttpPatch(restURI+"Cult/SetCultValue?x="+ x +"&y="+ y + "&newValue="+newValue);
+
+            HttpResponse response = client.execute(request);
+            System.out.println("status: " + response.getStatusLine().getStatusCode());
+            int tmp_statusCode=response.getStatusLine().getStatusCode();
+            //
+            if(tmp_statusCode==200) {
+                String tmp_json = IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
+                System.out.println("setCultValue " + tmp_json);
+            }
+        }catch (Exception ex) {
+            System.out.println(ex.toString());
+            //handle exception here
+
+        } finally {
+            //Deprecated
+            //httpClient.getConnectionManager().shutdown();
+        }
+    }
+    static void setPowerValue(int x,int newValue)
+    {
+        HttpClient client = new DefaultHttpClient();
+        try {
+
+            HttpPatch request = new HttpPatch(restURI+"Cult/SetPowerValue?x="+ x + "&newValue="+newValue);
+
+            HttpResponse response = client.execute(request);
+            System.out.println("status: " + response.getStatusLine().getStatusCode());
+            int tmp_statusCode=response.getStatusLine().getStatusCode();
+            //
+            if(tmp_statusCode==200) {
+                String tmp_json = IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
+                System.out.println("setPowerValue " + tmp_json);
+            }
+        }catch (Exception ex) {
+            System.out.println(ex.toString());
+            //handle exception here
+
+        } finally {
+            //Deprecated
+            //httpClient.getConnectionManager().shutdown();
+        }
+    }
+    static void setPriestValue(int x,int y, int newValue)
+    {
+        HttpClient client = new DefaultHttpClient();
+        try {
+
+            HttpPatch request = new HttpPatch(restURI+"Cult/SetPriestValue?x="+ x +"&y="+ y + "&newValue="+newValue);
+
+            HttpResponse response = client.execute(request);
+            System.out.println("status: " + response.getStatusLine().getStatusCode());
+            int tmp_statusCode=response.getStatusLine().getStatusCode();
+            //
+            if(tmp_statusCode==200) {
+                String tmp_json = IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
+                System.out.println("setCultValue " + tmp_json);
+            }
+        }catch (Exception ex) {
+            System.out.println(ex.toString());
+            //handle exception here
+
+        } finally {
+            //Deprecated
+            //httpClient.getConnectionManager().shutdown();
+        }
+    }
+
+    static int GetCultValue(int x, int y) throws IOException, JSONException {
+
+        int retval=-1;
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet(restURI+"Cult/CultValue?x="+ x +"&y="+ y);
+        HttpResponse response = client.execute(request);
+        System.out.println("status: " + response.getStatusLine().getStatusCode());
+        int tmp_statusCode=response.getStatusLine().getStatusCode();
+        //
+        if(tmp_statusCode==200) {
+            String tmp_json = IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
+            JSONObject myObj = new JSONObject(tmp_json);
+            retval = myObj.getInt("value");
+        }
+        return retval;
+    }
+    static int GetPowerValue(int x) throws IOException, JSONException {
+
+        int retval=-1;
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet(restURI+"Cult/PowerValue?x="+ x);
+        HttpResponse response = client.execute(request);
+        System.out.println("status: " + response.getStatusLine().getStatusCode());
+        int tmp_statusCode=response.getStatusLine().getStatusCode();
+        //
+        if(tmp_statusCode==200) {
+            String tmp_json = IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
+            JSONObject myObj = new JSONObject(tmp_json);
+            retval = myObj.getInt("value");
+        }
+        return retval;
+    }
+    static int GetPriestValue(int x, int y) throws IOException, JSONException {
+
+        int retval=-1;
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet(restURI+"Cult/PriestValue?x="+ x +"&y="+ y);
+        HttpResponse response = client.execute(request);
+        System.out.println("status: " + response.getStatusLine().getStatusCode());
+        int tmp_statusCode=response.getStatusLine().getStatusCode();
+        //
+        if(tmp_statusCode==200) {
+            String tmp_json = IOUtils.toString(response.getEntity().getContent(), StandardCharsets.UTF_8);
+            JSONObject myObj = new JSONObject(tmp_json);
+            retval = myObj.getInt("value");
         }
         return retval;
     }
