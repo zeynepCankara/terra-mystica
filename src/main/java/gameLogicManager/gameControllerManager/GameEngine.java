@@ -142,4 +142,8 @@ public class GameEngine {
     public static Game getGame() {
         return game;
     }
+
+    public static StructureType getStructureType( int terrainID ){
+        return game.getTerrain(terrainID).getStructure().getStructureType();
+    }
 }
