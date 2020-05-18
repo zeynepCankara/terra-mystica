@@ -2,6 +2,8 @@ package gameSceneManager;
 
 import gameLogicManager.gameControllerManager.FlowManager;
 import gameLogicManager.gameControllerManager.GameEngine;
+import gameLogicManager.gameModel.gameBoard.Structure;
+import gameLogicManager.gameModel.gameBoard.StructureType;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,7 +31,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static gameSceneManager.App.loadFXML;
 import static gameSceneManager.BoardGenerator.terrainColorMap;
-import static gameSceneManager.GameSetupController.factionToTerrain;
+import static gameSceneManager.GameSetupController.*;
 
 
 /**
@@ -74,6 +76,11 @@ public class LocalGameController extends SceneController {
 
         int randomness = GameSetupController.gameState.get("isDefaultMap");
         gameEngine = randomness == 0 ? GameEngine.getInstance(true) : GameEngine.getInstance(false);
+
+        for(int i = 0; i < 4; i++){
+            gameEngine.getGame().getPlayers()[i].setFaction(factions.get(i));
+        }
+        System.out.println(factions.toString());
 
         // initialize the map buttons
         terrainMapHexagons = new Polygon[113];
@@ -209,13 +216,27 @@ public class LocalGameController extends SceneController {
         });
 
         transformTerrainBtn.setOnMouseClicked(event -> {
-            changeTerrainSelected(gameStateLocal.get("terrainSelected"), gameStateLocal.get("terrainId"));
-            try {
-                buildDwellingOnSelected(gameStateLocal.get("terrainSelected"));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            if(gameStateLocal.get("action")  == 1){
+                changeTerrainSelected(gameStateLocal.get("terrainSelected"), gameStateLocal.get("terrainId"));
+                try {
+                    buildDwellingOnSelected(gameStateLocal.get("terrainSelected"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
-
+            if(gameStateLocal.get("action") == 4){
+                //TODO: Take upgradge structure
+                Integer polygonId = gameStateLocal.get("terrainSelected");
+                if(GameEngine.upgradeStructure(polygonId)){
+                    try {
+                        changeStructureSelected(polygonId);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    statusBar.setText("Can't upgradge structure");
+                }
+            }
         });
         fireCultBtn.setOnMouseClicked(event -> {
             gameStateLocal.put("cultId", 0);
@@ -309,6 +330,17 @@ public class LocalGameController extends SceneController {
             statusBar.setText(GameEngine.getGameStatus());
     }
 
+    public void changeStructureSelected(int polygonId) throws FileNotFoundException {
+        FileInputStream inputStream;
+        StructureType selectStructure = gameEngine.getStructureType(polygonId);
+        inputStream = new FileInputStream("src/main/resources/gameSceneManager/images/" + selectStructure + ".png");
+        Image img = new Image(inputStream);
+        ImageView imgView = new ImageView(img);
+        imgView.setLayoutX(terrainMapHexagons[polygonId].getLayoutX()-17);
+        imgView.setLayoutY(terrainMapHexagons[polygonId].getLayoutY()-20);
+        imgView.setVisible(true);
+        anchorPane.getChildren().addAll(imgView);
+    }
 
 
     /**
@@ -328,19 +360,11 @@ public class LocalGameController extends SceneController {
                 imgView.setVisible(true);
                 anchorPane.getChildren().addAll(imgView);
                 //Loading image from URL
-                //Rectangle rectangle = new Rectangle(35, 25);
-                //rectangle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
-                //rectangle.setFill(Color.WHITE);
-                //rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
-                //rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
-                //rectangle.setVisible(true);
-                //anchorPane.getChildren().addAll(rectangle);
                 FlowManager flowManager  = FlowManager.getInstance();
                 victoryPointLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getScore()));
             }
             if(statusBar != null )
                 statusBar.setText(GameEngine.getGameStatus());
-
         }
 
     }
@@ -532,10 +556,33 @@ public class LocalGameController extends SceneController {
         passActionBtn.setOnMouseClicked(event -> {
             System.out.println("passAction...");
             gameStateLocal.put("action", 8);
+            GameEngine.pass();
             actionRoundStage.close();
         });
     }
 
+
+    /**
+     * Popup for Upgradge Structure
+     */
+    public void  displayUpgradgeStructurePopup() throws IOException {
+        // Stage setup
+        Stage upgradgeStructureStage = new Stage();
+        upgradgeStructureStage.initModality(Modality.APPLICATION_MODAL);
+        upgradgeStructureStage.setTitle("Transform and Build Action");
+        upgradgeStructureStage.setHeight(250);
+        upgradgeStructureStage.setWidth(850);
+
+        //load the css file
+        Parent upgradgeStructureFXML  = loadFXML("upgradgeStructurePopup");
+        Scene upgradgeStructureScene = new Scene(upgradgeStructureFXML);
+        upgradgeStructureScene.getStylesheets().clear();
+        upgradgeStructureScene.getStylesheets().add(getClass().getResource("upgradgeStructurePopup.css").toExternalForm());
+        upgradgeStructureStage.setScene(upgradgeStructureScene);
+        upgradgeStructureStage.show();
+
+
+    }
 
     /**
      * Popup for Transform and build action

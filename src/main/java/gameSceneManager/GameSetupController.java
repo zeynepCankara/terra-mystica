@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static gameSceneManager.App.loadFXML;
@@ -37,6 +38,8 @@ public class GameSetupController extends SceneController {
             "GIANTS",
             "FAKIRS",
             "NOMADS"};
+    static ArrayList<String> factions = new ArrayList<String>();
+
     static HashMap<String, Integer> factionToTerrain = new HashMap<String, Integer>();
     /*
      -1: not initialized, transparent
@@ -65,6 +68,7 @@ public class GameSetupController extends SceneController {
         factionToTerrain.put("FAKIRS", 6);
         factionToTerrain.put("NOMADS", 6);
     }
+
     // UI Properties
     ImageView goBackImg;
     Button defaultMapButton;
@@ -185,6 +189,10 @@ public class GameSetupController extends SceneController {
         submitFactionBtn.setOnMouseClicked(event -> {
             String factionIdKey = "factionId" + currentPlayer;
             String factionColorIdKey = "factionColorId" + currentPlayer;
+
+            // add current faction name
+            factions.add(factionNames[factionId]);
+
             gameState.put(factionIdKey,  factionId);
             gameState.put(factionColorIdKey,  factionColorId);
             currentPlayer += 1;

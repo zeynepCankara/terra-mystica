@@ -17,7 +17,7 @@ public class LogicTest {
         gameEngine.transformTerrain(1, 6); //DESERT
         gameEngine.transformTerrain(2, 6); //DESERT
         gameEngine.buildDwelling(0);
-        gameEngine.upgradeStructure(0, StructureType.TradingHouse);
+        //gameEngine.upgradeStructure(0, StructureType.TradingHouse);
 
        //GameEngine.update();
 

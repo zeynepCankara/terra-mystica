@@ -81,7 +81,7 @@
 
 
 
-    <Button fx:id="transformTerrainBtn" text="Transform Terrain"  mnemonicParsing="false" prefHeight="20" prefWidth="150" AnchorPane.leftAnchor="170" AnchorPane.topAnchor="100" />
+    <Button fx:id="transformTerrainBtn" text="Perform Action!!!"  mnemonicParsing="false" prefHeight="20" prefWidth="150" AnchorPane.leftAnchor="170" AnchorPane.topAnchor="100" />
 
     <Polygon fx:id="0" fill="DODGERBLUE" layoutX="236" layoutY="200" stroke="BLACK" strokeType="INSIDE" scaleX="0.68" scaleY="0.68">
         <points>
