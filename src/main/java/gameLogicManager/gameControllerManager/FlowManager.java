@@ -174,30 +174,17 @@ public class FlowManager{
     public int upgradeStructure(int terrainID) {
         Terrain terrain = getTerrain(terrainID);
         StructureType structureType = terrain.getStructure().getStructureType();
-        StructureType newStructureType;
-
-        switch(structureType) {
-            case Dwelling:
-                newStructureType = StructureType.TradingHouse;
-                break;
-            case TradingHouse:
-                newStructureType = StructureType.StrongHold;
-                break;
-            default:
-                newStructureType = StructureType.Dwelling;
-                break;
-        }
 
         /* Check required resources and obtain resources if possible,
         structure pointer is upgraded to new structure in this method */
-        int result = resourceController.obtainResourceOfStructure(currentPlayer, newStructureType);
+        int result = resourceController.obtainResourceOfStructure(currentPlayer, structureType);
         if(result != 0){
             return result;
         }
 
-        actionController.upgradeStructure(currentPlayer, terrain, newStructureType);//create new Structure on terrain, update attributes of player
-        resourceController.obtainIncomeOfStructure(currentPlayer, newStructureType);
-        resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, newStructureType);
+        actionController.upgradeStructure(currentPlayer, terrain, structureType);//create new Structure on terrain, update attributes of player
+        resourceController.obtainIncomeOfStructure(currentPlayer, structureType);
+        resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, structureType);
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
         //currentPlayer = game.getNextPlayer();
         return result;
