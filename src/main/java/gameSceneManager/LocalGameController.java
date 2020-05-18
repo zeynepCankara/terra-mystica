@@ -29,6 +29,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static gameSceneManager.App.loadFXML;
 import static gameSceneManager.BoardGenerator.terrainColorMap;
+import static gameSceneManager.GameSetupController.factionToTerrain;
 
 
 /**
@@ -254,7 +255,10 @@ public class LocalGameController extends SceneController {
             coinLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getCoins()));
             priestLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getNumOfPriests()));
             victoryPointLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getScore()));
+            String playerName = flowManager.getCurrentPlayer().getFaction().getType().toString();
             currentPlayerBar.setText(flowManager.getCurrentPlayer().getFaction().getType().toString());
+            
+            gameStateLocal.put("terrainId", factionToTerrain.get(playerName));
 
             //  Set the image of  current faction...
             /*
@@ -301,6 +305,8 @@ public class LocalGameController extends SceneController {
         }
         else{
             //TODO status
+            System.out.println("terrain id: " + terrainId);
+            System.out.println("polygom id: "  + polygonId);
         }
     }
 
@@ -312,7 +318,9 @@ public class LocalGameController extends SceneController {
      */
     public void buildDwellingOnSelected(int polygonId) throws FileNotFoundException {
         if(gameStateLocal.get("isBuildDwelling") == 1){
+            System.out.println("o");
             if( gameEngine.buildDwelling(polygonId)) {
+                System.out.println("x");
                 FileInputStream inputStream = new FileInputStream("src/main/resources/gameSceneManager/images/dwelling.png");
                 Image imageDwelling = new Image(inputStream);
                 ImageView imgView = new ImageView(imageDwelling);
@@ -333,8 +341,10 @@ public class LocalGameController extends SceneController {
             }
             else{
                 //TODO status
+                System.out.println("z");
             }
         }
+
     }
 
     // methods for Cult Track
