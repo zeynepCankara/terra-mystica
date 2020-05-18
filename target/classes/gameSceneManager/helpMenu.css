@@ -4,9 +4,6 @@
     -fx-background-size: cover, auto;
 }
 
-#helpMenu_background {
-    -fx-opacity: 0.5;
-}
 
 #goBackImg {
     -fx-background-image: url("./images/goBackImg.png");

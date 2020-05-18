@@ -176,6 +176,7 @@ public class LocalGameController extends SceneController {
         victoryPointLabel = (Label) super.scene.lookup("#victoryPoint");
         currentPlayerBar = (Label) super.scene.lookup("#playerName");
 
+
         //TODO: Delete initialization of Image
         /*
         FlowManager flowManager = FlowManager.getInstance();
@@ -526,11 +527,13 @@ public class LocalGameController extends SceneController {
         advanceShippingActionBtn.setOnMouseClicked(event -> {
             System.out.println("advanceShippingAction...");
             gameStateLocal.put("action", 2);
+            GameEngine.improveShipping();
             actionRoundStage.close();
         });
         lowerExchangeRateSpadesActionBtn.setOnMouseClicked(event -> {
             System.out.println("lowerExchangeRateSpadesAction...");
             gameStateLocal.put("action", 3);
+            GameEngine.improveTerraforming();
             actionRoundStage.close();
         });
         upgradeStructureActionBtn.setOnMouseClicked(event -> {
