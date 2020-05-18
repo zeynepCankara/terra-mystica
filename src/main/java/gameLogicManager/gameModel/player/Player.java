@@ -1,6 +1,7 @@
 package gameLogicManager.gameModel.player;
 import java.util.HashSet;
 import gameLogicManager.gameModel.gameBoard.Structure;
+import gameLogicManager.gameModel.gameBoard.TerrainType;
 
 import java.util.HashSet;
 
@@ -135,6 +136,14 @@ public class Player {
     public void setPass(boolean pass) {
         isPass = pass;
     }
+
+    public void setFaction(String factionName){
+        FactionType factionType = FactionType.valueOf(factionName);
+        this.faction = new Faction(factionType);
+        numOfWorkers = Faction.getWorkerAtSetup(factionType);
+        coins = Faction.getCoinAtSetup(factionType);
+    }
+
 
     public int getFireAdvancement() {
         //TODO

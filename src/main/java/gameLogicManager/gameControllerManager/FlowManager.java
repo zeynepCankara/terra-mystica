@@ -90,7 +90,7 @@ public class FlowManager{
 
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
         //Bu method score güncelleye bir method halini alacak
-        currentPlayer = game.getNextPlayer();
+        //currentPlayer = game.getNextPlayer();
         return 0;
     }
 
@@ -131,7 +131,7 @@ public class FlowManager{
         }
 
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
-        currentPlayer = game.getNextPlayer();
+        //currentPlayer = game.getNextPlayer();
         return 0;
     }
 
@@ -149,7 +149,7 @@ public class FlowManager{
         actionController.improveShipping(currentPlayer);
         resourceController.obtainIncomeForShipping(currentPlayer);
         //adjacencyController.updateAdjacencyList(currentPlayer);
-        currentPlayer = game.getNextPlayer();
+        //currentPlayer = game.getNextPlayer();
         return 0;
     }
     /**
@@ -167,7 +167,7 @@ public class FlowManager{
         }
         actionController.improveTerraforming(currentPlayer);
         resourceController.obtainIncomeForImprovement(currentPlayer);
-        currentPlayer = game.getNextPlayer();
+        //currentPlayer = game.getNextPlayer();
         return 0;
     }
 
@@ -185,7 +185,7 @@ public class FlowManager{
         resourceController.obtainIncomeOfStructure(currentPlayer, newStructureType);
         resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, newStructureType);
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
-        currentPlayer = game.getNextPlayer();
+        //currentPlayer = game.getNextPlayer();
         return result;
     }
 
@@ -201,7 +201,7 @@ public class FlowManager{
             return 7;
         }
 
-        currentPlayer = game.getNextPlayer();
+        //currentPlayer = game.getNextPlayer();
         return 0;
     }
 
@@ -218,10 +218,13 @@ public class FlowManager{
                 //TODO FINISH THE GAME
             }
         }
-        currentPlayer = game.getNextPlayer();
+        //currentPlayer = game.getNextPlayer();
     }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+    public void getNextPlayer(){
+        currentPlayer = game.getNextPlayer();
     }
 }

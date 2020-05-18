@@ -37,16 +37,14 @@ public class GameEngine {
 
         int result = flowManager.transformTerrain(terrainID, Terrain.terrainIdToTypeConverter(terrainType));
 
-        //updateGameStatus(result);
+        updateGameStatus(result);
         if(result == 0){
             return true;
         }
-        //return false;
-
-        return true;
+        return false;
     }
 
-    public boolean buildDwelling( int terrainID ) {
+    public static boolean buildDwelling( int terrainID ) {
         int result = flowManager.buildDwelling(terrainID);
         updateGameStatus(result);
         if(result == 0){
@@ -55,7 +53,7 @@ public class GameEngine {
         return false;
     }
 
-    public boolean improveShipping(){
+    public static boolean improveShipping(){
         int result = flowManager.improveShipping();
         updateGameStatus(result);
         if(result == 0){
@@ -64,7 +62,7 @@ public class GameEngine {
         return false;
     }
 
-    public boolean improveTerraforming(){
+    public static boolean improveTerraforming(){
         int result = flowManager.improveTerraforming();
         updateGameStatus(result);
         if(result == 0){
@@ -73,7 +71,7 @@ public class GameEngine {
         return false;
     }
 
-    public boolean upgradeStructure(int terrainID, StructureType newStructureType){
+    public static boolean upgradeStructure(int terrainID, StructureType newStructureType){
         int result = flowManager.upgradeStructure(terrainID, newStructureType);
         updateGameStatus(result);
         System.out.println(gameStatus);
@@ -83,14 +81,14 @@ public class GameEngine {
         return false;
     }
 
-    public int sendPriestToCult(String trackName){
+    public static int sendPriestToCult(String trackName){
         int result = flowManager.sendPriestToCult(trackName);
         updateGameStatus(result);
         System.out.println(gameStatus);
         return result;
     }
 
-    public void pass(){
+    public static void pass(){
         flowManager.pass();
         gameStatus = "You passed.";
     }
