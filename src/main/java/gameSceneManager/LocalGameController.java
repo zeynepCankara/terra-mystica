@@ -1,5 +1,6 @@
 package gameSceneManager;
 
+import gameLogicManager.gameControllerManager.FlowManager;
 import gameLogicManager.gameControllerManager.GameEngine;
 import gameLogicManager.gameModel.gameBoard.GameBoard;
 import javafx.animation.FadeTransition;
@@ -54,11 +55,19 @@ public class LocalGameController extends SceneController {
     Button earthCultBtn;
     Button waterCultBtn;
     Button airCultBtn;
+    Button endTurnBtn;
     // Contains Buttons of the Game UI
     Polygon[] terrainMapHexagons;
     // Holds the information about game state
     static HashMap<String, Integer> gameStateLocal;
     GameEngine gameEngine;
+    Label workerLabel;
+    Label coinLabel;
+    Label priestLabel;
+    Label victoryPointLabel;
+    Label currentPlayerBar;
+    Label statusBar;
+
 
 
 
@@ -149,6 +158,17 @@ public class LocalGameController extends SceneController {
         waterCultBtn = (Button) super.scene.lookup("#waterCultBtn");
         earthCultBtn = (Button) super.scene.lookup("#earthCultBtn");
         airCultBtn = (Button) super.scene.lookup("#airCultBtn");
+        endTurnBtn = (Button) super.scene.lookup("#endTurnBtn");
+
+
+        workerLabel = (Label) super.scene.lookup("#worker");
+        coinLabel = (Label) super.scene.lookup("#coin");
+        priestLabel = (Label) super.scene.lookup("#priest");
+        victoryPointLabel = (Label) super.scene.lookup("#victoryPoint");
+        currentPlayerBar = (Label) super.scene.lookup("#playerName");
+
+        //statusBar = (Label) super.scene.lookup("#statusLabel");
+
 
         // Add listeners to buttons
         Parent finalRoot = super.root;
@@ -206,6 +226,14 @@ public class LocalGameController extends SceneController {
                 e.printStackTrace();
             }
         });
+        endTurnBtn.setOnMouseClicked(event -> {
+            //TODO: signal end of the turn
+            FlowManager flowManager = FlowManager.getInstance();
+            workerLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getNumOfWorkers()));
+            coinLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getCoins()));
+            priestLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getNumOfPriests()));
+            victoryPointLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getScore()));
+        });
 
 
         // Action round popup initialization
@@ -228,6 +256,8 @@ public class LocalGameController extends SceneController {
             //TODO status
         }
     }
+
+
 
     /**
      * Place dwelling on board (dwelling symbol FactionColor rectangle)

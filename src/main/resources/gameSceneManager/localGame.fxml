@@ -17,7 +17,16 @@
             <Image url="@./images/status_bar.png" />
         </image>
     </ImageView>
+    <Label fx:id="worker" text="worker" AnchorPane.leftAnchor="890" AnchorPane.topAnchor="50.0"/>
+    <Label fx:id="coin" text="coin" AnchorPane.leftAnchor="960" AnchorPane.topAnchor="50.0"/>
+    <Label fx:id="priest" text="priest" AnchorPane.leftAnchor="1020" AnchorPane.topAnchor="50.0"/>
+    <Label fx:id="victoryPoint" text="victory point" AnchorPane.leftAnchor="1080" AnchorPane.topAnchor="50.0"/>
+    <Label fx:id="playerName" text="current player" AnchorPane.leftAnchor="1020" AnchorPane.topAnchor="80"/>
+    <Button fx:id="endTurnBtn" mnemonicParsing="false" prefHeight="22" prefWidth="35" AnchorPane.leftAnchor="890" AnchorPane.topAnchor="100"/>
+
+
     <Label fx:id="statusLabel" text="Game Status will displayed here" AnchorPane.leftAnchor="410" AnchorPane.topAnchor="50.0"/>
+
     <ImageView fx:id="goBackImg" fitHeight="49.49665832519531" fitWidth="66.96606805656647" mouseTransparent="false" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="20.0">
         <image>
             <Image url="@./images/goBackImg.png" />
@@ -33,6 +42,9 @@
     <Button fx:id="waterCultBtn" mnemonicParsing="false" prefHeight="22" prefWidth="35" AnchorPane.rightAnchor="269.0" AnchorPane.topAnchor="634.0" />
     <Button fx:id="earthCultBtn" mnemonicParsing="false" prefHeight="22" prefWidth="35" AnchorPane.rightAnchor="199.0" AnchorPane.topAnchor="634.0" />
     <Button fx:id="airCultBtn"   mnemonicParsing="false" prefHeight="22" prefWidth="35" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="634.0" />
+
+
+
 
     <ImageView fx:id="scoringTileId5" mouseTransparent="false" fitWidth="150" fitHeight="100" pickOnBounds="true" preserveRatio="true" smooth="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="150.0">
         <image>

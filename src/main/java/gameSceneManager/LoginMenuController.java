@@ -1,5 +1,6 @@
 package gameSceneManager;
 
+import gameLogicManager.gameControllerManager.ServerController;
 import javafx.animation.FadeTransition;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -78,19 +79,21 @@ public class LoginMenuController extends SceneController {
         submitBtn.setOnMouseClicked(event -> {
             String enteredName = usernameField.getText();
             String enteredPassword = passwordField.getText();
-            // TODO: Implement GameStateWrapper.validateUsername
-            //if(GameStateWrapper.validateUsername(enteredName, enteredPassword));
-            FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);
-            fadeAnimation.setOnFinished(event1 ->
-            {
-                try {
-                    finalRoot.setVisible(false);
-                    App.setController(3, stage);
-                } catch (IOException e) {
-                    System.out.println(e);
-                }
-            });
-            fadeAnimation.play();
+            if(!ServerController.Login(enteredName, enteredPassword)){
+                statusLabel.setText("Wrong username/password combination!!!");
+            } else {
+                FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);
+                fadeAnimation.setOnFinished(event1 ->
+                {
+                    try {
+                        finalRoot.setVisible(false);
+                        App.setController(3, stage);
+                    } catch (IOException e) {
+                        System.out.println(e);
+                    }
+                });
+                fadeAnimation.play();
+            }
         });
     }
 }

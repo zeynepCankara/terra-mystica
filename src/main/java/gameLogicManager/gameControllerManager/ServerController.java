@@ -194,7 +194,7 @@ public class ServerController {
             System.out.println( myArr.getString(i));
         }
     }
-    static boolean Login( String playerName, String password)
+    public static boolean Login(String playerName, String password)
     {
         boolean retval=false;
 
