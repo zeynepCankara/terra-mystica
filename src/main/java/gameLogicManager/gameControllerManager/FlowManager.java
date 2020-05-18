@@ -173,7 +173,20 @@ public class FlowManager{
 
     public int upgradeStructure(int terrainID) {
         Terrain terrain = getTerrain(terrainID);
-        StructureType newStructureType = terrain.getStructure().getStructureType();
+        StructureType structureType = terrain.getStructure().getStructureType();
+        StructureType newStructureType;
+
+        switch(structureType) {
+            case Dwelling:
+                newStructureType = StructureType.TradingHouse;
+                break;
+            case TradingHouse:
+                newStructureType = StructureType.StrongHold;
+                break;
+            default:
+                newStructureType = StructureType.Dwelling;
+                break;
+        }
 
         /* Check required resources and obtain resources if possible,
         structure pointer is upgraded to new structure in this method */
