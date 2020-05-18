@@ -24,7 +24,7 @@ public class FlowManager{
 
     private int currentRound;//used for scoring tile checking
     private int totalPasses; // used to keep track of the count of passed players
-
+    private static int setUpDwellings;
 
     public static FlowManager getInstance(){
         if( uniqueInstance == null ){
@@ -39,8 +39,9 @@ public class FlowManager{
         adjacencyController = AdjacencyController.getInstance();
         game = Game.getInstance();
         currentPlayer = game.getNextPlayer();
-        currentRound = 0;
+        currentRound = -1;
         totalPasses = 0;
+        setUpDwellings = 8;
     }
 
 /*
@@ -80,9 +81,9 @@ public class FlowManager{
         //}
 
         /* Check if the player has enough workers to have enough spades, obtain spades if possible */
-        //if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){
-            //return 2;
-        //}
+        if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){
+            return 2;
+        }
 
         actionController.transformTerrain(terrain, newTerrainType);
 
@@ -103,25 +104,32 @@ public class FlowManager{
         Terrain terrain = getTerrain(terrainID);
 
         /* If the terrain is not empty(available), you cannot build a dwelling */
-        if(!terrain.isAvailable()){
+        if(!terrain.isAvailable() && terrain.getType() == currentPlayer.getFaction().getTerrainType()){
             return 4;
         }
 
         /* Chosen terrain must be adjacent to other structure terrains */
-        if(!adjacencyController.isAdjacent(currentPlayer, terrain, game.getTerrainList())){//!!!!!! TODO En başta adjacent olmadığı için koydurtmuyor.
+        if(!(setUpDwellings > 0) && !adjacencyController.isAdjacent(currentPlayer, terrain, game.getTerrainList())){
             return 5;
         }
 
         /* Check required resources and obtain resources if possible */
-        int result = resourceController.obtainResourceOfStructure(currentPlayer ,StructureType.Dwelling);
-        if(result != 0){
-            return result;
+        if(!(setUpDwellings > 0) && resourceController.obtainResourceOfStructure(currentPlayer ,StructureType.Dwelling) != 0){
+            return resourceController.obtainResourceOfStructure(currentPlayer ,StructureType.Dwelling);
         }
 
         actionController.build(currentPlayer, terrain);//create dwelling object on terrain, update attributes of player
 
         resourceController.obtainIncomeOfStructure(currentPlayer, StructureType.Dwelling);
         resourceController.obtainIncomeOfScoringTile(currentPlayer, currentRound, StructureType.Dwelling);
+
+        if(setUpDwellings > 0){
+            setUpDwellings--;
+            if(setUpDwellings == 0){
+                currentRound = 0;
+            }
+        }
+
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
         currentPlayer = game.getNextPlayer();
         return 0;
@@ -182,28 +190,38 @@ public class FlowManager{
     }
 
 
-    public int sendPriestToCult(int trackID) {
-        if( currentPlayer.getNumOfPriests() == 0 ){
-            return 0;
+    public int sendPriestToCult(String trackName) {
+        if(currentPlayer.getNumOfPriests() == 0 ){
+            return 3; // not enough priests
         }
-        else if( true ) {
-            //TODO check cult track
+
+        CultTrack cultTrack = CultBoard.getTrack(trackName);
+
+        if(!cultTrack.advanceWithPriest(currentPlayer.getPlayerIndex())){
+            return 7;
         }
+
         currentPlayer = game.getNextPlayer();
         return 0;
     }
 
     public void pass(){
         resourceController.getEndOfRoundIncomeOfScoringTile(currentPlayer, currentRound);
-        currentPlayer = game.getNextPlayer();
+        resourceController.getIncomeofStructures(currentPlayer);
         totalPasses++;
+        currentPlayer.setPass(true);
         if(totalPasses == 4){
             currentRound++;
             totalPasses = 0;
+            game.setAllPlayersPass();
             if(currentRound == 6){
                 //TODO FINISH THE GAME
             }
         }
+        currentPlayer = game.getNextPlayer();
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 }

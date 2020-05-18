@@ -30,8 +30,8 @@ public class Game {
     private int currentPlayerIndex;
 
     private Game(boolean isMapRandom){
-        gameBoard = new GameBoard(isMapRandom);
-        //cultBoard = new CultBoard();//TODO
+        gameBoard = GameBoard.getInstance(isMapRandom);
+        cultBoard = new CultBoard();
         players = initilizePlayers(4);
         bonusCards = new BonusCardList(); //TODO
         townTiles = new TownTileList(); //TODO
@@ -47,10 +47,10 @@ public class Game {
      */
     private Player[] initilizePlayers(int playerCount) {
         Player[] players = new Player[playerCount];
-        players[0] = new Player(FactionType.WITCHES);
-        players[1] = new Player(FactionType.NOMADS);
-        players[2] = new Player(FactionType.HALFLINGS);
-        players[3] = new Player(FactionType.MERMAIDS);
+        players[0] = new Player(FactionType.WITCHES, 0);
+        players[1] = new Player(FactionType.NOMADS, 1);
+        players[2] = new Player(FactionType.HALFLINGS, 2);
+        players[3] = new Player(FactionType.MERMAIDS, 3);
         return players;
     }
 
@@ -77,8 +77,23 @@ public class Game {
     }
 
     public Player getNextPlayer() {
-        return players[(currentPlayerIndex+1) % 4];
+        Player p = players[(++currentPlayerIndex) % 4];
+        if( p.isPass()){
+            p = players[(++currentPlayerIndex) % 4];
+            if(p.isPass()){
+                return players[(++currentPlayerIndex) % 4];
+            }
+            return p;
+        }
+        return p;
     }
+
+    public void setAllPlayersPass()
+    {
+        for(int i = 0; i < 4; i++)
+            players[i].setPass(false);
+    }
+
 
     public Terrain getTerrain( int terrainID ){
         return gameBoard.getTerrain(terrainID);
@@ -90,5 +105,17 @@ public class Game {
 
     public ScoringTile[] getScoringTileList() {
         return scoringTileList;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public CultBoard getCultBoard() {
+        return cultBoard;
     }
 }

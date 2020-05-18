@@ -6,24 +6,33 @@ import java.util.HashSet;
 
 public class Player {
     private String name;
+    private int playerIndex;
     private Faction faction;
     private int shipping;
     private int spadeRate;
     private int numOfWorkers;
     private int coins;
     private HashSet<Structure> structuresBuilt;
+    private int[] powerBowl;
     private int numOfPriests;
     private int score;
+    private boolean isPass;
 
-    public Player(FactionType factionType) {
+    public Player(FactionType factionType, int playerIndex) {
         this.faction = new Faction(factionType);
+        this.playerIndex = playerIndex;
         shipping = 0;
         spadeRate = 3;
         numOfWorkers = Faction.getWorkerAtSetup(factionType);
         coins = Faction.getCoinAtSetup(factionType);
         structuresBuilt = new HashSet<Structure>();
-        numOfPriests = 0;
+        numOfPriests = 2;//EDIT
         score = 20;
+        powerBowl = new int[3];
+        powerBowl[0] = 5;
+        powerBowl[1] = 7;
+        powerBowl[2] = 0;
+        isPass = false;
     }
 
     public Faction getFaction() {
@@ -80,14 +89,51 @@ public class Player {
         this.spadeRate = spadeRate;
     }
 
+    public int getPlayerIndex() {
+        return playerIndex;
+    }
+
     public boolean hasStronghold() {
         //TODO
         return true;
     }
 
     public void gainPower(int powerCount){//will move power tokens from one bowl to the next one
-        //TODO
+        if(powerBowl[0] != 0){
+            if(powerBowl[0] >= powerCount){
+                powerBowl[0] -= powerCount;
+                powerBowl[1] += powerCount;
+            }
+            else{
+                powerBowl[1] += powerBowl[0];
+                powerCount -= powerBowl[0];
+                powerBowl[0] = 0;
+                powerBowl[2] += powerCount;
+                powerBowl[1] -= powerCount;
+            }
+        }
+        else{
+            if(powerBowl[1] >= powerCount){
+                powerBowl[1] -= powerCount;
+                powerBowl[2] += powerCount;
+            }
+            else{
+                powerBowl[2] += powerBowl[1];
+                powerBowl[1] = 0;
+            }
+        }
+    }
 
+    public int[] getPowerBowl(){
+        return powerBowl;
+    }
+
+    public boolean isPass() {
+        return isPass;
+    }
+
+    public void setPass(boolean pass) {
+        isPass = pass;
     }
 
     public int getFireAdvancement() {

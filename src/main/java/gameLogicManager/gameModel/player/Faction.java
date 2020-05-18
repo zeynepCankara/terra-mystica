@@ -12,12 +12,47 @@ public class Faction {
     private FactionType type;
     private int workerAtSetup;
     private int coinAtSetup;
-    private TerrainType homeTerrain; //IS IT USEFUL?
+    private TerrainType homeTerrain;
 
     public Faction(FactionType factionType){
         type = factionType;
         workerAtSetup = getWorkerAtSetup(factionType);
         coinAtSetup = getCoinAtSetup(factionType);
+        homeTerrain = getHomeTerrain(factionType);
+    }
+
+    private TerrainType getHomeTerrain(FactionType factionType) {
+        switch (factionType){
+            case WITCHES:
+                return TerrainType.Forest;
+            case AUREN:
+                return TerrainType.Forest;
+            case ALCHEMISTS:
+                return TerrainType.Swamp;
+            case DARKLINGS:
+                return TerrainType.Swamp;
+            case HALFLINGS:
+                return TerrainType.Plains;
+            case CULTISTS:
+                return TerrainType.Plains;
+            case ENGINEERS:
+                return TerrainType.Mountains;
+            case DWARVES:
+                return TerrainType.Mountains;
+            case MERMAIDS:
+                return TerrainType.Lakes;
+            case SWARMLINGS:
+                return TerrainType.Lakes;
+            case CHAOS_MAGICIANS:
+                return TerrainType.Wasteland;
+            case GIANTS:
+                return TerrainType.Wasteland;
+            case FAKIRS:
+                return TerrainType.Desert;
+            case NOMADS:
+                return TerrainType.Desert;
+        }
+        return TerrainType.Forest;
     }
 
     public static int getWorkerAtSetup(FactionType factionType) {
@@ -32,6 +67,8 @@ public class Faction {
                 return 8;
             case ENGINEERS:
                 return 2;
+            case WITCHES:// TODO FIX LATER
+                return 20;
             default:
                 return 3;
         }

@@ -83,14 +83,16 @@ public class GameEngine {
         return false;
     }
 
-    public int sendPriestToCult( int trackID ){
-        int result = flowManager.sendPriestToCult(trackID);
+    public int sendPriestToCult(String trackName){
+        int result = flowManager.sendPriestToCult(trackName);
         updateGameStatus(result);
+        System.out.println(gameStatus);
         return result;
     }
 
     public void pass(){
         flowManager.pass();
+        gameStatus = "You passed.";
     }
 
 
@@ -122,6 +124,9 @@ public class GameEngine {
             case 6:
                 gameStatus = "Failed: Improvement limit has been reached";
                 break;
+            case 7:
+                gameStatus = "Orders are filled";
+                break;
         }
     }
 
@@ -132,9 +137,18 @@ public class GameEngine {
 
                     @Override
                     public void run() {
-                        System.out.println("Rafi");
+                        updateMap();
+                        //updateCultBoard();
+                        //updatePowerActions();//Make all of them available
                     }
                 }, 0, 5000);
     }
 
+    private static void updateMap() {
+        game.getGameBoard().updateTerrainList(ServerController.GetBoard());
+    }
+
+    public static Game getGame() {
+        return game;
+    }
 }
