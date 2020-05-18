@@ -2,12 +2,9 @@ package gameSceneManager;
 
 import gameLogicManager.gameControllerManager.FlowManager;
 import gameLogicManager.gameControllerManager.GameEngine;
-import gameLogicManager.gameModel.gameBoard.GameBoard;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,14 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -32,9 +24,8 @@ import javafx.util.Duration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static gameSceneManager.App.loadFXML;
 import static gameSceneManager.BoardGenerator.terrainColorMap;
@@ -50,7 +41,6 @@ public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
     AnchorPane anchorPane;
-    Parent factionImgScene;
     Button transformTerrainBtn;
     Button fireCultBtn;
     Button earthCultBtn;
@@ -70,6 +60,11 @@ public class LocalGameController extends SceneController {
     Label currentPlayerBar;
     Label statusBar;
 
+    // image reading
+    String currentFactionName;
+    FileInputStream inputStream;
+    Image currentFactionImg;
+    ImageView currentFactionImgView;
 
 
 
@@ -111,12 +106,15 @@ public class LocalGameController extends SceneController {
 
         // Load the FXML file
         super.root = loadFXML("localGame");
-        factionImgScene = loadFXML("gameSetup");
+
         // scene = stage.getScene(); // NOTE: This causes error in exec
         super.scene = new Scene(super.root);
 
         // initialize the controller
         initController(stage);
+
+
+
         //scene = BoardGenerator.generateDefaultTerrainMap(scene);
         HashMap<String, Integer> gameState = GameSetupController.getInitParameters();
         if( gameState.get("isDefaultMap") == 1){
@@ -150,7 +148,6 @@ public class LocalGameController extends SceneController {
         // Setup scene style from CSS
         super.scene.getStylesheets().clear();
         super.scene.getStylesheets().add(getClass().getResource("localGame.css").toExternalForm());
-        factionImgScene.getStylesheets().add(getClass().getResource("gameSetup.css").toExternalForm());
         stage.setScene(super.scene);
         stage.show();
 
@@ -164,14 +161,32 @@ public class LocalGameController extends SceneController {
         airCultBtn = (Button) super.scene.lookup("#airCultBtn");
         endTurnBtn = (Button) super.scene.lookup("#endTurnBtn");
         actionPopupBtn = (Button) super.scene.lookup("#actionPopupBtn");
-
-
         workerLabel = (Label) super.scene.lookup("#worker");
         coinLabel = (Label) super.scene.lookup("#coin");
         priestLabel = (Label) super.scene.lookup("#priest");
         victoryPointLabel = (Label) super.scene.lookup("#victoryPoint");
         currentPlayerBar = (Label) super.scene.lookup("#playerName");
 
+        //TODO: Delete initialization of Image
+        /*
+        FlowManager flowManager = FlowManager.getInstance();
+        currentFactionName = String.valueOf(flowManager.getCurrentPlayer().getFaction().getType());
+        inputStream = null;
+        try {
+            inputStream  = new FileInputStream("src/main/resources/gameSceneManager/images/" + currentFactionName + ".png");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        currentFactionImg = new Image(inputStream);
+        // setImage
+        currentFactionImgView = new ImageView(currentFactionImg);
+        // TODO: Logo init position change
+        currentFactionImgView.setLayoutX(1020);
+        currentFactionImgView.setLayoutY(100);
+        currentFactionImgView.setVisible(true);
+        anchorPane.getChildren().addAll(currentFactionImgView);
+
+         */
         //statusBar = (Label) super.scene.lookup("#statusLabel");
 
 
@@ -234,7 +249,7 @@ public class LocalGameController extends SceneController {
         endTurnBtn.setOnMouseClicked(event -> {
             //TODO: signal end of the turn
             FlowManager flowManager = FlowManager.getInstance();
-            //flowManager.getCurrentPlayer();
+            flowManager.getNextPlayer();
             workerLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getNumOfWorkers()));
             coinLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getCoins()));
             priestLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getNumOfPriests()));
@@ -242,12 +257,26 @@ public class LocalGameController extends SceneController {
             currentPlayerBar.setText(flowManager.getCurrentPlayer().getFaction().getType().toString());
 
             //  Set the image of  current faction...
-            String currentFactionName = "FAKIRS";
-            ImageView currentFactionLogo = (ImageView) factionImgScene.lookup("#" + currentFactionName);
-            currentFactionLogo.setLayoutX(1020);
-            currentFactionLogo.setLayoutY(100);
-            currentFactionLogo.setVisible(true);
-            anchorPane.getChildren().addAll(currentFactionLogo);
+            /*
+            currentFactionName = String.valueOf(flowManager.getCurrentPlayer().getFaction().getType());
+            inputStream =  null;
+            try {
+                inputStream =  new FileInputStream("src/main/resources/gameSceneManager/images/" + currentFactionName + ".png");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            currentFactionImg = new Image(String.valueOf(inputStream));
+            // setImage
+            currentFactionImgView.setImage(null);
+            anchorPane.getChildren().removeAll(currentFactionImgView);
+            currentFactionImgView = new ImageView(currentFactionImg);
+            // TODO: Logo init position change
+            currentFactionImgView.setLayoutX(1020);
+            currentFactionImgView.setLayoutY(100);
+            currentFactionImgView.setVisible(true);
+            anchorPane.getChildren().addAll(currentFactionImgView);
+
+             */
         });
         actionPopupBtn.setOnMouseClicked(event -> {
             // Action round popup initialization
@@ -284,13 +313,23 @@ public class LocalGameController extends SceneController {
     public void buildDwellingOnSelected(int polygonId) throws FileNotFoundException {
         if(gameStateLocal.get("isBuildDwelling") == 1){
             if( gameEngine.buildDwelling(polygonId)) {
-                Rectangle rectangle = new Rectangle(35, 25);
+                FileInputStream inputStream = new FileInputStream("src/main/resources/gameSceneManager/images/dwelling.png");
+                Image imageDwelling = new Image(inputStream);
+                ImageView imgView = new ImageView(imageDwelling);
+                imgView.setLayoutX(terrainMapHexagons[polygonId].getLayoutX()-17);
+                imgView.setLayoutY(terrainMapHexagons[polygonId].getLayoutY()-20);
+                imgView.setVisible(true);
+                anchorPane.getChildren().addAll(imgView);
+                //Loading image from URL
+                //Rectangle rectangle = new Rectangle(35, 25);
                 //rectangle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
-                rectangle.setFill(Color.WHITE);
-                rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
-                rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
-                rectangle.setVisible(true);
-                anchorPane.getChildren().addAll(rectangle);
+                //rectangle.setFill(Color.WHITE);
+                //rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
+                //rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
+                //rectangle.setVisible(true);
+                //anchorPane.getChildren().addAll(rectangle);
+                FlowManager flowManager  = FlowManager.getInstance();
+                victoryPointLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getScore()));
             }
             else{
                 //TODO status
