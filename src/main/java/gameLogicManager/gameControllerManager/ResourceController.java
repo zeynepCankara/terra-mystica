@@ -173,13 +173,22 @@ public class ResourceController{
     }
 
     public void obtainIncomeOfScoringTile(Player currentPlayer, int currentScoringTile, StructureType structureType) {
-        /* Obtain 2 victory points(score) if player builds dwelling when scoring tile is 0 or 1 */
-        if(structureType == StructureType.Dwelling && (currentScoringTile == 0 || currentScoringTile == 1)){
+        /* Obtain 2 victory points(score) if player builds dwelling when scoring tile is 0 */
+        if(structureType == StructureType.Dwelling && currentScoringTile == 0){
+            currentPlayer.setScore(currentPlayer.getScore() + 2);
+        }
+        /* Obtain 5 victory points(score) if player builds stronghold or sanctuary when scoring tile is 1*/
+        if((structureType == StructureType.Sanctuary || structureType == StructureType.StrongHold)
+                && (currentScoringTile == 1)){
+            currentPlayer.setScore(currentPlayer.getScore() + 5);
+        }
+        /* Obtain 2 victory points(score) if player builds dwelling when scoring tile is 2 */
+        if(structureType == StructureType.Dwelling && (currentScoringTile == 2)){
             currentPlayer.setScore(currentPlayer.getScore() + 2);
         }
         /* Obtain 5 victory points(score) if player builds stronghold or sanctuary when scoring tile is 2 or 3 */
         if((structureType == StructureType.Sanctuary || structureType == StructureType.StrongHold)
-            && (currentScoringTile == 2 || currentScoringTile == 3)){
+            && (currentScoringTile == 3)){
             currentPlayer.setScore(currentPlayer.getScore() + 5);
         }
         // SCORING TILE 4 AND 5 IS NOT IMPLEMENTED YET!
@@ -187,23 +196,23 @@ public class ResourceController{
 
     public void getEndOfRoundIncomeOfScoringTile(Player currentPlayer, int currentRound) {
         //ADVANCEMENT VARIABLES SHOULD BE SET TO 0 LATER!!!
-        /* 4 Fire = 4 Power */
-        if(currentRound == 0 && currentPlayer.getFireAdvancement() > 4){
-            currentPlayer.gainPower((currentPlayer.getFireAdvancement() / 4) * 4);
-            return;
-        }
         /* 4 Water = Priest */
-        if(currentRound == 1 && currentPlayer.getWaterAdvancement() > 4){
+        if(currentRound == 0 && currentPlayer.getWaterAdvancement() >= 4){
             currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + (currentPlayer.getWaterAdvancement() / 4));
             return;
         }
         /* 2 Fire = Worker */
-        if(currentRound == 2 && currentPlayer.getFireAdvancement() > 2){
+        if(currentRound == 1 && currentPlayer.getFireAdvancement() >= 2){
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (currentPlayer.getFireAdvancement() / 2) * 2);
             return;
         }
+        /* 4 Fire = 4 Power */
+        if(currentRound == 2 && currentPlayer.getFireAdvancement() >= 4){
+            currentPlayer.gainPower((currentPlayer.getFireAdvancement() / 4) * 4);
+            return;
+        }
         /* 2 Air = Worker */
-        if(currentRound == 3 && currentPlayer.getAirAdvancement() > 2){
+        if(currentRound == 3 && currentPlayer.getAirAdvancement() >= 2){
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (currentPlayer.getAirAdvancement() / 2) * 2);
             return;
         }
