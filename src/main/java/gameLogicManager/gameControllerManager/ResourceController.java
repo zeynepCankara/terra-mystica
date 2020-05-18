@@ -148,20 +148,15 @@ public class ResourceController{
             case TradingHouse:
                 resources[currentPlayer.getPlayerIndex()][0] += 2;
                 resources[currentPlayer.getPlayerIndex()][3] += 2;
-                currentPlayer.setCoins(currentPlayer.getCoins() + 2);
-                currentPlayer.gainPower(2); //depends, may change!
                 break;
             case Temple:
                 resources[currentPlayer.getPlayerIndex()][2] += 1;
-                currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);
                 break;
             case Sanctuary:
-                resources[currentPlayer.getPlayerIndex()][2] += 1;
-                currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);  //depends, may change!
+                resources[currentPlayer.getPlayerIndex()][2] += 1;  //depends, may change!
                 break;
             default: //Otherwise it is Stronghold
                 resources[currentPlayer.getPlayerIndex()][3] += 2;
-                currentPlayer.gainPower(2);
                 break;
         }
         return true;
@@ -220,5 +215,8 @@ public class ResourceController{
         currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + resources[currentPlayer.getPlayerIndex()][1]);
         currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + resources[currentPlayer.getPlayerIndex()][2]);
         currentPlayer.gainPower(resources[currentPlayer.getPlayerIndex()][3]);
+        for(int i = 0; i < 4; i++){
+            resources[currentPlayer.getPlayerIndex()][i] = 0;
+        }
     }
 }

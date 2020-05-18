@@ -190,7 +190,7 @@ public class FlowManager{
 
 
     public int sendPriestToCult(String trackName) {
-        if( currentPlayer.getNumOfPriests() == 0 ){
+        if(currentPlayer.getNumOfPriests() == 0 ){
             return 3; // not enough priests
         }
 
@@ -207,15 +207,17 @@ public class FlowManager{
     public void pass(){
         resourceController.getEndOfRoundIncomeOfScoringTile(currentPlayer, currentRound);
         resourceController.getIncomeofStructures(currentPlayer);
-        currentPlayer = game.getNextPlayer();
         totalPasses++;
+        currentPlayer.setPass(true);
         if(totalPasses == 4){
             currentRound++;
             totalPasses = 0;
+            game.setAllPlayersPass();
             if(currentRound == 6){
                 //TODO FINISH THE GAME
             }
         }
+        currentPlayer = game.getNextPlayer();
     }
 
     public Player getCurrentPlayer() {

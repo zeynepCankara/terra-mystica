@@ -16,6 +16,7 @@ public class Player {
     private int[] powerBowl;
     private int numOfPriests;
     private int score;
+    private boolean isPass;
 
     public Player(FactionType factionType, int playerIndex) {
         this.faction = new Faction(factionType);
@@ -31,6 +32,7 @@ public class Player {
         powerBowl[0] = 5;
         powerBowl[1] = 7;
         powerBowl[2] = 0;
+        isPass = false;
     }
 
     public Faction getFaction() {
@@ -107,6 +109,7 @@ public class Player {
                 powerCount -= powerBowl[0];
                 powerBowl[0] = 0;
                 powerBowl[2] += powerCount;
+                powerBowl[1] -= powerCount;
             }
         }
         else{
@@ -119,6 +122,18 @@ public class Player {
                 powerBowl[1] = 0;
             }
         }
+    }
+
+    public int[] getPowerBowl(){
+        return powerBowl;
+    }
+
+    public boolean isPass() {
+        return isPass;
+    }
+
+    public void setPass(boolean pass) {
+        isPass = pass;
     }
 
     public int getFireAdvancement() {

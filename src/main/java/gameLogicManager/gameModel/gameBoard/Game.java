@@ -77,8 +77,23 @@ public class Game {
     }
 
     public Player getNextPlayer() {
-        return players[(++currentPlayerIndex) % 4];
+        Player p = players[(++currentPlayerIndex) % 4];
+        if( p.isPass()){
+            p = players[(++currentPlayerIndex) % 4];
+            if(p.isPass()){
+                return players[(++currentPlayerIndex) % 4];
+            }
+            return p;
+        }
+        return p;
     }
+
+    public void setAllPlayersPass()
+    {
+        for(int i = 0; i < 4; i++)
+            players[i].setPass(false);
+    }
+
 
     public Terrain getTerrain( int terrainID ){
         return gameBoard.getTerrain(terrainID);
