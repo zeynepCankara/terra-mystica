@@ -79,7 +79,8 @@ public class LoginMenuController extends SceneController {
         submitBtn.setOnMouseClicked(event -> {
             String enteredName = usernameField.getText();
             String enteredPassword = passwordField.getText();
-            if(!ServerController.Login(enteredName, enteredPassword)){
+            //if(!ServerController.Login(enteredName, enteredPassword)){
+            if(false){
                 statusLabel.setText("Wrong username/password combination!!!");
             } else {
                 FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(1), finalRoot);

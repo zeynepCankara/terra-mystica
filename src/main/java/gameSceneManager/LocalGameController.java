@@ -50,12 +50,14 @@ public class LocalGameController extends SceneController {
     // Properties: UI Related
     ImageView goBackImg;
     AnchorPane anchorPane;
+    Parent factionImgScene;
     Button transformTerrainBtn;
     Button fireCultBtn;
     Button earthCultBtn;
     Button waterCultBtn;
     Button airCultBtn;
     Button endTurnBtn;
+    Button actionPopupBtn;
     // Contains Buttons of the Game UI
     Polygon[] terrainMapHexagons;
     // Holds the information about game state
@@ -109,6 +111,7 @@ public class LocalGameController extends SceneController {
 
         // Load the FXML file
         super.root = loadFXML("localGame");
+        factionImgScene = loadFXML("gameSetup");
         // scene = stage.getScene(); // NOTE: This causes error in exec
         super.scene = new Scene(super.root);
 
@@ -147,6 +150,7 @@ public class LocalGameController extends SceneController {
         // Setup scene style from CSS
         super.scene.getStylesheets().clear();
         super.scene.getStylesheets().add(getClass().getResource("localGame.css").toExternalForm());
+        factionImgScene.getStylesheets().add(getClass().getResource("gameSetup.css").toExternalForm());
         stage.setScene(super.scene);
         stage.show();
 
@@ -159,6 +163,7 @@ public class LocalGameController extends SceneController {
         earthCultBtn = (Button) super.scene.lookup("#earthCultBtn");
         airCultBtn = (Button) super.scene.lookup("#airCultBtn");
         endTurnBtn = (Button) super.scene.lookup("#endTurnBtn");
+        actionPopupBtn = (Button) super.scene.lookup("#actionPopupBtn");
 
 
         workerLabel = (Label) super.scene.lookup("#worker");
@@ -229,15 +234,29 @@ public class LocalGameController extends SceneController {
         endTurnBtn.setOnMouseClicked(event -> {
             //TODO: signal end of the turn
             FlowManager flowManager = FlowManager.getInstance();
+            //flowManager.getCurrentPlayer();
             workerLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getNumOfWorkers()));
             coinLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getCoins()));
             priestLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getNumOfPriests()));
             victoryPointLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getScore()));
+            currentPlayerBar.setText(flowManager.getCurrentPlayer().getFaction().getType().toString());
+
+            //  Set the image of  current faction...
+            String currentFactionName = "FAKIRS";
+            ImageView currentFactionLogo = (ImageView) factionImgScene.lookup("#" + currentFactionName);
+            currentFactionLogo.setLayoutX(1020);
+            currentFactionLogo.setLayoutY(100);
+            currentFactionLogo.setVisible(true);
+            anchorPane.getChildren().addAll(currentFactionLogo);
         });
-
-
-        // Action round popup initialization
-        displayActionRoundPopup();
+        actionPopupBtn.setOnMouseClicked(event -> {
+            // Action round popup initialization
+            try {
+                displayActionRoundPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     // methods for Terrain Manipulation
@@ -248,7 +267,6 @@ public class LocalGameController extends SceneController {
      */
     public void changeTerrainSelected(int polygonId, int terrainId) {
         if( GameEngine.transformTerrain(polygonId, terrainId) ) {
-
             Polygon hexagon = (Polygon) super.scene.lookup("#" + polygonId);
             hexagon.setFill(terrainColorMap.get(terrainId));
         }
@@ -267,7 +285,8 @@ public class LocalGameController extends SceneController {
         if(gameStateLocal.get("isBuildDwelling") == 1){
             if( gameEngine.buildDwelling(polygonId)) {
                 Rectangle rectangle = new Rectangle(35, 25);
-                rectangle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
+                //rectangle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
+                rectangle.setFill(Color.WHITE);
                 rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
                 rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
                 rectangle.setVisible(true);

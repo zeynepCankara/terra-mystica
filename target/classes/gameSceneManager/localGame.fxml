@@ -17,12 +17,14 @@
             <Image url="@./images/status_bar.png" />
         </image>
     </ImageView>
+
     <Label fx:id="worker" text="worker" AnchorPane.leftAnchor="890" AnchorPane.topAnchor="50.0"/>
     <Label fx:id="coin" text="coin" AnchorPane.leftAnchor="960" AnchorPane.topAnchor="50.0"/>
     <Label fx:id="priest" text="priest" AnchorPane.leftAnchor="1020" AnchorPane.topAnchor="50.0"/>
     <Label fx:id="victoryPoint" text="victory point" AnchorPane.leftAnchor="1080" AnchorPane.topAnchor="50.0"/>
     <Label fx:id="playerName" text="current player" AnchorPane.leftAnchor="1020" AnchorPane.topAnchor="80"/>
-    <Button fx:id="endTurnBtn" mnemonicParsing="false" prefHeight="22" prefWidth="35" AnchorPane.leftAnchor="890" AnchorPane.topAnchor="100"/>
+    <Button fx:id="endTurnBtn" text="End Turn" mnemonicParsing="false" prefHeight="22" prefWidth="100" AnchorPane.leftAnchor="890" AnchorPane.topAnchor="100"/>
+    <Button fx:id="actionPopupBtn" text="Take Action" mnemonicParsing="false" prefHeight="22" prefWidth="100" AnchorPane.leftAnchor="1100" AnchorPane.topAnchor="100"/>
 
 
     <Label fx:id="statusLabel" text="Game Status will displayed here" AnchorPane.leftAnchor="410" AnchorPane.topAnchor="50.0"/>
