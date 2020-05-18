@@ -4,6 +4,7 @@ import javafx.animation.FadeTransition;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
@@ -68,18 +69,22 @@ public class GameSetupController extends SceneController {
     ImageView goBackImg;
     Button defaultMapButton;
     Button randomMapButton;
+    Button submitFactionBtn;
+    Label currentPlayerLabel;
     // Logic properties (gameState)
     Integer isDefaultMap = 1;
     Integer factionColorId = -1;
     String factionName = "";
     Integer factionId = -1;
+    Integer currentPlayer;
 
     ImageView[] factionImageViews;
 
-
+    String statusPlayerSelection;
 
     // Constructor
     public GameSetupController(Stage stage) throws IOException {
+        currentPlayer = 1;
         // Faction Image setup
         factionImageViews = new ImageView[14];
         super.root = null;
@@ -106,6 +111,13 @@ public class GameSetupController extends SceneController {
         goBackImg = (ImageView) super.scene.lookup("#goBackImg");
         defaultMapButton = (Button) super.scene.lookup("#defaultMapBtn");
         randomMapButton = (Button) super.scene.lookup("#randomMapBtn");
+        submitFactionBtn = (Button) super.scene.lookup("#submitFactionBtn");
+        currentPlayerLabel = (Label) super.scene.lookup("#statusLabel");
+
+        statusPlayerSelection = currentPlayerLabel.getText();
+        currentPlayerLabel.setText(statusPlayerSelection + currentPlayer);
+
+
 
 
         Parent finalRoot = super.root;
@@ -124,6 +136,7 @@ public class GameSetupController extends SceneController {
         });
 
         defaultMapButton.setOnMouseClicked(event -> {
+            System.out.println(gameState);
             FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(0.5), finalRoot);
             fadeAnimation.setOnFinished(event1 ->
             {
@@ -139,6 +152,7 @@ public class GameSetupController extends SceneController {
         });
 
         randomMapButton.setOnMouseClicked(event -> {
+            System.out.println(gameState);
             FadeTransition fadeAnimation = new FadeTransition(Duration.seconds(0.5), finalRoot);
             fadeAnimation.setOnFinished(event1 ->
             {
@@ -164,9 +178,20 @@ public class GameSetupController extends SceneController {
                 factionId = finalI;
                 factionName = factionNames[finalI];
                 factionColorId = factionToTerrain.get(factionName);
-                setInitParameters();
+                //setInitParameters();
             });
         }
+
+        submitFactionBtn.setOnMouseClicked(event -> {
+            String factionIdKey = "factionId" + currentPlayer;
+            String factionColorIdKey = "factionColorId" + currentPlayer;
+            gameState.put(factionIdKey,  factionId);
+            gameState.put(factionColorIdKey,  factionColorId);
+            currentPlayer += 1;
+            statusPlayerSelection = currentPlayerLabel.getText();
+            statusPlayerSelection = statusPlayerSelection.substring(0, statusPlayerSelection.length()-1);
+            currentPlayerLabel.setText(statusPlayerSelection + currentPlayer);
+        });
 
         // initialize the game parameters
 
@@ -180,8 +205,9 @@ public class GameSetupController extends SceneController {
      */
     public void setInitParameters(){
         gameState.put("isDefaultMap", isDefaultMap);
-        gameState.put("factionId", factionId);
-        gameState.put("factionColorId", factionColorId);
+        // dummy
+        gameState.put("factionId", 0);
+        gameState.put("factionColorId", 0);
     }
 
     /**

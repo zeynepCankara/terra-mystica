@@ -6,6 +6,10 @@
     -fx-opacity: 0.5;
 }
 
+.label{
+    -fx-text-fill: WHITE;
+}
+
 #AnchorPane {
     -fx-background-image: url("./images/localGame_background.png");
     -fx-background-repeat: no-repeat;
@@ -25,6 +29,11 @@
  }
 
 
+#randomMapBtn {
+    -fx-background-image: url("./images/btn_image.png");
+    -fx-background-size: cover, auto;
+    -fx-text-fill: WHITE;
+}
 
 #WITCHES {
      -fx-opacity: 1;
