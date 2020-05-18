@@ -104,7 +104,7 @@ public class FlowManager{
         Terrain terrain = getTerrain(terrainID);
 
         /* If the terrain is not empty(available), you cannot build a dwelling */
-        if(!terrain.isAvailable() && terrain.getType() == currentPlayer.getFaction().getTerrainType()){
+        if(!terrain.isAvailable() || terrain.getType() != currentPlayer.getFaction().getTerrainType()){
             return 4;
         }
 
