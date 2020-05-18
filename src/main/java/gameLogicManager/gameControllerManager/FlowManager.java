@@ -74,11 +74,11 @@ public class FlowManager{
      */
     public int transformTerrain(int terrainID, TerrainType newTerrainType) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.
-        System.out.println("Rafi");
-        /* Player cannot transform if the terrain is not available or it's the same terrain */
-        //if(!terrain.isAvailable() || terrain.getType().getTerrainTypeID() == newTerrainType.getTerrainTypeID()){
-            //return 4;
-        //}
+
+        //Player cannot transform if the terrain is not available or it's the same terrain */
+        if(!terrain.isAvailable() || terrain.getType().getTerrainTypeID() == newTerrainType.getTerrainTypeID()){
+            return 4;
+        }
 
         /* Check if the player has enough workers to have enough spades, obtain spades if possible */
         if(!resourceController.obtainSpade(currentPlayer, terrain.getType().getTerrainTypeID(), newTerrainType.getTerrainTypeID())){

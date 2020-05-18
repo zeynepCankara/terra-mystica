@@ -189,7 +189,7 @@ public class LocalGameController extends SceneController {
         anchorPane.getChildren().addAll(currentFactionImgView);
 
          */
-        //statusBar = (Label) super.scene.lookup("#statusLabel");
+        statusBar = (Label) super.scene.lookup("#statusLabel");
 
 
         // Add listeners to buttons
@@ -215,6 +215,7 @@ public class LocalGameController extends SceneController {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+
         });
         fireCultBtn.setOnMouseClicked(event -> {
             gameStateLocal.put("cultId", 0);
@@ -304,11 +305,8 @@ public class LocalGameController extends SceneController {
             Polygon hexagon = (Polygon) super.scene.lookup("#" + polygonId);
             hexagon.setFill(terrainColorMap.get(terrainId));
         }
-        else{
-            //TODO status
-            System.out.println("terrain id: " + terrainId);
-            System.out.println("polygom id: "  + polygonId);
-        }
+        if(statusBar != null )
+            statusBar.setText(GameEngine.getGameStatus());
     }
 
 
@@ -340,10 +338,9 @@ public class LocalGameController extends SceneController {
                 FlowManager flowManager  = FlowManager.getInstance();
                 victoryPointLabel.setText(Integer.toString(flowManager.getCurrentPlayer().getScore()));
             }
-            else{
-                //TODO status
-                System.out.println("z");
-            }
+            if(statusBar != null )
+                statusBar.setText(GameEngine.getGameStatus());
+
         }
 
     }

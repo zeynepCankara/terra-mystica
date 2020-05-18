@@ -130,19 +130,10 @@ public class GameEngine {
         }
     }
 
-    public static void update() {
-
-        timer.schedule(
-                new TimerTask() {
-
-                    @Override
-                    public void run() {
-                        updateMap();
-                        //updateCultBoard();
-                        //updatePowerActions();//Make all of them available
-                    }
-                }, 0, 5000);
+    public static String getGameStatus() {
+        return gameStatus;
     }
+
 
     private static void updateMap() {
         game.getGameBoard().updateTerrainList(ServerController.GetBoard());
