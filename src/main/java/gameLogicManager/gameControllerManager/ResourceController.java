@@ -197,23 +197,23 @@ public class ResourceController{
     public void getEndOfRoundIncomeOfScoringTile(Player currentPlayer, int currentRound) {
         //ADVANCEMENT VARIABLES SHOULD BE SET TO 0 LATER!!!
         /* 4 Water = Priest */
-        if(currentRound == 0 && currentPlayer.getWaterAdvancement() >= 4){
-            currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + (currentPlayer.getWaterAdvancement() / 4));
+        if(currentRound == 0 && CultBoard.getTrack("Water").getAdvancements()[currentPlayer.getPlayerIndex()] >= 4){
+            currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + (CultBoard.getTrack("Water").getAdvancements()[currentPlayer.getPlayerIndex()] / 4));
             return;
         }
         /* 2 Fire = Worker */
-        if(currentRound == 1 && currentPlayer.getFireAdvancement() >= 2){
-            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (currentPlayer.getFireAdvancement() / 2) * 2);
+        if(currentRound == 1 && CultBoard.getTrack("Fire").getAdvancements()[currentPlayer.getPlayerIndex()] >= 2){
+            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (CultBoard.getTrack("Fire").getAdvancements()[currentPlayer.getPlayerIndex()] / 2) * 2);
             return;
         }
         /* 4 Fire = 4 Power */
-        if(currentRound == 2 && currentPlayer.getFireAdvancement() >= 4){
-            currentPlayer.gainPower((currentPlayer.getFireAdvancement() / 4) * 4);
+        if(currentRound == 2 && CultBoard.getTrack("Fire").getAdvancements()[currentPlayer.getPlayerIndex()] >= 4){
+            currentPlayer.gainPower((CultBoard.getTrack("Fire").getAdvancements()[currentPlayer.getPlayerIndex()] / 4) * 4);
             return;
         }
         /* 2 Air = Worker */
-        if(currentRound == 3 && currentPlayer.getAirAdvancement() >= 2){
-            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (currentPlayer.getAirAdvancement() / 2) * 2);
+        if(currentRound == 3 && CultBoard.getTrack("Air").getAdvancements()[currentPlayer.getPlayerIndex()] >= 2){
+            currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (CultBoard.getTrack("Air").getAdvancements()[currentPlayer.getPlayerIndex()] / 2) * 2);
             return;
         }
     }

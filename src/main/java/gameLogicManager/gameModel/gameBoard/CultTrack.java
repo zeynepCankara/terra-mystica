@@ -29,7 +29,8 @@ public class CultTrack {
         return name;
     }
 
-    public boolean advanceWithPriest(int playerIndex) {
+    public boolean advanceWithPriest(Player player) {
+        int playerIndex = player.getPlayerIndex();
         if(orders[0] == 0 && orders[1] == 0){
             return  false;
         }
@@ -45,6 +46,7 @@ public class CultTrack {
         }
     }
 
+
     public int[] getAdvancements() {
         return advancements;
     }
@@ -52,31 +54,5 @@ public class CultTrack {
     public int[] getOrders() {
         return orders;
     }
-    /*
-    private Player[][] track;
-    private HashMap<Integer, Boolean> orders;
-    public CultTrack( Player[] players ){
-        track = new Player[10][4]; // first index holds the slots on the track, the second index holds the players on the slot.
 
-        for( int j = 0; j < 4; j++ ){
-            track[0][j] = players[j];
-        }
-
-        for( int i = 1; i < 10; i++ ){
-            for( int j = 0; j < 4; j++ ){
-                track[i][j] = null;
-            }
-        }
-    }
-
-    public void updateCultTrack( Player p, int numberOfSteps ){
-        for( int i = 0; i < 10; i++ ){
-            for( int j = 0; j < 4; j++ ){
-                if( track[i][j] == p ){
-                    track[i][j] = null;
-                    track[i+numberOfSteps][j] = p;
-                }
-            }
-        }
-    }*/
 }

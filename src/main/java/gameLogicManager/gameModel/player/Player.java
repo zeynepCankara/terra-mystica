@@ -144,24 +144,4 @@ public class Player {
         coins = Faction.getCoinAtSetup(factionType);
     }
 
-
-    public int getFireAdvancement() {
-        //TODO
-        return 0;
-    }
-
-    public int getWaterAdvancement() {
-        //TODO
-        return 0;
-    }
-
-    public int getAirAdvancement() {
-        //TODO
-        return 0;
-    }
-
-    public int getEarthAdvancement(){
-        //TODO
-        return 0;
-    }
 }

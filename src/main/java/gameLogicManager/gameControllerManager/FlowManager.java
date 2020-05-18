@@ -197,7 +197,7 @@ public class FlowManager{
 
         CultTrack cultTrack = CultBoard.getTrack(trackName);
 
-        if(!cultTrack.advanceWithPriest(currentPlayer.getPlayerIndex())){
+        if(!cultTrack.advanceWithPriest(currentPlayer)){
             return 7;
         }
 
