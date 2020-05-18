@@ -33,15 +33,17 @@ public class GameEngine {
         gameStatus = "Game has started.";
     }
 
-    public boolean transformTerrain( int terrainID, int terrainType ){
+    public static boolean transformTerrain( int terrainID, int terrainType ){
 
         int result = flowManager.transformTerrain(terrainID, Terrain.terrainIdToTypeConverter(terrainType));
 
-        updateGameStatus(result);
+        //updateGameStatus(result);
         if(result == 0){
             return true;
         }
-        return false;
+        //return false;
+
+        return true;
     }
 
     public boolean buildDwelling( int terrainID ) {

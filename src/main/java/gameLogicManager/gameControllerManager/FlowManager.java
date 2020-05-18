@@ -73,7 +73,7 @@ public class FlowManager{
      */
     public int transformTerrain(int terrainID, TerrainType newTerrainType) {
         Terrain terrain = getTerrain(terrainID); // getTerrain returns Terrain object from the given id.
-
+        System.out.println("Rafi");
         /* Player cannot transform if the terrain is not available or it's the same terrain */
         //if(!terrain.isAvailable() || terrain.getType().getTerrainTypeID() == newTerrainType.getTerrainTypeID()){
             //return 4;
@@ -85,6 +85,7 @@ public class FlowManager{
         //}
 
         actionController.transformTerrain(terrain, newTerrainType);
+
 
         //adjacencyController.updateAdjacencyList(currentPlayer, terrain);
         //Bu method score güncelleye bir method halini alacak

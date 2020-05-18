@@ -58,11 +58,15 @@ public class LocalGameController extends SceneController {
     Polygon[] terrainMapHexagons;
     // Holds the information about game state
     static HashMap<String, Integer> gameStateLocal;
+    GameEngine gameEngine;
 
 
 
     // Constructor
     public LocalGameController(Stage stage) throws IOException {
+
+        int randomness = GameSetupController.gameState.get("isDefaultMap");
+        gameEngine = randomness == 0 ? GameEngine.getInstance(false) : GameEngine.getInstance(true);
         // initialize the map buttons
         terrainMapHexagons = new Polygon[113];
         // Holds the game state in a HashMap
@@ -104,7 +108,7 @@ public class LocalGameController extends SceneController {
         //scene = BoardGenerator.generateDefaultTerrainMap(scene);
         HashMap<String, Integer> gameState = GameSetupController.getInitParameters();
         if( gameState.get("isDefaultMap") == 1){
-           super.scene = BoardGenerator.generateDefaultTerrainMap(super.scene);
+            super.scene = BoardGenerator.generateDefaultTerrainMap(super.scene);
         } else {
             super.scene = BoardGenerator.generateRandomTerrainMap(super.scene, (int) (Math.random() * 6 + 1));
         }
@@ -215,8 +219,14 @@ public class LocalGameController extends SceneController {
      * @param terrainId, terrain type
      */
     public void changeTerrainSelected(int polygonId, int terrainId) {
-        Polygon hexagon = (Polygon) super.scene.lookup("#" + polygonId);
-        hexagon.setFill(terrainColorMap.get(terrainId));
+        if( GameEngine.transformTerrain(polygonId, terrainId) ) {
+
+            Polygon hexagon = (Polygon) super.scene.lookup("#" + polygonId);
+            hexagon.setFill(terrainColorMap.get(terrainId));
+        }
+        else{
+            //TODO status
+        }
     }
 
     /**
@@ -225,12 +235,17 @@ public class LocalGameController extends SceneController {
      */
     public void buildDwellingOnSelected(int polygonId) throws FileNotFoundException {
         if(gameStateLocal.get("isBuildDwelling") == 1){
-            Rectangle rectangle = new Rectangle(35, 25);
-            rectangle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
-            rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
-            rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
-            rectangle.setVisible(true);
-            anchorPane.getChildren().addAll(rectangle);
+            if( gameEngine.buildDwelling(polygonId)) {
+                Rectangle rectangle = new Rectangle(35, 25);
+                rectangle.setFill(terrainColorMap.get(gameStateLocal.get("factionColorId")));
+                rectangle.setLayoutX(terrainMapHexagons[polygonId].getLayoutX() - 20);
+                rectangle.setLayoutY(terrainMapHexagons[polygonId].getLayoutY() - 15);
+                rectangle.setVisible(true);
+                anchorPane.getChildren().addAll(rectangle);
+            }
+            else{
+                //TODO status
+            }
         }
     }
 
