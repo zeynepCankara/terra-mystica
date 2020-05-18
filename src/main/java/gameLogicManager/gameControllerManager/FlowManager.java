@@ -171,8 +171,9 @@ public class FlowManager{
         return 0;
     }
 
-    public int upgradeStructure(int terrainID, StructureType newStructureType) {
+    public int upgradeStructure(int terrainID) {
         Terrain terrain = getTerrain(terrainID);
+        StructureType newStructureType = terrain.getStructure().getStructureType();
 
         /* Check required resources and obtain resources if possible,
         structure pointer is upgraded to new structure in this method */

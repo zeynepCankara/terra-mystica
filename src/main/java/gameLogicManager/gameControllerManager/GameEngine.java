@@ -73,8 +73,8 @@ public class GameEngine {
         return false;
     }
 
-    public static boolean upgradeStructure(int terrainID, StructureType newStructureType){
-        int result = flowManager.upgradeStructure(terrainID, newStructureType);
+    public static boolean upgradeStructure(int terrainID){
+        int result = flowManager.upgradeStructure(terrainID);
         updateGameStatus(result);
         System.out.println(gameStatus);
         if(result == 0){
