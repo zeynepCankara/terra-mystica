@@ -73,7 +73,8 @@ public class LocalGameController extends SceneController {
     public LocalGameController(Stage stage) throws IOException {
 
         int randomness = GameSetupController.gameState.get("isDefaultMap");
-        gameEngine = randomness == 0 ? GameEngine.getInstance(false) : GameEngine.getInstance(true);
+        gameEngine = randomness == 0 ? GameEngine.getInstance(true) : GameEngine.getInstance(false);
+
         // initialize the map buttons
         terrainMapHexagons = new Polygon[113];
         // Holds the game state in a HashMap

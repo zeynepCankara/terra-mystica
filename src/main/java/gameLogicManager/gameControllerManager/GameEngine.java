@@ -38,6 +38,7 @@ public class GameEngine {
         int result = flowManager.transformTerrain(terrainID, Terrain.terrainIdToTypeConverter(terrainType));
 
         updateGameStatus(result);
+        System.out.println(gameStatus);
         if(result == 0){
             return true;
         }
@@ -47,6 +48,7 @@ public class GameEngine {
     public static boolean buildDwelling( int terrainID ) {
         int result = flowManager.buildDwelling(terrainID);
         updateGameStatus(result);
+        System.out.println(gameStatus);
         if(result == 0){
             return true;
         }
