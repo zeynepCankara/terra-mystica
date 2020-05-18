@@ -58,21 +58,17 @@ public class ActionController{
     }
 
     //HANDLE SERVER IN THIS METHOD!!!!!!
-    public boolean upgradeStructure(Player currentPlayer, Terrain terrain, StructureType newStructureType) {
+    public boolean upgradeStructure(Player currentPlayer, Terrain terrain, StructureType currentStructureType) {
         Structure newStructure;
-        switch (newStructureType){
-            case TradingHouse:
+        switch (currentStructureType){
+            case Dwelling:
                 newStructure = new TradingHouse();
                 break;
-            case Temple:
-                newStructure = new Temple();
-                break;
-            case Sanctuary:
-                newStructure = new Sanctuary();
-                break;
-            default:
+            case TradingHouse:
                 newStructure = new StrongHold();
                 break;
+            default:
+                newStructure = new TradingHouse();
         }
         currentPlayer.removeStructure(terrain.getStructure()); //remove old structure from player's list
         currentPlayer.addStructure(newStructure);
