@@ -139,23 +139,28 @@ public class ResourceController{
         return 1; //not enough coins
 
     }
-
+    int[][] resources = new int[4][4];//rows are players, columns are : coins(0), workers(1), priests(2), power(3)
     public boolean obtainIncomeOfStructure(Player currentPlayer, StructureType newStructureType) {
         switch (newStructureType){ // creates the object of new Structure
             case Dwelling:
-                currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + 1);
+                resources[currentPlayer.getPlayerIndex()][1] += 1;
                 break;
             case TradingHouse:
+                resources[currentPlayer.getPlayerIndex()][0] += 2;
+                resources[currentPlayer.getPlayerIndex()][3] += 2;
                 currentPlayer.setCoins(currentPlayer.getCoins() + 2);
                 currentPlayer.gainPower(2); //depends, may change!
                 break;
             case Temple:
+                resources[currentPlayer.getPlayerIndex()][2] += 1;
                 currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);
                 break;
             case Sanctuary:
+                resources[currentPlayer.getPlayerIndex()][2] += 1;
                 currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + 1);  //depends, may change!
                 break;
             default: //Otherwise it is Stronghold
+                resources[currentPlayer.getPlayerIndex()][3] += 2;
                 currentPlayer.gainPower(2);
                 break;
         }
@@ -207,5 +212,13 @@ public class ResourceController{
             currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + (currentPlayer.getAirAdvancement() / 2) * 2);
             return;
         }
+    }
+
+
+    public void getIncomeofStructures(Player currentPlayer) {
+        currentPlayer.setCoins(currentPlayer.getCoins() + resources[currentPlayer.getPlayerIndex()][0]);
+        currentPlayer.setNumOfWorkers(currentPlayer.getNumOfWorkers() + resources[currentPlayer.getPlayerIndex()][1]);
+        currentPlayer.setNumOfPriests(currentPlayer.getNumOfPriests() + resources[currentPlayer.getPlayerIndex()][2]);
+        currentPlayer.gainPower(resources[currentPlayer.getPlayerIndex()][3]);
     }
 }

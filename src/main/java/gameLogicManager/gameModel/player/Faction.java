@@ -12,12 +12,18 @@ public class Faction {
     private FactionType type;
     private int workerAtSetup;
     private int coinAtSetup;
-    private TerrainType homeTerrain; //IS IT USEFUL?
+    private TerrainType homeTerrain;
 
     public Faction(FactionType factionType){
         type = factionType;
         workerAtSetup = getWorkerAtSetup(factionType);
         coinAtSetup = getCoinAtSetup(factionType);
+        homeTerrain = getHomeTerrain(factionType);
+    }
+
+    private TerrainType getHomeTerrain(FactionType factionType) {
+        //TODO switch case
+        return TerrainType.Forest;
     }
 
     public static int getWorkerAtSetup(FactionType factionType) {

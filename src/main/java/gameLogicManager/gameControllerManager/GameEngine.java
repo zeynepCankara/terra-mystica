@@ -81,14 +81,16 @@ public class GameEngine {
         return false;
     }
 
-    public int sendPriestToCult( int trackID ){
-        int result = flowManager.sendPriestToCult(trackID);
+    public int sendPriestToCult(String trackName){
+        int result = flowManager.sendPriestToCult(trackName);
         updateGameStatus(result);
+        System.out.println(gameStatus);
         return result;
     }
 
     public void pass(){
         flowManager.pass();
+        gameStatus = "You passed.";
     }
 
 
@@ -119,6 +121,9 @@ public class GameEngine {
                 break;
             case 6:
                 gameStatus = "Failed: Improvement limit has been reached";
+                break;
+            case 7:
+                gameStatus = "Orders are filled";
                 break;
         }
     }
